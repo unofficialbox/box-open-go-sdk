@@ -1,3 +1,5 @@
+README.md
+assets/banner.svg
 buildinfo/buildinfo.go
 client/client.go
 docs/README.md
