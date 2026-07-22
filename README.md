@@ -5,7 +5,7 @@
 
 [![Go Reference](https://pkg.go.dev/badge/github.com/unofficialbox/box-open-go-sdk.svg)](https://pkg.go.dev/github.com/unofficialbox/box-open-go-sdk)
 
-A **community, unofficial** Box API client for Go — typed models for the whole
+An **open source, community-built** Box API client for Go — typed models for the whole
 Box surface, one manager per API area behind a single `Client`, and a
 `net/http` runtime with retry, exponential backoff, `Retry-After` handling, and
 automatic token refresh. Standard library only; no third-party dependencies.
