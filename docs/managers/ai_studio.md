@@ -18,6 +18,17 @@ Access via `client.NewClient().AiStudio`.
 
 **Returns:** `AiMultipleAgentResponse`
 
+**Example**
+
+```go
+for item, err := range client.AiStudio.ListAiAgents(context.Background(), nil) {
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(item)
+}
+```
+
 Paginated — `ListAiAgents(...)` returns `iter.Seq2[*T, error]`, threading the cursor for you. See the [pagination guide](../pagination.md).
 
 ## CreateAiAgents
@@ -27,6 +38,16 @@ Paginated — `ListAiAgents(...)` returns `iter.Seq2[*T, error]`, threading the 
 **Request body** (`application/json`): `CreateAiAgent`
 
 **Returns:** `AiSingleAgentResponseFull`
+
+**Example**
+
+```go
+result, err := client.AiStudio.CreateAiAgents(context.Background(), &schemas.CreateAiAgent{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 
 ## GetAiAgent
 
@@ -38,6 +59,16 @@ Paginated — `ListAiAgents(...)` returns `iter.Seq2[*T, error]`, threading the 
 | `fields` | query | `[]string` | no |
 
 **Returns:** `AiSingleAgentResponseFull`
+
+**Example**
+
+```go
+result, err := client.AiStudio.GetAiAgent(context.Background(), "AGENT_ID", nil)
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 
 ## UpdateAiAgent
 
@@ -51,6 +82,16 @@ Paginated — `ListAiAgents(...)` returns `iter.Seq2[*T, error]`, threading the 
 
 **Returns:** `AiSingleAgentResponseFull`
 
+**Example**
+
+```go
+result, err := client.AiStudio.UpdateAiAgent(context.Background(), "AGENT_ID", &schemas.CreateAiAgent{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## DeleteAiAgent
 
 `DELETE /ai_agents/{agent_id}`
@@ -60,4 +101,12 @@ Paginated — `ListAiAgents(...)` returns `iter.Seq2[*T, error]`, threading the 
 | `agent_id` | path | `string` | yes |
 
 **Returns:** no content
+
+**Example**
+
+```go
+if err := client.AiStudio.DeleteAiAgent(context.Background(), "AGENT_ID"); err != nil {
+	log.Fatal(err)
+}
+```
 

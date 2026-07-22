@@ -13,6 +13,16 @@ Access via `client.NewClient().Docgen`.
 
 **Returns:** `DocGenJob`
 
+**Example**
+
+```go
+result, err := client.Docgen.GetJob(context.Background(), "JOB_ID")
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## ListJobs
 
 `GET /docgen_jobs`
@@ -23,6 +33,17 @@ Access via `client.NewClient().Docgen`.
 | `limit` | query | `int64` | no |
 
 **Returns:** `DocGenJobsFull`
+
+**Example**
+
+```go
+for item, err := range client.Docgen.ListJobs(context.Background(), nil) {
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(item)
+}
+```
 
 Paginated — `ListJobs(...)` returns `iter.Seq2[*T, error]`, threading the cursor for you. See the [pagination guide](../pagination.md).
 
@@ -38,6 +59,17 @@ Paginated — `ListJobs(...)` returns `iter.Seq2[*T, error]`, threading the curs
 
 **Returns:** `DocGenJobs`
 
+**Example**
+
+```go
+for item, err := range client.Docgen.ListBatchJob(context.Background(), "BATCH_ID", nil) {
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(item)
+}
+```
+
 Paginated — `ListBatchJob(...)` returns `iter.Seq2[*T, error]`, threading the cursor for you. See the [pagination guide](../pagination.md).
 
 ## CreateBatches
@@ -47,4 +79,14 @@ Paginated — `ListBatchJob(...)` returns `iter.Seq2[*T, error]`, threading the 
 **Request body** (`application/json`): `DocGenBatchCreateRequest`
 
 **Returns:** `DocGenBatchBase`
+
+**Example**
+
+```go
+result, err := client.Docgen.CreateBatches(context.Background(), &schemas.DocGenBatchCreateRequest{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 

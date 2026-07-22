@@ -3,7 +3,7 @@
 
 Access via `client.NewClient().Uploads`.
 
-## CreateFileContent
+## UploadFileVersion
 
 `POST /files/{file_id}/content`
 
@@ -18,7 +18,17 @@ Access via `client.NewClient().Uploads`.
 
 **Returns:** `Files`
 
-## CreateFileContent2
+**Example**
+
+```go
+result, err := client.Uploads.UploadFileVersion(context.Background(), "FILE_ID", &schemas.FileIdContentCreateRequest{}, nil)
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
+## UploadFile
 
 `POST /files/content`
 
@@ -31,6 +41,16 @@ Access via `client.NewClient().Uploads`.
 
 **Returns:** `Files`
 
+**Example**
+
+```go
+result, err := client.Uploads.UploadFile(context.Background(), &schemas.FileContentCreateRequest{}, nil)
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## OptionFileContent
 
 `OPTIONS /files/content`
@@ -38,4 +58,14 @@ Access via `client.NewClient().Uploads`.
 **Request body** (`application/json`): `OptionFileContentRequest`
 
 **Returns:** `UploadUrl`
+
+**Example**
+
+```go
+result, err := client.Uploads.OptionFileContent(context.Background(), &schemas.OptionFileContentRequest{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 

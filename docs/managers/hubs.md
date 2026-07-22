@@ -18,6 +18,17 @@ Access via `client.NewClient().Hubs`.
 
 **Returns:** `Hubs`
 
+**Example**
+
+```go
+for item, err := range client.Hubs.List(context.Background(), nil) {
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(item)
+}
+```
+
 Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor for you. See the [pagination guide](../pagination.md).
 
 ## Create
@@ -27,6 +38,16 @@ Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor f
 **Request body** (`application/json`): `HubCreateRequest`
 
 **Returns:** `Hub`
+
+**Example**
+
+```go
+result, err := client.Hubs.Create(context.Background(), &schemas.HubCreateRequest{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 
 ## ListEnterprise
 
@@ -42,6 +63,17 @@ Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor f
 
 **Returns:** `Hubs`
 
+**Example**
+
+```go
+for item, err := range client.Hubs.ListEnterprise(context.Background(), nil) {
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(item)
+}
+```
+
 Paginated — `ListEnterprise(...)` returns `iter.Seq2[*T, error]`, threading the cursor for you. See the [pagination guide](../pagination.md).
 
 ## Get
@@ -53,6 +85,16 @@ Paginated — `ListEnterprise(...)` returns `iter.Seq2[*T, error]`, threading th
 | `hub_id` | path | `string` | yes |
 
 **Returns:** `Hub`
+
+**Example**
+
+```go
+result, err := client.Hubs.Get(context.Background(), "HUB_ID")
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 
 ## Update
 
@@ -66,6 +108,16 @@ Paginated — `ListEnterprise(...)` returns `iter.Seq2[*T, error]`, threading th
 
 **Returns:** `Hub`
 
+**Example**
+
+```go
+result, err := client.Hubs.Update(context.Background(), "HUB_ID", &schemas.HubUpdateRequest{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## Delete
 
 `DELETE /hubs/{hub_id}`
@@ -75,6 +127,14 @@ Paginated — `ListEnterprise(...)` returns `iter.Seq2[*T, error]`, threading th
 | `hub_id` | path | `string` | yes |
 
 **Returns:** no content
+
+**Example**
+
+```go
+if err := client.Hubs.Delete(context.Background(), "HUB_ID"); err != nil {
+	log.Fatal(err)
+}
+```
 
 ## Copy
 
@@ -87,4 +147,14 @@ Paginated — `ListEnterprise(...)` returns `iter.Seq2[*T, error]`, threading th
 **Request body** (`application/json`): `HubCopyRequest`
 
 **Returns:** `Hub`
+
+**Example**
+
+```go
+result, err := client.Hubs.Copy(context.Background(), "HUB_ID", &schemas.HubCopyRequest{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 

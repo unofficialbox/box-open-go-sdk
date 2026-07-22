@@ -15,6 +15,17 @@ Access via `client.NewClient().StoragePolicyAssignments`.
 
 **Returns:** `StoragePolicyAssignments`
 
+**Example**
+
+```go
+for item, err := range client.StoragePolicyAssignments.List(context.Background(), schemas.GetResolvedForType("..."), "RESOLVED_FOR_ID", nil) {
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(item)
+}
+```
+
 Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor for you. See the [pagination guide](../pagination.md).
 
 ## Create
@@ -25,6 +36,16 @@ Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor f
 
 **Returns:** `StoragePolicyAssignment`
 
+**Example**
+
+```go
+result, err := client.StoragePolicyAssignments.Create(context.Background(), &schemas.StoragePolicyAssignmentCreateRequest{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## Get
 
 `GET /storage_policy_assignments/{storage_policy_assignment_id}`
@@ -34,6 +55,16 @@ Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor f
 | `storage_policy_assignment_id` | path | `string` | yes |
 
 **Returns:** `StoragePolicyAssignment`
+
+**Example**
+
+```go
+result, err := client.StoragePolicyAssignments.Get(context.Background(), "STORAGE_POLICY_ASSIGNMENT_ID")
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 
 ## Update
 
@@ -47,6 +78,16 @@ Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor f
 
 **Returns:** `StoragePolicyAssignment`
 
+**Example**
+
+```go
+result, err := client.StoragePolicyAssignments.Update(context.Background(), "STORAGE_POLICY_ASSIGNMENT_ID", &schemas.StoragePolicyAssignmentUpdateRequest{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## Delete
 
 `DELETE /storage_policy_assignments/{storage_policy_assignment_id}`
@@ -56,4 +97,12 @@ Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor f
 | `storage_policy_assignment_id` | path | `string` | yes |
 
 **Returns:** no content
+
+**Example**
+
+```go
+if err := client.StoragePolicyAssignments.Delete(context.Background(), "STORAGE_POLICY_ASSIGNMENT_ID"); err != nil {
+	log.Fatal(err)
+}
+```
 

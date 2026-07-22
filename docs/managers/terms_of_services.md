@@ -13,6 +13,16 @@ Access via `client.NewClient().TermsOfServices`.
 
 **Returns:** `TermsOfServices`
 
+**Example**
+
+```go
+result, err := client.TermsOfServices.List(context.Background(), nil)
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## Create
 
 `POST /terms_of_services`
@@ -20,6 +30,16 @@ Access via `client.NewClient().TermsOfServices`.
 **Request body** (`application/json`): `TermsOfServiceCreateRequest`
 
 **Returns:** `TermsOfService`
+
+**Example**
+
+```go
+result, err := client.TermsOfServices.Create(context.Background(), &schemas.TermsOfServiceCreateRequest{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 
 ## Get
 
@@ -30,6 +50,16 @@ Access via `client.NewClient().TermsOfServices`.
 | `terms_of_service_id` | path | `string` | yes |
 
 **Returns:** `TermsOfService`
+
+**Example**
+
+```go
+result, err := client.TermsOfServices.Get(context.Background(), "TERMS_OF_SERVICE_ID")
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 
 ## Update
 
@@ -42,4 +72,14 @@ Access via `client.NewClient().TermsOfServices`.
 **Request body** (`application/json`): `TermsOfServiceUpdateRequest`
 
 **Returns:** `TermsOfService`
+
+**Example**
+
+```go
+result, err := client.TermsOfServices.Update(context.Background(), "TERMS_OF_SERVICE_ID", &schemas.TermsOfServiceUpdateRequest{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 

@@ -15,6 +15,16 @@ Access via `client.NewClient().SignRequests`.
 
 **Returns:** `SignRequest`
 
+**Example**
+
+```go
+result, err := client.SignRequests.Cancel(context.Background(), "SIGN_REQUEST_ID", &schemas.SignRequestCancelRequest{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## Resend
 
 `POST /sign_requests/{sign_request_id}/resend`
@@ -25,6 +35,14 @@ Access via `client.NewClient().SignRequests`.
 
 **Returns:** no content
 
+**Example**
+
+```go
+if err := client.SignRequests.Resend(context.Background(), "SIGN_REQUEST_ID"); err != nil {
+	log.Fatal(err)
+}
+```
+
 ## Get
 
 `GET /sign_requests/{sign_request_id}`
@@ -34,6 +52,16 @@ Access via `client.NewClient().SignRequests`.
 | `sign_request_id` | path | `string` | yes |
 
 **Returns:** `SignRequest`
+
+**Example**
+
+```go
+result, err := client.SignRequests.Get(context.Background(), "SIGN_REQUEST_ID")
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 
 ## List
 
@@ -48,6 +76,17 @@ Access via `client.NewClient().SignRequests`.
 
 **Returns:** `SignRequests`
 
+**Example**
+
+```go
+for item, err := range client.SignRequests.List(context.Background(), nil) {
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(item)
+}
+```
+
 Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor for you. See the [pagination guide](../pagination.md).
 
 ## Create
@@ -57,4 +96,14 @@ Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor f
 **Request body** (`application/json`): `SignRequestCreateRequest`
 
 **Returns:** `SignRequest`
+
+**Example**
+
+```go
+result, err := client.SignRequests.Create(context.Background(), &schemas.SignRequestCreateRequest{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 

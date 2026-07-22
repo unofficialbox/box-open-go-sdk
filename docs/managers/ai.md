@@ -11,6 +11,16 @@ Access via `client.NewClient().Ai`.
 
 **Returns:** `AiResponseFull`
 
+**Example**
+
+```go
+result, err := client.Ai.Ask(context.Background(), &schemas.AiAsk{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## CreateTextGen
 
 `POST /ai/text_gen`
@@ -18,6 +28,16 @@ Access via `client.NewClient().Ai`.
 **Request body** (`application/json`): `AiTextGen`
 
 **Returns:** `AiResponse`
+
+**Example**
+
+```go
+result, err := client.Ai.CreateTextGen(context.Background(), &schemas.AiTextGen{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 
 ## GetAgentDefault
 
@@ -31,6 +51,16 @@ Access via `client.NewClient().Ai`.
 
 **Returns:** `AiAgent`
 
+**Example**
+
+```go
+result, err := client.Ai.GetAgentDefault(context.Background(), schemas.GetAgentDefaultMode("..."), nil)
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## Extract
 
 `POST /ai/extract`
@@ -39,6 +69,16 @@ Access via `client.NewClient().Ai`.
 
 **Returns:** `AiResponse`
 
+**Example**
+
+```go
+result, err := client.Ai.Extract(context.Background(), &schemas.AiExtract{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## CreateExtractStructured
 
 `POST /ai/extract_structured`
@@ -46,4 +86,14 @@ Access via `client.NewClient().Ai`.
 **Request body** (`application/json`): `AiExtractStructured`
 
 **Returns:** `AiExtractStructuredResponse`
+
+**Example**
+
+```go
+result, err := client.Ai.CreateExtractStructured(context.Background(), &schemas.AiExtractStructured{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 

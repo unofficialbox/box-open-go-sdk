@@ -16,6 +16,17 @@ Access via `client.NewClient().FileVersions`.
 
 **Returns:** `FileVersions`
 
+**Example**
+
+```go
+for item, err := range client.FileVersions.ListFileVersions(context.Background(), "FILE_ID", nil) {
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(item)
+}
+```
+
 Paginated — `ListFileVersions(...)` returns `iter.Seq2[*T, error]`, threading the cursor for you. See the [pagination guide](../pagination.md).
 
 ## GetFileVersion
@@ -30,6 +41,16 @@ Paginated — `ListFileVersions(...)` returns `iter.Seq2[*T, error]`, threading 
 
 **Returns:** `FileVersionFull`
 
+**Example**
+
+```go
+result, err := client.FileVersions.GetFileVersion(context.Background(), "FILE_ID", "FILE_VERSION_ID", nil)
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## UpdateFileVersion
 
 `PUT /files/{file_id}/versions/{file_version_id}`
@@ -43,6 +64,16 @@ Paginated — `ListFileVersions(...)` returns `iter.Seq2[*T, error]`, threading 
 
 **Returns:** `FileVersionFull`
 
+**Example**
+
+```go
+result, err := client.FileVersions.UpdateFileVersion(context.Background(), "FILE_ID", "FILE_VERSION_ID", &schemas.FileVersionUpdateRequest{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## DeleteFileVersion
 
 `DELETE /files/{file_id}/versions/{file_version_id}`
@@ -54,6 +85,14 @@ Paginated — `ListFileVersions(...)` returns `iter.Seq2[*T, error]`, threading 
 | `if-match` | header | `string` | no |
 
 **Returns:** no content
+
+**Example**
+
+```go
+if err := client.FileVersions.DeleteFileVersion(context.Background(), "FILE_ID", "FILE_VERSION_ID", nil); err != nil {
+	log.Fatal(err)
+}
+```
 
 ## CreateFileVersionCurrent
 
@@ -67,4 +106,14 @@ Paginated — `ListFileVersions(...)` returns `iter.Seq2[*T, error]`, threading 
 **Request body** (`application/json`): `FileVersionCurrentCreateRequest`
 
 **Returns:** `FileVersionFull`
+
+**Example**
+
+```go
+result, err := client.FileVersions.CreateFileVersionCurrent(context.Background(), "FILE_ID", &schemas.FileVersionCurrentCreateRequest{}, nil)
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 

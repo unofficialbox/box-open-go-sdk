@@ -18,9 +18,29 @@ Access via `client.NewClient().Events`.
 
 **Returns:** `Events`
 
+**Example**
+
+```go
+result, err := client.Events.List(context.Background(), nil)
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## Options
 
 `OPTIONS /events`
 
 **Returns:** `RealtimeServers`
+
+**Example**
+
+```go
+result, err := client.Events.Options(context.Background())
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 

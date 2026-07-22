@@ -20,14 +20,14 @@ func NewUploadsManager(session *gantryruntime.Client) *UploadsManager {
 	return &UploadsManager{session: session}
 }
 
-// UploadsCreateFileContentOptions carries the optional parameters.
-type UploadsCreateFileContentOptions struct {
+// UploadsUploadFileVersionOptions carries the optional parameters.
+type UploadsUploadFileVersionOptions struct {
 	IfMatch    *string
 	Fields     []string
 	ContentMd5 *string
 }
 
-func (m *UploadsManager) CreateFileContent(ctx context.Context, fileId string, body *schemas.FileIdContentCreateRequest, opts *UploadsCreateFileContentOptions) (*schemas.Files, error) {
+func (m *UploadsManager) UploadFileVersion(ctx context.Context, fileId string, body *schemas.FileIdContentCreateRequest, opts *UploadsUploadFileVersionOptions) (*schemas.Files, error) {
 	req := m.session.NewRequest("POST", m.session.BaseUrl("upload")+"/files"+"/"+url.PathEscape(fileId)+"/content")
 	if opts != nil {
 		if opts.IfMatch != nil {
@@ -60,13 +60,13 @@ func (m *UploadsManager) CreateFileContent(ctx context.Context, fileId string, b
 	return out, nil
 }
 
-// UploadsCreateFileContent2Options carries the optional parameters.
-type UploadsCreateFileContent2Options struct {
+// UploadsUploadFileOptions carries the optional parameters.
+type UploadsUploadFileOptions struct {
 	Fields     []string
 	ContentMd5 *string
 }
 
-func (m *UploadsManager) CreateFileContent2(ctx context.Context, body *schemas.FileContentCreateRequest, opts *UploadsCreateFileContent2Options) (*schemas.Files, error) {
+func (m *UploadsManager) UploadFile(ctx context.Context, body *schemas.FileContentCreateRequest, opts *UploadsUploadFileOptions) (*schemas.Files, error) {
 	req := m.session.NewRequest("POST", m.session.BaseUrl("upload")+"/files"+"/content")
 	if opts != nil {
 		if opts.Fields != nil {

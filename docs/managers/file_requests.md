@@ -13,6 +13,16 @@ Access via `client.NewClient().FileRequests`.
 
 **Returns:** `FileRequest`
 
+**Example**
+
+```go
+result, err := client.FileRequests.Get(context.Background(), "FILE_REQUEST_ID")
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## Update
 
 `PUT /file_requests/{file_request_id}`
@@ -26,6 +36,16 @@ Access via `client.NewClient().FileRequests`.
 
 **Returns:** `FileRequest`
 
+**Example**
+
+```go
+result, err := client.FileRequests.Update(context.Background(), "FILE_REQUEST_ID", &schemas.FileRequestUpdateRequest{}, nil)
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## Delete
 
 `DELETE /file_requests/{file_request_id}`
@@ -35,6 +55,14 @@ Access via `client.NewClient().FileRequests`.
 | `file_request_id` | path | `string` | yes |
 
 **Returns:** no content
+
+**Example**
+
+```go
+if err := client.FileRequests.Delete(context.Background(), "FILE_REQUEST_ID"); err != nil {
+	log.Fatal(err)
+}
+```
 
 ## Copy
 
@@ -47,4 +75,14 @@ Access via `client.NewClient().FileRequests`.
 **Request body** (`application/json`): `FileRequestCopyRequest`
 
 **Returns:** `FileRequest`
+
+**Example**
+
+```go
+result, err := client.FileRequests.Copy(context.Background(), "FILE_REQUEST_ID", &schemas.FileRequestCopyRequest{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 

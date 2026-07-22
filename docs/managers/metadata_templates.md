@@ -15,6 +15,17 @@ Access via `client.NewClient().MetadataTemplates`.
 
 **Returns:** `MetadataTemplates`
 
+**Example**
+
+```go
+for item, err := range client.MetadataTemplates.List(context.Background(), "METADATA_INSTANCE_ID", nil) {
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(item)
+}
+```
+
 Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor for you. See the [pagination guide](../pagination.md).
 
 ## GetSchema
@@ -27,6 +38,16 @@ Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor f
 | `template_key` | path | `string` | yes |
 
 **Returns:** `MetadataTemplate`
+
+**Example**
+
+```go
+result, err := client.MetadataTemplates.GetSchema(context.Background(), schemas.GetFileIdMetadataIdIdScope("..."), "TEMPLATE_KEY")
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 
 ## UpdateSchema
 
@@ -41,6 +62,16 @@ Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor f
 
 **Returns:** `MetadataTemplate`
 
+**Example**
+
+```go
+result, err := client.MetadataTemplates.UpdateSchema(context.Background(), schemas.GetFileIdMetadataIdIdScope("..."), "TEMPLATE_KEY", []SchemaUpdateRequest{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## DeleteSchema
 
 `DELETE /metadata_templates/{scope}/{template_key}/schema`
@@ -52,6 +83,14 @@ Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor f
 
 **Returns:** no content
 
+**Example**
+
+```go
+if err := client.MetadataTemplates.DeleteSchema(context.Background(), schemas.GetFileIdMetadataIdIdScope("..."), "TEMPLATE_KEY"); err != nil {
+	log.Fatal(err)
+}
+```
+
 ## Get
 
 `GET /metadata_templates/{template_id}`
@@ -61,6 +100,16 @@ Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor f
 | `template_id` | path | `string` | yes |
 
 **Returns:** `MetadataTemplate`
+
+**Example**
+
+```go
+result, err := client.MetadataTemplates.Get(context.Background(), "TEMPLATE_ID")
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 
 ## ListGlobal
 
@@ -72,6 +121,17 @@ Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor f
 | `limit` | query | `int64` | no |
 
 **Returns:** `MetadataTemplates`
+
+**Example**
+
+```go
+for item, err := range client.MetadataTemplates.ListGlobal(context.Background(), nil) {
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(item)
+}
+```
 
 Paginated — `ListGlobal(...)` returns `iter.Seq2[*T, error]`, threading the cursor for you. See the [pagination guide](../pagination.md).
 
@@ -86,6 +146,17 @@ Paginated — `ListGlobal(...)` returns `iter.Seq2[*T, error]`, threading the cu
 
 **Returns:** `MetadataTemplates`
 
+**Example**
+
+```go
+for item, err := range client.MetadataTemplates.ListEnterprise(context.Background(), nil) {
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(item)
+}
+```
+
 Paginated — `ListEnterprise(...)` returns `iter.Seq2[*T, error]`, threading the cursor for you. See the [pagination guide](../pagination.md).
 
 ## CreateSchema
@@ -95,4 +166,14 @@ Paginated — `ListEnterprise(...)` returns `iter.Seq2[*T, error]`, threading th
 **Request body** (`application/json`): `SchemaCreateRequest`
 
 **Returns:** `MetadataTemplate`
+
+**Example**
+
+```go
+result, err := client.MetadataTemplates.CreateSchema(context.Background(), &schemas.SchemaCreateRequest{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 

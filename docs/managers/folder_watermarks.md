@@ -13,6 +13,16 @@ Access via `client.NewClient().FolderWatermarks`.
 
 **Returns:** `Watermark`
 
+**Example**
+
+```go
+result, err := client.FolderWatermarks.GetFolderWatermark(context.Background(), "FOLDER_ID")
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## UpdateFolderWatermark
 
 `PUT /folders/{folder_id}/watermark`
@@ -25,6 +35,16 @@ Access via `client.NewClient().FolderWatermarks`.
 
 **Returns:** `Watermark`
 
+**Example**
+
+```go
+result, err := client.FolderWatermarks.UpdateFolderWatermark(context.Background(), "FOLDER_ID", &schemas.FileWatermarkUpdateRequest{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## DeleteFolderWatermark
 
 `DELETE /folders/{folder_id}/watermark`
@@ -34,4 +54,12 @@ Access via `client.NewClient().FolderWatermarks`.
 | `folder_id` | path | `string` | yes |
 
 **Returns:** no content
+
+**Example**
+
+```go
+if err := client.FolderWatermarks.DeleteFolderWatermark(context.Background(), "FOLDER_ID"); err != nil {
+	log.Fatal(err)
+}
+```
 

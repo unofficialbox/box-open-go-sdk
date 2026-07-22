@@ -13,6 +13,16 @@ Access via `client.NewClient().FileVersionLegalHolds`.
 
 **Returns:** `FileVersionLegalHold`
 
+**Example**
+
+```go
+result, err := client.FileVersionLegalHolds.Get(context.Background(), "FILE_VERSION_LEGAL_HOLD_ID")
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## List
 
 `GET /file_version_legal_holds`
@@ -24,6 +34,17 @@ Access via `client.NewClient().FileVersionLegalHolds`.
 | `limit` | query | `int64` | no |
 
 **Returns:** `FileVersionLegalHolds`
+
+**Example**
+
+```go
+for item, err := range client.FileVersionLegalHolds.List(context.Background(), "POLICY_ID", nil) {
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(item)
+}
+```
 
 Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor for you. See the [pagination guide](../pagination.md).
 

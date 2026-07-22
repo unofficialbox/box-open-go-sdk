@@ -20,7 +20,7 @@ func NewSearchManager(session *gantryruntime.Client) *SearchManager {
 	return &SearchManager{session: session}
 }
 
-func (m *SearchManager) CreateMetadataQueryExecuteRead(ctx context.Context, body *schemas.MetadataQuery) (*schemas.MetadataQueryResults, error) {
+func (m *SearchManager) QueryByMetadata(ctx context.Context, body *schemas.MetadataQuery) (*schemas.MetadataQueryResults, error) {
 	req := m.session.NewRequest("POST", m.session.BaseUrl("api")+"/metadata_queries"+"/execute_read")
 	payload, err := json.Marshal(body)
 	if err != nil {

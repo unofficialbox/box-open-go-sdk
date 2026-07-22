@@ -13,6 +13,16 @@ Access via `client.NewClient().ShieldInformationBarriers`.
 
 **Returns:** `ShieldInformationBarrier`
 
+**Example**
+
+```go
+result, err := client.ShieldInformationBarriers.Get(context.Background(), "SHIELD_INFORMATION_BARRIER_ID")
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## CreateChangeStatus
 
 `POST /shield_information_barriers/change_status`
@@ -20,6 +30,16 @@ Access via `client.NewClient().ShieldInformationBarriers`.
 **Request body** (`application/json`): `ChangeStatusCreateRequest`
 
 **Returns:** `ShieldInformationBarrier`
+
+**Example**
+
+```go
+result, err := client.ShieldInformationBarriers.CreateChangeStatus(context.Background(), &schemas.ChangeStatusCreateRequest{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 
 ## List
 
@@ -32,6 +52,17 @@ Access via `client.NewClient().ShieldInformationBarriers`.
 
 **Returns:** `ShieldInformationBarriers`
 
+**Example**
+
+```go
+for item, err := range client.ShieldInformationBarriers.List(context.Background(), nil) {
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(item)
+}
+```
+
 Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor for you. See the [pagination guide](../pagination.md).
 
 ## Create
@@ -41,4 +72,14 @@ Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor f
 **Request body** (`application/json`): `ShieldInformationBarrierCreateRequest`
 
 **Returns:** `ShieldInformationBarrier`
+
+**Example**
+
+```go
+result, err := client.ShieldInformationBarriers.Create(context.Background(), &schemas.ShieldInformationBarrierCreateRequest{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 

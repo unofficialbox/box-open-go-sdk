@@ -21,13 +21,13 @@ func NewTransferManager(session *gantryruntime.Client) *TransferManager {
 	return &TransferManager{session: session}
 }
 
-// TransferUpdateUserFolder0Options carries the optional parameters.
-type TransferUpdateUserFolder0Options struct {
+// TransferTransferFoldersOptions carries the optional parameters.
+type TransferTransferFoldersOptions struct {
 	Fields []string
 	Notify *bool
 }
 
-func (m *TransferManager) UpdateUserFolder0(ctx context.Context, userId string, body *schemas.UserFolder0UpdateRequest, opts *TransferUpdateUserFolder0Options) (*schemas.FolderFull, error) {
+func (m *TransferManager) TransferFolders(ctx context.Context, userId string, body *schemas.UserFolder0UpdateRequest, opts *TransferTransferFoldersOptions) (*schemas.FolderFull, error) {
 	req := m.session.NewRequest("PUT", m.session.BaseUrl("api")+"/users"+"/"+url.PathEscape(userId)+"/folders"+"/0")
 	if opts != nil {
 		if opts.Fields != nil {

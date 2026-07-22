@@ -15,6 +15,16 @@ Access via `client.NewClient().SharedLinksFolders`.
 
 **Returns:** `FolderFull`
 
+**Example**
+
+```go
+result, err := client.SharedLinksFolders.GetSharedItemsFolders(context.Background(), "BOXAPI", nil)
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## GetFolderGetSharedLink
 
 `GET /folders/{folder_id}`
@@ -25,6 +35,16 @@ Access via `client.NewClient().SharedLinksFolders`.
 | `fields` | query | `string` | yes |
 
 **Returns:** `FolderFull`
+
+**Example**
+
+```go
+result, err := client.SharedLinksFolders.GetFolderGetSharedLink(context.Background(), "FOLDER_ID", "FIELDS")
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 
 ## UpdateFolderAddSharedLink
 
@@ -39,6 +59,16 @@ Access via `client.NewClient().SharedLinksFolders`.
 
 **Returns:** `FolderFull`
 
+**Example**
+
+```go
+result, err := client.SharedLinksFolders.UpdateFolderAddSharedLink(context.Background(), "FOLDER_ID", "FIELDS", &schemas.FileUpdateRequest2{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## UpdateFolderUpdateSharedLink
 
 `PUT /folders/{folder_id}`
@@ -52,6 +82,16 @@ Access via `client.NewClient().SharedLinksFolders`.
 
 **Returns:** `FolderFull`
 
+**Example**
+
+```go
+result, err := client.SharedLinksFolders.UpdateFolderUpdateSharedLink(context.Background(), "FOLDER_ID", "FIELDS", &schemas.FolderUpdateRequest2{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## UpdateFolderRemoveSharedLink
 
 `PUT /folders/{folder_id}`
@@ -64,4 +104,14 @@ Access via `client.NewClient().SharedLinksFolders`.
 **Request body** (`application/json`): `FileUpdateRequest3`
 
 **Returns:** `FolderFull`
+
+**Example**
+
+```go
+result, err := client.SharedLinksFolders.UpdateFolderRemoveSharedLink(context.Background(), "FOLDER_ID", "FIELDS", &schemas.FileUpdateRequest3{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 

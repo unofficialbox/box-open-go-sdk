@@ -16,6 +16,16 @@ Access via `client.NewClient().TrashedFiles`.
 
 **Returns:** `TrashFileRestored`
 
+**Example**
+
+```go
+result, err := client.TrashedFiles.CreateFile(context.Background(), "FILE_ID", &schemas.FileCreateRequest{}, nil)
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## GetFileTrash
 
 `GET /files/{file_id}/trash`
@@ -27,6 +37,16 @@ Access via `client.NewClient().TrashedFiles`.
 
 **Returns:** `TrashFile`
 
+**Example**
+
+```go
+result, err := client.TrashedFiles.GetFileTrash(context.Background(), "FILE_ID", nil)
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## DeleteFileTrash
 
 `DELETE /files/{file_id}/trash`
@@ -36,4 +56,12 @@ Access via `client.NewClient().TrashedFiles`.
 | `file_id` | path | `string` | yes |
 
 **Returns:** no content
+
+**Example**
+
+```go
+if err := client.TrashedFiles.DeleteFileTrash(context.Background(), "FILE_ID"); err != nil {
+	log.Fatal(err)
+}
+```
 

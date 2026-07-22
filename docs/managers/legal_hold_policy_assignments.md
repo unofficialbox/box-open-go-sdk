@@ -18,6 +18,17 @@ Access via `client.NewClient().LegalHoldPolicyAssignments`.
 
 **Returns:** `LegalHoldPolicyAssignments`
 
+**Example**
+
+```go
+for item, err := range client.LegalHoldPolicyAssignments.List(context.Background(), "POLICY_ID", nil) {
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(item)
+}
+```
+
 Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor for you. See the [pagination guide](../pagination.md).
 
 ## Create
@@ -27,6 +38,16 @@ Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor f
 **Request body** (`application/json`): `LegalHoldPolicyAssignmentCreateRequest`
 
 **Returns:** `LegalHoldPolicyAssignment`
+
+**Example**
+
+```go
+result, err := client.LegalHoldPolicyAssignments.Create(context.Background(), &schemas.LegalHoldPolicyAssignmentCreateRequest{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 
 ## Get
 
@@ -38,6 +59,16 @@ Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor f
 
 **Returns:** `LegalHoldPolicyAssignment`
 
+**Example**
+
+```go
+result, err := client.LegalHoldPolicyAssignments.Get(context.Background(), "LEGAL_HOLD_POLICY_ASSIGNMENT_ID")
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## Delete
 
 `DELETE /legal_hold_policy_assignments/{legal_hold_policy_assignment_id}`
@@ -47,6 +78,14 @@ Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor f
 | `legal_hold_policy_assignment_id` | path | `string` | yes |
 
 **Returns:** no content
+
+**Example**
+
+```go
+if err := client.LegalHoldPolicyAssignments.Delete(context.Background(), "LEGAL_HOLD_POLICY_ASSIGNMENT_ID"); err != nil {
+	log.Fatal(err)
+}
+```
 
 ## ListFileOnHold
 
@@ -60,6 +99,17 @@ Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor f
 | `fields` | query | `[]string` | no |
 
 **Returns:** `FilesOnHold`
+
+**Example**
+
+```go
+for item, err := range client.LegalHoldPolicyAssignments.ListFileOnHold(context.Background(), "LEGAL_HOLD_POLICY_ASSIGNMENT_ID", nil) {
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(item)
+}
+```
 
 Paginated — `ListFileOnHold(...)` returns `iter.Seq2[*T, error]`, threading the cursor for you. See the [pagination guide](../pagination.md).
 
@@ -75,6 +125,17 @@ Paginated — `ListFileOnHold(...)` returns `iter.Seq2[*T, error]`, threading th
 | `fields` | query | `[]string` | no |
 
 **Returns:** `FileVersionsOnHold`
+
+**Example**
+
+```go
+for item, err := range client.LegalHoldPolicyAssignments.ListFileVersionOnHold(context.Background(), "LEGAL_HOLD_POLICY_ASSIGNMENT_ID", nil) {
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(item)
+}
+```
 
 Paginated — `ListFileVersionOnHold(...)` returns `iter.Seq2[*T, error]`, threading the cursor for you. See the [pagination guide](../pagination.md).
 

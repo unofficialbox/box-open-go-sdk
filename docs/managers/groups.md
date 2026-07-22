@@ -16,6 +16,17 @@ Access via `client.NewClient().Groups`.
 
 **Returns:** `Groups`
 
+**Example**
+
+```go
+for item, err := range client.Groups.List(context.Background(), nil) {
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(item)
+}
+```
+
 Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor for you. See the [pagination guide](../pagination.md).
 
 ## Create
@@ -30,6 +41,16 @@ Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor f
 
 **Returns:** `GroupFull`
 
+**Example**
+
+```go
+result, err := client.Groups.Create(context.Background(), &schemas.GroupCreateRequest{}, nil)
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## Get
 
 `GET /groups/{group_id}`
@@ -40,6 +61,16 @@ Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor f
 | `fields` | query | `[]string` | no |
 
 **Returns:** `GroupFull`
+
+**Example**
+
+```go
+result, err := client.Groups.Get(context.Background(), "GROUP_ID", nil)
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 
 ## Update
 
@@ -54,6 +85,16 @@ Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor f
 
 **Returns:** `GroupFull`
 
+**Example**
+
+```go
+result, err := client.Groups.Update(context.Background(), "GROUP_ID", &schemas.GroupUpdateRequest{}, nil)
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## Delete
 
 `DELETE /groups/{group_id}`
@@ -63,4 +104,12 @@ Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor f
 | `group_id` | path | `string` | yes |
 
 **Returns:** no content
+
+**Example**
+
+```go
+if err := client.Groups.Delete(context.Background(), "GROUP_ID"); err != nil {
+	log.Fatal(err)
+}
+```
 

@@ -19,6 +19,17 @@ Access via `client.NewClient().IntegrationMappings`.
 
 **Returns:** `IntegrationMappings`
 
+**Example**
+
+```go
+for item, err := range client.IntegrationMappings.ListSlack(context.Background(), nil) {
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(item)
+}
+```
+
 Paginated — `ListSlack(...)` returns `iter.Seq2[*T, error]`, threading the cursor for you. See the [pagination guide](../pagination.md).
 
 ## CreateSlack
@@ -28,6 +39,16 @@ Paginated — `ListSlack(...)` returns `iter.Seq2[*T, error]`, threading the cur
 **Request body** (`application/json`): `IntegrationMappingSlackCreateRequest`
 
 **Returns:** `IntegrationMapping`
+
+**Example**
+
+```go
+result, err := client.IntegrationMappings.CreateSlack(context.Background(), &schemas.IntegrationMappingSlackCreateRequest{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 
 ## UpdateSlack
 
@@ -41,6 +62,16 @@ Paginated — `ListSlack(...)` returns `iter.Seq2[*T, error]`, threading the cur
 
 **Returns:** `IntegrationMapping`
 
+**Example**
+
+```go
+result, err := client.IntegrationMappings.UpdateSlack(context.Background(), "INTEGRATION_MAPPING_ID", &schemas.SlackUpdateRequest{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## DeleteSlack
 
 `DELETE /integration_mappings/slack/{integration_mapping_id}`
@@ -50,6 +81,14 @@ Paginated — `ListSlack(...)` returns `iter.Seq2[*T, error]`, threading the cur
 | `integration_mapping_id` | path | `string` | yes |
 
 **Returns:** no content
+
+**Example**
+
+```go
+if err := client.IntegrationMappings.DeleteSlack(context.Background(), "INTEGRATION_MAPPING_ID"); err != nil {
+	log.Fatal(err)
+}
+```
 
 ## ListTeams
 
@@ -64,6 +103,16 @@ Paginated — `ListSlack(...)` returns `iter.Seq2[*T, error]`, threading the cur
 
 **Returns:** `IntegrationMappingsTeams`
 
+**Example**
+
+```go
+result, err := client.IntegrationMappings.ListTeams(context.Background(), nil)
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## CreateTeams
 
 `POST /integration_mappings/teams`
@@ -71,6 +120,16 @@ Paginated — `ListSlack(...)` returns `iter.Seq2[*T, error]`, threading the cur
 **Request body** (`application/json`): `IntegrationMappingTeamsCreateRequest`
 
 **Returns:** `IntegrationMappingTeams`
+
+**Example**
+
+```go
+result, err := client.IntegrationMappings.CreateTeams(context.Background(), &schemas.IntegrationMappingTeamsCreateRequest{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 
 ## UpdateTeam
 
@@ -84,6 +143,16 @@ Paginated — `ListSlack(...)` returns `iter.Seq2[*T, error]`, threading the cur
 
 **Returns:** `IntegrationMappingTeams`
 
+**Example**
+
+```go
+result, err := client.IntegrationMappings.UpdateTeam(context.Background(), "INTEGRATION_MAPPING_ID", &schemas.TeamUpdateRequest{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## DeleteTeam
 
 `DELETE /integration_mappings/teams/{integration_mapping_id}`
@@ -93,4 +162,12 @@ Paginated — `ListSlack(...)` returns `iter.Seq2[*T, error]`, threading the cur
 | `integration_mapping_id` | path | `string` | yes |
 
 **Returns:** no content
+
+**Example**
+
+```go
+if err := client.IntegrationMappings.DeleteTeam(context.Background(), "INTEGRATION_MAPPING_ID"); err != nil {
+	log.Fatal(err)
+}
+```
 

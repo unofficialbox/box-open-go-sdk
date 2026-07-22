@@ -13,6 +13,16 @@ Access via `client.NewClient().ShieldInformationBarrierSegmentMembers`.
 
 **Returns:** `ShieldInformationBarrierSegmentMember`
 
+**Example**
+
+```go
+result, err := client.ShieldInformationBarrierSegmentMembers.Get(context.Background(), "SHIELD_INFORMATION_BARRIER_SEGMENT_MEMBER_ID")
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## Delete
 
 `DELETE /shield_information_barrier_segment_members/{shield_information_barrier_segment_member_id}`
@@ -22,6 +32,14 @@ Access via `client.NewClient().ShieldInformationBarrierSegmentMembers`.
 | `shield_information_barrier_segment_member_id` | path | `string` | yes |
 
 **Returns:** no content
+
+**Example**
+
+```go
+if err := client.ShieldInformationBarrierSegmentMembers.Delete(context.Background(), "SHIELD_INFORMATION_BARRIER_SEGMENT_MEMBER_ID"); err != nil {
+	log.Fatal(err)
+}
+```
 
 ## List
 
@@ -35,6 +53,17 @@ Access via `client.NewClient().ShieldInformationBarrierSegmentMembers`.
 
 **Returns:** `ShieldInformationBarrierSegmentMembers`
 
+**Example**
+
+```go
+for item, err := range client.ShieldInformationBarrierSegmentMembers.List(context.Background(), "SHIELD_INFORMATION_BARRIER_SEGMENT_ID", nil) {
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(item)
+}
+```
+
 Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor for you. See the [pagination guide](../pagination.md).
 
 ## Create
@@ -44,4 +73,14 @@ Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor f
 **Request body** (`application/json`): `ShieldInformationBarrierSegmentMemberCreateRequest`
 
 **Returns:** `ShieldInformationBarrierSegmentMember`
+
+**Example**
+
+```go
+result, err := client.ShieldInformationBarrierSegmentMembers.Create(context.Background(), &schemas.ShieldInformationBarrierSegmentMemberCreateRequest{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 

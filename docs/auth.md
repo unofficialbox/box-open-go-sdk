@@ -4,20 +4,20 @@
 Every request is authorized through the runtime's token source: the
 generated code calls `AccessToken(ctx)` and attaches the bearer token,
 and the network layer refreshes on a `401` and retries once. Pass one of
-the four Box auth flows to `client.NewClient` at construction; each is a
-`gantryruntime.TokenSource` that caches its access token until shortly
-before it expires.
+the four Box auth flows — from the `auth` package — to `client.NewClient`
+at construction; each is a `gantryruntime.TokenSource` that caches its
+access token until shortly before it expires.
 
 ## Developer Token
 
 ```go
-c := client.NewClient(gantryruntime.DeveloperToken("DEVELOPER_TOKEN"))
+c := client.NewClient(auth.DeveloperToken("DEVELOPER_TOKEN"))
 ```
 
 ## Client Credentials Grant (server auth, no key)
 
 ```go
-c := client.NewClient(gantryruntime.ClientCredentials(gantryruntime.CCGConfig{
+c := client.NewClient(auth.ClientCredentials(auth.CCGConfig{
 	ClientID:     "CLIENT_ID",
 	ClientSecret: "CLIENT_SECRET",
 	EnterpriseID: "ENTERPRISE_ID", // or set UserID to act as a managed user
@@ -27,7 +27,7 @@ c := client.NewClient(gantryruntime.ClientCredentials(gantryruntime.CCGConfig{
 ## JWT (server auth with a signing key)
 
 ```go
-src, err := gantryruntime.JWTAuth(gantryruntime.JWTConfig{
+src, err := auth.JWTAuth(auth.JWTConfig{
 	ClientID:      "CLIENT_ID",
 	ClientSecret:  "CLIENT_SECRET",
 	PublicKeyID:   "PUBLIC_KEY_ID",
@@ -46,8 +46,8 @@ Redirect the user to `cfg.AuthorizeURL(redirectURI, state)`, exchange the
 returned code, then reuse the stored refresh token on later runs:
 
 ```go
-cfg := gantryruntime.OAuthConfig{ClientID: "CLIENT_ID", ClientSecret: "CLIENT_SECRET"}
+cfg := auth.OAuthConfig{ClientID: "CLIENT_ID", ClientSecret: "CLIENT_SECRET"}
 src, err := cfg.ExchangeCode(ctx, code, redirectURI)
-// later: src := gantryruntime.OAuth(cfg, storedRefreshToken)
+// later: src := auth.OAuth(cfg, storedRefreshToken)
 c := client.NewClient(src)
 ```

@@ -11,6 +11,16 @@ Access via `client.NewClient().ChunkedUploads`.
 
 **Returns:** `UploadSession`
 
+**Example**
+
+```go
+result, err := client.ChunkedUploads.CreateFileUploadSessions(context.Background(), &schemas.FileUploadSessionsCreateRequest{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## CreateFileByIdUploadSessions
 
 `POST /files/{file_id}/upload_sessions`
@@ -23,6 +33,16 @@ Access via `client.NewClient().ChunkedUploads`.
 
 **Returns:** `UploadSession`
 
+**Example**
+
+```go
+result, err := client.ChunkedUploads.CreateFileByIdUploadSessions(context.Background(), "FILE_ID", &schemas.FileIdUploadSessionsCreateRequest{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## GetFileUploadSession
 
 `GET /files/upload_sessions/{upload_session_id}`
@@ -32,6 +52,16 @@ Access via `client.NewClient().ChunkedUploads`.
 | `upload_session_id` | path | `string` | yes |
 
 **Returns:** `UploadSession`
+
+**Example**
+
+```go
+result, err := client.ChunkedUploads.GetFileUploadSession(context.Background(), "UPLOAD_SESSION_ID")
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 
 ## UpdateFileUploadSession
 
@@ -47,6 +77,16 @@ Access via `client.NewClient().ChunkedUploads`.
 
 **Returns:** `UploadedPart`
 
+**Example**
+
+```go
+result, err := client.ChunkedUploads.UpdateFileUploadSession(context.Background(), "UPLOAD_SESSION_ID", "DIGEST", "CONTENT-RANGE", nil)
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## DeleteFileUploadSession
 
 `DELETE /files/upload_sessions/{upload_session_id}`
@@ -56,6 +96,14 @@ Access via `client.NewClient().ChunkedUploads`.
 | `upload_session_id` | path | `string` | yes |
 
 **Returns:** no content
+
+**Example**
+
+```go
+if err := client.ChunkedUploads.DeleteFileUploadSession(context.Background(), "UPLOAD_SESSION_ID"); err != nil {
+	log.Fatal(err)
+}
+```
 
 ## ListFileUploadSessionParts
 
@@ -68,6 +116,17 @@ Access via `client.NewClient().ChunkedUploads`.
 | `limit` | query | `int64` | no |
 
 **Returns:** `UploadParts`
+
+**Example**
+
+```go
+for item, err := range client.ChunkedUploads.ListFileUploadSessionParts(context.Background(), "UPLOAD_SESSION_ID", nil) {
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(item)
+}
+```
 
 Paginated — `ListFileUploadSessionParts(...)` returns `iter.Seq2[*T, error]`, threading the cursor for you. See the [pagination guide](../pagination.md).
 
@@ -85,4 +144,14 @@ Paginated — `ListFileUploadSessionParts(...)` returns `iter.Seq2[*T, error]`, 
 **Request body** (`application/json`): `FileUploadSessionCommitRequest`
 
 **Returns:** `Files`
+
+**Example**
+
+```go
+result, err := client.ChunkedUploads.CommitFileUploadSession(context.Background(), "UPLOAD_SESSION_ID", "DIGEST", &schemas.FileUploadSessionCommitRequest{}, nil)
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 

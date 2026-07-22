@@ -16,6 +16,17 @@ Access via `client.NewClient().Workflows`.
 
 **Returns:** `Workflows`
 
+**Example**
+
+```go
+for item, err := range client.Workflows.List(context.Background(), "FOLDER_ID", nil) {
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(item)
+}
+```
+
 Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor for you. See the [pagination guide](../pagination.md).
 
 ## Start
@@ -29,4 +40,12 @@ Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor f
 **Request body** (`application/json`): `WorkflowStartRequest`
 
 **Returns:** no content
+
+**Example**
+
+```go
+if err := client.Workflows.Start(context.Background(), "WORKFLOW_ID", &schemas.WorkflowStartRequest{}); err != nil {
+	log.Fatal(err)
+}
+```
 

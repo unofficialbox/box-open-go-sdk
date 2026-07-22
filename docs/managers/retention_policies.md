@@ -18,6 +18,17 @@ Access via `client.NewClient().RetentionPolicies`.
 
 **Returns:** `RetentionPolicies`
 
+**Example**
+
+```go
+for item, err := range client.RetentionPolicies.List(context.Background(), nil) {
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(item)
+}
+```
+
 Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor for you. See the [pagination guide](../pagination.md).
 
 ## Create
@@ -27,6 +38,16 @@ Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor f
 **Request body** (`application/json`): `RetentionPolicyCreateRequest`
 
 **Returns:** `RetentionPolicy`
+
+**Example**
+
+```go
+result, err := client.RetentionPolicies.Create(context.Background(), &schemas.RetentionPolicyCreateRequest{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 
 ## Get
 
@@ -38,6 +59,16 @@ Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor f
 | `fields` | query | `[]string` | no |
 
 **Returns:** `RetentionPolicy`
+
+**Example**
+
+```go
+result, err := client.RetentionPolicies.Get(context.Background(), "RETENTION_POLICY_ID", nil)
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 
 ## Update
 
@@ -51,6 +82,16 @@ Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor f
 
 **Returns:** `RetentionPolicy`
 
+**Example**
+
+```go
+result, err := client.RetentionPolicies.Update(context.Background(), "RETENTION_POLICY_ID", &schemas.RetentionPolicyUpdateRequest{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## Delete
 
 `DELETE /retention_policies/{retention_policy_id}`
@@ -60,4 +101,12 @@ Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor f
 | `retention_policy_id` | path | `string` | yes |
 
 **Returns:** no content
+
+**Example**
+
+```go
+if err := client.RetentionPolicies.Delete(context.Background(), "RETENTION_POLICY_ID"); err != nil {
+	log.Fatal(err)
+}
+```
 

@@ -15,6 +15,17 @@ Access via `client.NewClient().Collections`.
 
 **Returns:** `Collections`
 
+**Example**
+
+```go
+for item, err := range client.Collections.List(context.Background(), nil) {
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(item)
+}
+```
+
 Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor for you. See the [pagination guide](../pagination.md).
 
 ## ListItems
@@ -30,6 +41,17 @@ Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor f
 
 **Returns:** `ItemsOffsetPaginated`
 
+**Example**
+
+```go
+for item, err := range client.Collections.ListItems(context.Background(), "COLLECTION_ID", nil) {
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(item)
+}
+```
+
 Paginated — `ListItems(...)` returns `iter.Seq2[*T, error]`, threading the cursor for you. See the [pagination guide](../pagination.md).
 
 ## Get
@@ -41,4 +63,14 @@ Paginated — `ListItems(...)` returns `iter.Seq2[*T, error]`, threading the cur
 | `collection_id` | path | `string` | yes |
 
 **Returns:** `Collection`
+
+**Example**
+
+```go
+result, err := client.Collections.Get(context.Background(), "COLLECTION_ID")
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 

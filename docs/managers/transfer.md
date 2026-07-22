@@ -3,7 +3,7 @@
 
 Access via `client.NewClient().Transfer`.
 
-## UpdateUserFolder0
+## TransferFolders
 
 `PUT /users/{user_id}/folders/0`
 
@@ -16,4 +16,14 @@ Access via `client.NewClient().Transfer`.
 **Request body** (`application/json`): `UserFolder0UpdateRequest`
 
 **Returns:** `FolderFull`
+
+**Example**
+
+```go
+result, err := client.Transfer.TransferFolders(context.Background(), "USER_ID", &schemas.UserFolder0UpdateRequest{}, nil)
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 

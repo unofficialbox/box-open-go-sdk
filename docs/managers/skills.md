@@ -13,6 +13,16 @@ Access via `client.NewClient().Skills`.
 
 **Returns:** `SkillCardsMetadata`
 
+**Example**
+
+```go
+result, err := client.Skills.Get(context.Background(), "FILE_ID")
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## Update
 
 `PUT /files/{file_id}/metadata/global/boxSkillsCards`
@@ -24,6 +34,16 @@ Access via `client.NewClient().Skills`.
 **Request body** (`application/json-patch+json`): `[]SkillUpdateRequest`
 
 **Returns:** `SkillCardsMetadata`
+
+**Example**
+
+```go
+result, err := client.Skills.Update(context.Background(), "FILE_ID", []SkillUpdateRequest{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 
 ## Create
 
@@ -37,6 +57,16 @@ Access via `client.NewClient().Skills`.
 
 **Returns:** `SkillCardsMetadata`
 
+**Example**
+
+```go
+result, err := client.Skills.Create(context.Background(), "FILE_ID", &schemas.SkillCreateRequest{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## Delete
 
 `DELETE /files/{file_id}/metadata/global/boxSkillsCards`
@@ -46,6 +76,14 @@ Access via `client.NewClient().Skills`.
 | `file_id` | path | `string` | yes |
 
 **Returns:** no content
+
+**Example**
+
+```go
+if err := client.Skills.Delete(context.Background(), "FILE_ID"); err != nil {
+	log.Fatal(err)
+}
+```
 
 ## UpdateSkillInvocation
 
@@ -58,4 +96,12 @@ Access via `client.NewClient().Skills`.
 **Request body** (`application/json`): `SkillInvocationUpdateRequest`
 
 **Returns:** no content
+
+**Example**
+
+```go
+if err := client.Skills.UpdateSkillInvocation(context.Background(), "SKILL_ID", &schemas.SkillInvocationUpdateRequest{}); err != nil {
+	log.Fatal(err)
+}
+```
 

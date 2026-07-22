@@ -15,5 +15,16 @@ Access via `client.NewClient().RecentItems`.
 
 **Returns:** `RecentItems`
 
+**Example**
+
+```go
+for item, err := range client.RecentItems.List(context.Background(), nil) {
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(item)
+}
+```
+
 Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor for you. See the [pagination guide](../pagination.md).
 

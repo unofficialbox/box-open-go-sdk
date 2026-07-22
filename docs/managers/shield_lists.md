@@ -9,6 +9,16 @@ Access via `client.NewClient().ShieldLists`.
 
 **Returns:** `ShieldLists`
 
+**Example**
+
+```go
+result, err := client.ShieldLists.List(context.Background())
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## Create
 
 `POST /shield_lists`
@@ -16,6 +26,16 @@ Access via `client.NewClient().ShieldLists`.
 **Request body** (`application/json`): `ShieldListsCreate`
 
 **Returns:** `ShieldList`
+
+**Example**
+
+```go
+result, err := client.ShieldLists.Create(context.Background(), &schemas.ShieldListsCreate{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 
 ## Get
 
@@ -26,6 +46,16 @@ Access via `client.NewClient().ShieldLists`.
 | `shield_list_id` | path | `string` | yes |
 
 **Returns:** `ShieldList`
+
+**Example**
+
+```go
+result, err := client.ShieldLists.Get(context.Background(), "SHIELD_LIST_ID")
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 
 ## Update
 
@@ -39,6 +69,16 @@ Access via `client.NewClient().ShieldLists`.
 
 **Returns:** `ShieldList`
 
+**Example**
+
+```go
+result, err := client.ShieldLists.Update(context.Background(), "SHIELD_LIST_ID", &schemas.ShieldListsUpdate{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## Delete
 
 `DELETE /shield_lists/{shield_list_id}`
@@ -48,4 +88,12 @@ Access via `client.NewClient().ShieldLists`.
 | `shield_list_id` | path | `string` | yes |
 
 **Returns:** no content
+
+**Example**
+
+```go
+if err := client.ShieldLists.Delete(context.Background(), "SHIELD_LIST_ID"); err != nil {
+	log.Fatal(err)
+}
+```
 

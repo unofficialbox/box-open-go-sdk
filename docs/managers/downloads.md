@@ -17,3 +17,13 @@ Access via `client.NewClient().Downloads`.
 
 **Returns:** a binary stream (`io.Reader`)
 
+**Example**
+
+```go
+result, err := client.Downloads.GetFileContent(context.Background(), "FILE_ID", nil)
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+

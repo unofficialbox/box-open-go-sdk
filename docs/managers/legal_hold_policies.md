@@ -16,6 +16,17 @@ Access via `client.NewClient().LegalHoldPolicies`.
 
 **Returns:** `LegalHoldPolicies`
 
+**Example**
+
+```go
+for item, err := range client.LegalHoldPolicies.List(context.Background(), nil) {
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(item)
+}
+```
+
 Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor for you. See the [pagination guide](../pagination.md).
 
 ## Create
@@ -26,6 +37,16 @@ Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor f
 
 **Returns:** `LegalHoldPolicy`
 
+**Example**
+
+```go
+result, err := client.LegalHoldPolicies.Create(context.Background(), &schemas.LegalHoldPolicyCreateRequest{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## Get
 
 `GET /legal_hold_policies/{legal_hold_policy_id}`
@@ -35,6 +56,16 @@ Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor f
 | `legal_hold_policy_id` | path | `string` | yes |
 
 **Returns:** `LegalHoldPolicy`
+
+**Example**
+
+```go
+result, err := client.LegalHoldPolicies.Get(context.Background(), "LEGAL_HOLD_POLICY_ID")
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 
 ## Update
 
@@ -48,6 +79,16 @@ Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor f
 
 **Returns:** `LegalHoldPolicy`
 
+**Example**
+
+```go
+result, err := client.LegalHoldPolicies.Update(context.Background(), "LEGAL_HOLD_POLICY_ID", &schemas.LegalHoldPolicyUpdateRequest{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## Delete
 
 `DELETE /legal_hold_policies/{legal_hold_policy_id}`
@@ -57,4 +98,12 @@ Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor f
 | `legal_hold_policy_id` | path | `string` | yes |
 
 **Returns:** no content
+
+**Example**
+
+```go
+if err := client.LegalHoldPolicies.Delete(context.Background(), "LEGAL_HOLD_POLICY_ID"); err != nil {
+	log.Fatal(err)
+}
+```
 

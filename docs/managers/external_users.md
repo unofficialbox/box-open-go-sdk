@@ -11,3 +11,13 @@ Access via `client.NewClient().ExternalUsers`.
 
 **Returns:** `ExternalUsersSubmitDeleteJobResponse`
 
+**Example**
+
+```go
+result, err := client.ExternalUsers.CreateSubmitDeleteJob(context.Background(), &schemas.ExternalUsersSubmitDeleteJobRequest{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+

@@ -13,6 +13,16 @@ Access via `client.NewClient().Avatars`.
 
 **Returns:** a binary stream (`io.Reader`)
 
+**Example**
+
+```go
+result, err := client.Avatars.GetUserAvatar(context.Background(), "USER_ID")
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## CreateUserAvatar
 
 `POST /users/{user_id}/avatar`
@@ -25,6 +35,16 @@ Access via `client.NewClient().Avatars`.
 
 **Returns:** `UserAvatar`
 
+**Example**
+
+```go
+result, err := client.Avatars.CreateUserAvatar(context.Background(), "USER_ID", &schemas.UserAvatarCreateRequest{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## DeleteUserAvatar
 
 `DELETE /users/{user_id}/avatar`
@@ -34,4 +54,12 @@ Access via `client.NewClient().Avatars`.
 | `user_id` | path | `string` | yes |
 
 **Returns:** no content
+
+**Example**
+
+```go
+if err := client.Avatars.DeleteUserAvatar(context.Background(), "USER_ID"); err != nil {
+	log.Fatal(err)
+}
+```
 

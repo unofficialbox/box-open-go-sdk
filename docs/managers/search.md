@@ -3,13 +3,23 @@
 
 Access via `client.NewClient().Search`.
 
-## CreateMetadataQueryExecuteRead
+## QueryByMetadata
 
 `POST /metadata_queries/execute_read`
 
 **Request body** (`application/json`): `MetadataQuery`
 
 **Returns:** `MetadataQueryResults`
+
+**Example**
+
+```go
+result, err := client.Search.QueryByMetadata(context.Background(), &schemas.MetadataQuery{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 
 ## Get
 
@@ -40,4 +50,14 @@ Access via `client.NewClient().Search`.
 | `deleted_at_range` | query | `[]string` | no |
 
 **Returns:** `SearchResultsResponse`
+
+**Example**
+
+```go
+result, err := client.Search.Get(context.Background(), nil)
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 

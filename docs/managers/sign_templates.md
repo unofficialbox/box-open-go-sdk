@@ -14,6 +14,17 @@ Access via `client.NewClient().SignTemplates`.
 
 **Returns:** `SignTemplates`
 
+**Example**
+
+```go
+for item, err := range client.SignTemplates.List(context.Background(), nil) {
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(item)
+}
+```
+
 Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor for you. See the [pagination guide](../pagination.md).
 
 ## Get
@@ -25,4 +36,14 @@ Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor f
 | `template_id` | path | `string` | yes |
 
 **Returns:** `SignTemplate`
+
+**Example**
+
+```go
+result, err := client.SignTemplates.Get(context.Background(), "TEMPLATE_ID")
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 

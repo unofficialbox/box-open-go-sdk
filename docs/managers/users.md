@@ -20,6 +20,17 @@ Access via `client.NewClient().Users`.
 
 **Returns:** `Users`
 
+**Example**
+
+```go
+for item, err := range client.Users.List(context.Background(), nil) {
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(item)
+}
+```
+
 Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor for you. See the [pagination guide](../pagination.md).
 
 ## Create
@@ -34,6 +45,16 @@ Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor f
 
 **Returns:** `UserFull`
 
+**Example**
+
+```go
+result, err := client.Users.Create(context.Background(), &schemas.UserCreateRequest{}, nil)
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## GetMe
 
 `GET /users/me`
@@ -43,6 +64,16 @@ Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor f
 | `fields` | query | `[]string` | no |
 
 **Returns:** `UserFull`
+
+**Example**
+
+```go
+result, err := client.Users.GetMe(context.Background(), nil)
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 
 ## Get
 
@@ -54,6 +85,16 @@ Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor f
 | `fields` | query | `[]string` | no |
 
 **Returns:** `UserFull`
+
+**Example**
+
+```go
+result, err := client.Users.Get(context.Background(), "USER_ID", nil)
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 
 ## Update
 
@@ -68,6 +109,16 @@ Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor f
 
 **Returns:** `UserFull`
 
+**Example**
+
+```go
+result, err := client.Users.Update(context.Background(), "USER_ID", &schemas.UserUpdateRequest{}, nil)
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## Delete
 
 `DELETE /users/{user_id}`
@@ -79,4 +130,12 @@ Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor f
 | `force` | query | `bool` | no |
 
 **Returns:** no content
+
+**Example**
+
+```go
+if err := client.Users.Delete(context.Background(), "USER_ID", nil); err != nil {
+	log.Fatal(err)
+}
+```
 

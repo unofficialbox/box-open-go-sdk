@@ -14,6 +14,16 @@ Access via `client.NewClient().TermsOfServiceUserStatuses`.
 
 **Returns:** `TermsOfServiceUserStatuses`
 
+**Example**
+
+```go
+result, err := client.TermsOfServiceUserStatuses.List(context.Background(), "TOS_ID", nil)
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## Create
 
 `POST /terms_of_service_user_statuses`
@@ -21,6 +31,16 @@ Access via `client.NewClient().TermsOfServiceUserStatuses`.
 **Request body** (`application/json`): `TermsOfServiceUserStatuseCreateRequest`
 
 **Returns:** `TermsOfServiceUserStatus`
+
+**Example**
+
+```go
+result, err := client.TermsOfServiceUserStatuses.Create(context.Background(), &schemas.TermsOfServiceUserStatuseCreateRequest{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 
 ## Update
 
@@ -33,4 +53,14 @@ Access via `client.NewClient().TermsOfServiceUserStatuses`.
 **Request body** (`application/json`): `TermsOfServiceUserStatuseUpdateRequest`
 
 **Returns:** `TermsOfServiceUserStatus`
+
+**Example**
+
+```go
+result, err := client.TermsOfServiceUserStatuses.Update(context.Background(), "TERMS_OF_SERVICE_USER_STATUS_ID", &schemas.TermsOfServiceUserStatuseUpdateRequest{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 

@@ -14,6 +14,16 @@ Access via `client.NewClient().FolderMetadata`.
 
 **Returns:** `Metadatas`
 
+**Example**
+
+```go
+result, err := client.FolderMetadata.ListFolderMetadata(context.Background(), "FOLDER_ID", nil)
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## GetFolderMetadata
 
 `GET /folders/{folder_id}/metadata/{scope}/{template_key}`
@@ -25,6 +35,16 @@ Access via `client.NewClient().FolderMetadata`.
 | `template_key` | path | `string` | yes |
 
 **Returns:** `MetadataFull`
+
+**Example**
+
+```go
+result, err := client.FolderMetadata.GetFolderMetadata(context.Background(), "FOLDER_ID", schemas.GetFileIdMetadataIdIdScope("..."), "TEMPLATE_KEY")
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 
 ## UpdateFolderMetadata
 
@@ -40,6 +60,16 @@ Access via `client.NewClient().FolderMetadata`.
 
 **Returns:** `MetadataFull`
 
+**Example**
+
+```go
+result, err := client.FolderMetadata.UpdateFolderMetadata(context.Background(), "FOLDER_ID", schemas.GetFileIdMetadataIdIdScope("..."), "TEMPLATE_KEY", []FileMetadataUpdateRequest{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## CreateFolderMetadata
 
 `POST /folders/{folder_id}/metadata/{scope}/{template_key}`
@@ -54,6 +84,16 @@ Access via `client.NewClient().FolderMetadata`.
 
 **Returns:** `MetadataFull`
 
+**Example**
+
+```go
+result, err := client.FolderMetadata.CreateFolderMetadata(context.Background(), "FOLDER_ID", schemas.GetFileIdMetadataIdIdScope("..."), "TEMPLATE_KEY", map[string]any{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## DeleteFolderMetadata
 
 `DELETE /folders/{folder_id}/metadata/{scope}/{template_key}`
@@ -65,4 +105,12 @@ Access via `client.NewClient().FolderMetadata`.
 | `template_key` | path | `string` | yes |
 
 **Returns:** no content
+
+**Example**
+
+```go
+if err := client.FolderMetadata.DeleteFolderMetadata(context.Background(), "FOLDER_ID", schemas.GetFileIdMetadataIdIdScope("..."), "TEMPLATE_KEY"); err != nil {
+	log.Fatal(err)
+}
+```
 

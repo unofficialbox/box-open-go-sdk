@@ -15,6 +15,16 @@ Access via `client.NewClient().Invites`.
 
 **Returns:** `Invite`
 
+**Example**
+
+```go
+result, err := client.Invites.Create(context.Background(), &schemas.InviteCreateRequest{}, nil)
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## Get
 
 `GET /invites/{invite_id}`
@@ -25,4 +35,14 @@ Access via `client.NewClient().Invites`.
 | `fields` | query | `[]string` | no |
 
 **Returns:** `Invite`
+
+**Example**
+
+```go
+result, err := client.Invites.Get(context.Background(), "INVITE_ID", nil)
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 

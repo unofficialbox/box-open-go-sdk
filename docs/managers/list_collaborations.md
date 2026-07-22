@@ -16,6 +16,17 @@ Access via `client.NewClient().ListCollaborations`.
 
 **Returns:** `Collaborations`
 
+**Example**
+
+```go
+for item, err := range client.ListCollaborations.ListFileCollaborations(context.Background(), "FILE_ID", nil) {
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(item)
+}
+```
+
 Paginated — `ListFileCollaborations(...)` returns `iter.Seq2[*T, error]`, threading the cursor for you. See the [pagination guide](../pagination.md).
 
 ## ListFolderCollaborations
@@ -30,6 +41,17 @@ Paginated — `ListFileCollaborations(...)` returns `iter.Seq2[*T, error]`, thre
 | `marker` | query | `string` | no |
 
 **Returns:** `Collaborations`
+
+**Example**
+
+```go
+for item, err := range client.ListCollaborations.ListFolderCollaborations(context.Background(), "FOLDER_ID", nil) {
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(item)
+}
+```
 
 Paginated — `ListFolderCollaborations(...)` returns `iter.Seq2[*T, error]`, threading the cursor for you. See the [pagination guide](../pagination.md).
 
@@ -46,6 +68,17 @@ Paginated — `ListFolderCollaborations(...)` returns `iter.Seq2[*T, error]`, th
 
 **Returns:** `CollaborationsOffsetPaginated`
 
+**Example**
+
+```go
+for item, err := range client.ListCollaborations.ListCollaborations(context.Background(), schemas.GetCollaborationsStatus("..."), nil) {
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(item)
+}
+```
+
 Paginated — `ListCollaborations(...)` returns `iter.Seq2[*T, error]`, threading the cursor for you. See the [pagination guide](../pagination.md).
 
 ## ListGroupCollaborations
@@ -59,6 +92,17 @@ Paginated — `ListCollaborations(...)` returns `iter.Seq2[*T, error]`, threadin
 | `offset` | query | `int64` | no |
 
 **Returns:** `CollaborationsOffsetPaginated`
+
+**Example**
+
+```go
+for item, err := range client.ListCollaborations.ListGroupCollaborations(context.Background(), "GROUP_ID", nil) {
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(item)
+}
+```
 
 Paginated — `ListGroupCollaborations(...)` returns `iter.Seq2[*T, error]`, threading the cursor for you. See the [pagination guide](../pagination.md).
 

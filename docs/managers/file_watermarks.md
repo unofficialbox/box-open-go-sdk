@@ -13,6 +13,16 @@ Access via `client.NewClient().FileWatermarks`.
 
 **Returns:** `Watermark`
 
+**Example**
+
+```go
+result, err := client.FileWatermarks.GetFileWatermark(context.Background(), "FILE_ID")
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## UpdateFileWatermark
 
 `PUT /files/{file_id}/watermark`
@@ -25,6 +35,16 @@ Access via `client.NewClient().FileWatermarks`.
 
 **Returns:** `Watermark`
 
+**Example**
+
+```go
+result, err := client.FileWatermarks.UpdateFileWatermark(context.Background(), "FILE_ID", &schemas.FileWatermarkUpdateRequest{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## DeleteFileWatermark
 
 `DELETE /files/{file_id}/watermark`
@@ -34,4 +54,12 @@ Access via `client.NewClient().FileWatermarks`.
 | `file_id` | path | `string` | yes |
 
 **Returns:** no content
+
+**Example**
+
+```go
+if err := client.FileWatermarks.DeleteFileWatermark(context.Background(), "FILE_ID"); err != nil {
+	log.Fatal(err)
+}
+```
 

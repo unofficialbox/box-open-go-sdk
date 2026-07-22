@@ -11,6 +11,16 @@ Access via `client.NewClient().ZipDownloads`.
 
 **Returns:** `ZipDownload`
 
+**Example**
+
+```go
+result, err := client.ZipDownloads.Create(context.Background(), &schemas.ZipDownloadRequest{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## GetContent
 
 `GET /zip_downloads/{zip_download_id}/content`
@@ -21,6 +31,16 @@ Access via `client.NewClient().ZipDownloads`.
 
 **Returns:** a binary stream (`io.Reader`)
 
+**Example**
+
+```go
+result, err := client.ZipDownloads.GetContent(context.Background(), "ZIP_DOWNLOAD_ID")
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## GetStatus
 
 `GET /zip_downloads/{zip_download_id}/status`
@@ -30,4 +50,14 @@ Access via `client.NewClient().ZipDownloads`.
 | `zip_download_id` | path | `string` | yes |
 
 **Returns:** `ZipDownloadStatus`
+
+**Example**
+
+```go
+result, err := client.ZipDownloads.GetStatus(context.Background(), "ZIP_DOWNLOAD_ID")
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 

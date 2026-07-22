@@ -14,6 +14,17 @@ Access via `client.NewClient().Webhooks`.
 
 **Returns:** `Webhooks`
 
+**Example**
+
+```go
+for item, err := range client.Webhooks.List(context.Background(), nil) {
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(item)
+}
+```
+
 Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor for you. See the [pagination guide](../pagination.md).
 
 ## Create
@@ -24,6 +35,16 @@ Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor f
 
 **Returns:** `Webhook`
 
+**Example**
+
+```go
+result, err := client.Webhooks.Create(context.Background(), &schemas.WebhookCreateRequest{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## Get
 
 `GET /webhooks/{webhook_id}`
@@ -33,6 +54,16 @@ Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor f
 | `webhook_id` | path | `string` | yes |
 
 **Returns:** `Webhook`
+
+**Example**
+
+```go
+result, err := client.Webhooks.Get(context.Background(), "WEBHOOK_ID")
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 
 ## Update
 
@@ -46,6 +77,16 @@ Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor f
 
 **Returns:** `Webhook`
 
+**Example**
+
+```go
+result, err := client.Webhooks.Update(context.Background(), "WEBHOOK_ID", &schemas.WebhookUpdateRequest{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## Delete
 
 `DELETE /webhooks/{webhook_id}`
@@ -55,4 +96,12 @@ Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor f
 | `webhook_id` | path | `string` | yes |
 
 **Returns:** no content
+
+**Example**
+
+```go
+if err := client.Webhooks.Delete(context.Background(), "WEBHOOK_ID"); err != nil {
+	log.Fatal(err)
+}
+```
 

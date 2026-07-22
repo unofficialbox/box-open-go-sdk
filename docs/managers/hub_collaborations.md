@@ -15,6 +15,17 @@ Access via `client.NewClient().HubCollaborations`.
 
 **Returns:** `HubCollaborations`
 
+**Example**
+
+```go
+for item, err := range client.HubCollaborations.List(context.Background(), "HUB_ID", nil) {
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(item)
+}
+```
+
 Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor for you. See the [pagination guide](../pagination.md).
 
 ## Create
@@ -25,6 +36,16 @@ Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor f
 
 **Returns:** `HubCollaboration`
 
+**Example**
+
+```go
+result, err := client.HubCollaborations.Create(context.Background(), &schemas.HubCollaborationCreateRequest{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## Get
 
 `GET /hub_collaborations/{hub_collaboration_id}`
@@ -34,6 +55,16 @@ Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor f
 | `hub_collaboration_id` | path | `string` | yes |
 
 **Returns:** `HubCollaboration`
+
+**Example**
+
+```go
+result, err := client.HubCollaborations.Get(context.Background(), "HUB_COLLABORATION_ID")
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 
 ## Update
 
@@ -47,6 +78,16 @@ Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor f
 
 **Returns:** `HubCollaboration`
 
+**Example**
+
+```go
+result, err := client.HubCollaborations.Update(context.Background(), "HUB_COLLABORATION_ID", &schemas.HubCollaborationUpdateRequest{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## Delete
 
 `DELETE /hub_collaborations/{hub_collaboration_id}`
@@ -56,4 +97,12 @@ Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor f
 | `hub_collaboration_id` | path | `string` | yes |
 
 **Returns:** no content
+
+**Example**
+
+```go
+if err := client.HubCollaborations.Delete(context.Background(), "HUB_COLLABORATION_ID"); err != nil {
+	log.Fatal(err)
+}
+```
 

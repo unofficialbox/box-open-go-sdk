@@ -15,6 +15,17 @@ Access via `client.NewClient().Memberships`.
 
 **Returns:** `GroupMemberships`
 
+**Example**
+
+```go
+for item, err := range client.Memberships.ListUser(context.Background(), "USER_ID", nil) {
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(item)
+}
+```
+
 Paginated — `ListUser(...)` returns `iter.Seq2[*T, error]`, threading the cursor for you. See the [pagination guide](../pagination.md).
 
 ## ListGroup
@@ -28,6 +39,17 @@ Paginated — `ListUser(...)` returns `iter.Seq2[*T, error]`, threading the curs
 | `offset` | query | `int64` | no |
 
 **Returns:** `GroupMemberships`
+
+**Example**
+
+```go
+for item, err := range client.Memberships.ListGroup(context.Background(), "GROUP_ID", nil) {
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(item)
+}
+```
 
 Paginated — `ListGroup(...)` returns `iter.Seq2[*T, error]`, threading the cursor for you. See the [pagination guide](../pagination.md).
 
@@ -43,6 +65,16 @@ Paginated — `ListGroup(...)` returns `iter.Seq2[*T, error]`, threading the cur
 
 **Returns:** `GroupMembership`
 
+**Example**
+
+```go
+result, err := client.Memberships.CreateGroup(context.Background(), &schemas.GroupCreateRequest2{}, nil)
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## GetGroup
 
 `GET /group_memberships/{group_membership_id}`
@@ -53,6 +85,16 @@ Paginated — `ListGroup(...)` returns `iter.Seq2[*T, error]`, threading the cur
 | `fields` | query | `[]string` | no |
 
 **Returns:** `GroupMembership`
+
+**Example**
+
+```go
+result, err := client.Memberships.GetGroup(context.Background(), "GROUP_MEMBERSHIP_ID", nil)
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 
 ## UpdateGroup
 
@@ -67,6 +109,16 @@ Paginated — `ListGroup(...)` returns `iter.Seq2[*T, error]`, threading the cur
 
 **Returns:** `GroupMembership`
 
+**Example**
+
+```go
+result, err := client.Memberships.UpdateGroup(context.Background(), "GROUP_MEMBERSHIP_ID", &schemas.GroupUpdateRequest2{}, nil)
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## DeleteGroup
 
 `DELETE /group_memberships/{group_membership_id}`
@@ -76,4 +128,12 @@ Paginated — `ListGroup(...)` returns `iter.Seq2[*T, error]`, threading the cur
 | `group_membership_id` | path | `string` | yes |
 
 **Returns:** no content
+
+**Example**
+
+```go
+if err := client.Memberships.DeleteGroup(context.Background(), "GROUP_MEMBERSHIP_ID"); err != nil {
+	log.Fatal(err)
+}
+```
 

@@ -17,6 +17,16 @@ Access via `client.NewClient().Authorization`.
 
 **Returns:** text (`string`)
 
+**Example**
+
+```go
+result, err := client.Authorization.Authorize(context.Background(), schemas.GetAuthorizeResponseType("..."), "CLIENT_ID", nil)
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## CreateOauth2Token
 
 `POST /oauth2/token`
@@ -24,6 +34,16 @@ Access via `client.NewClient().Authorization`.
 **Request body** (`application/x-www-form-urlencoded`): `PostOAuth2Token`
 
 **Returns:** `AccessToken`
+
+**Example**
+
+```go
+result, err := client.Authorization.CreateOauth2Token(context.Background(), &schemas.PostOAuth2Token{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 
 ## CreateOauth2TokenRefresh
 
@@ -33,6 +53,16 @@ Access via `client.NewClient().Authorization`.
 
 **Returns:** `AccessToken`
 
+**Example**
+
+```go
+result, err := client.Authorization.CreateOauth2TokenRefresh(context.Background(), &schemas.PostOAuth2TokenRefreshAccessToken{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## RevokeOauth2
 
 `POST /oauth2/revoke`
@@ -40,4 +70,12 @@ Access via `client.NewClient().Authorization`.
 **Request body** (`application/x-www-form-urlencoded`): `PostOAuth2Revoke`
 
 **Returns:** no content
+
+**Example**
+
+```go
+if err := client.Authorization.RevokeOauth2(context.Background(), &schemas.PostOAuth2Revoke{}); err != nil {
+	log.Fatal(err)
+}
+```
 

@@ -17,6 +17,17 @@ Access via `client.NewClient().RetentionPolicyAssignments`.
 
 **Returns:** `RetentionPolicyAssignments`
 
+**Example**
+
+```go
+for item, err := range client.RetentionPolicyAssignments.ListRetentionPolicyAssignments(context.Background(), "RETENTION_POLICY_ID", nil) {
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(item)
+}
+```
+
 Paginated — `ListRetentionPolicyAssignments(...)` returns `iter.Seq2[*T, error]`, threading the cursor for you. See the [pagination guide](../pagination.md).
 
 ## Create
@@ -26,6 +37,16 @@ Paginated — `ListRetentionPolicyAssignments(...)` returns `iter.Seq2[*T, error
 **Request body** (`application/json`): `RetentionPolicyAssignmentCreateRequest`
 
 **Returns:** `RetentionPolicyAssignment`
+
+**Example**
+
+```go
+result, err := client.RetentionPolicyAssignments.Create(context.Background(), &schemas.RetentionPolicyAssignmentCreateRequest{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 
 ## Get
 
@@ -38,6 +59,16 @@ Paginated — `ListRetentionPolicyAssignments(...)` returns `iter.Seq2[*T, error
 
 **Returns:** `RetentionPolicyAssignment`
 
+**Example**
+
+```go
+result, err := client.RetentionPolicyAssignments.Get(context.Background(), "RETENTION_POLICY_ASSIGNMENT_ID", nil)
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## Delete
 
 `DELETE /retention_policy_assignments/{retention_policy_assignment_id}`
@@ -47,6 +78,14 @@ Paginated — `ListRetentionPolicyAssignments(...)` returns `iter.Seq2[*T, error
 | `retention_policy_assignment_id` | path | `string` | yes |
 
 **Returns:** no content
+
+**Example**
+
+```go
+if err := client.RetentionPolicyAssignments.Delete(context.Background(), "RETENTION_POLICY_ASSIGNMENT_ID"); err != nil {
+	log.Fatal(err)
+}
+```
 
 ## ListFileUnderRetention
 
@@ -59,6 +98,17 @@ Paginated — `ListRetentionPolicyAssignments(...)` returns `iter.Seq2[*T, error
 | `limit` | query | `int64` | no |
 
 **Returns:** `FilesUnderRetention`
+
+**Example**
+
+```go
+for item, err := range client.RetentionPolicyAssignments.ListFileUnderRetention(context.Background(), "RETENTION_POLICY_ASSIGNMENT_ID", nil) {
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(item)
+}
+```
 
 Paginated — `ListFileUnderRetention(...)` returns `iter.Seq2[*T, error]`, threading the cursor for you. See the [pagination guide](../pagination.md).
 
@@ -73,6 +123,17 @@ Paginated — `ListFileUnderRetention(...)` returns `iter.Seq2[*T, error]`, thre
 | `limit` | query | `int64` | no |
 
 **Returns:** `FilesUnderRetention`
+
+**Example**
+
+```go
+for item, err := range client.RetentionPolicyAssignments.ListFileVersionUnderRetention(context.Background(), "RETENTION_POLICY_ASSIGNMENT_ID", nil) {
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(item)
+}
+```
 
 Paginated — `ListFileVersionUnderRetention(...)` returns `iter.Seq2[*T, error]`, threading the cursor for you. See the [pagination guide](../pagination.md).
 

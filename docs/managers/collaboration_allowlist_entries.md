@@ -14,6 +14,17 @@ Access via `client.NewClient().CollaborationAllowlistEntries`.
 
 **Returns:** `CollaborationAllowlistEntries`
 
+**Example**
+
+```go
+for item, err := range client.CollaborationAllowlistEntries.ListCollaborationWhitelistEntries(context.Background(), nil) {
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(item)
+}
+```
+
 Paginated — `ListCollaborationWhitelistEntries(...)` returns `iter.Seq2[*T, error]`, threading the cursor for you. See the [pagination guide](../pagination.md).
 
 ## CreateCollaborationWhitelistEntries
@@ -23,6 +34,16 @@ Paginated — `ListCollaborationWhitelistEntries(...)` returns `iter.Seq2[*T, er
 **Request body** (`application/json`): `CollaborationWhitelistEntriesCreateRequest`
 
 **Returns:** `CollaborationAllowlistEntry`
+
+**Example**
+
+```go
+result, err := client.CollaborationAllowlistEntries.CreateCollaborationWhitelistEntries(context.Background(), &schemas.CollaborationWhitelistEntriesCreateRequest{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 
 ## GetCollaborationWhitelistEntry
 
@@ -34,6 +55,16 @@ Paginated — `ListCollaborationWhitelistEntries(...)` returns `iter.Seq2[*T, er
 
 **Returns:** `CollaborationAllowlistEntry`
 
+**Example**
+
+```go
+result, err := client.CollaborationAllowlistEntries.GetCollaborationWhitelistEntry(context.Background(), "COLLABORATION_WHITELIST_ENTRY_ID")
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## DeleteCollaborationWhitelistEntry
 
 `DELETE /collaboration_whitelist_entries/{collaboration_whitelist_entry_id}`
@@ -43,4 +74,12 @@ Paginated — `ListCollaborationWhitelistEntries(...)` returns `iter.Seq2[*T, er
 | `collaboration_whitelist_entry_id` | path | `string` | yes |
 
 **Returns:** no content
+
+**Example**
+
+```go
+if err := client.CollaborationAllowlistEntries.DeleteCollaborationWhitelistEntry(context.Background(), "COLLABORATION_WHITELIST_ENTRY_ID"); err != nil {
+	log.Fatal(err)
+}
+```
 

@@ -16,6 +16,17 @@ Access via `client.NewClient().AppItemAssociations`.
 
 **Returns:** `AppItemAssociations`
 
+**Example**
+
+```go
+for item, err := range client.AppItemAssociations.ListFile(context.Background(), "FILE_ID", nil) {
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(item)
+}
+```
+
 Paginated — `ListFile(...)` returns `iter.Seq2[*T, error]`, threading the cursor for you. See the [pagination guide](../pagination.md).
 
 ## ListFolder
@@ -30,6 +41,17 @@ Paginated — `ListFile(...)` returns `iter.Seq2[*T, error]`, threading the curs
 | `application_type` | query | `string` | no |
 
 **Returns:** `AppItemAssociations`
+
+**Example**
+
+```go
+for item, err := range client.AppItemAssociations.ListFolder(context.Background(), "FOLDER_ID", nil) {
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(item)
+}
+```
 
 Paginated — `ListFolder(...)` returns `iter.Seq2[*T, error]`, threading the cursor for you. See the [pagination guide](../pagination.md).
 

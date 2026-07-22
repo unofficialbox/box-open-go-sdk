@@ -14,3 +14,13 @@ Access via `client.NewClient().EnterpriseConfigurations`.
 
 **Returns:** `EnterpriseConfiguration`
 
+**Example**
+
+```go
+result, err := client.EnterpriseConfigurations.Get(context.Background(), "ENTERPRISE_ID", nil)
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+

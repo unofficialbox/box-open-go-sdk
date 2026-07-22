@@ -9,6 +9,16 @@ Access via `client.NewClient().Classifications`.
 
 **Returns:** `ClassificationTemplate`
 
+**Example**
+
+```go
+result, err := client.Classifications.Get(context.Background())
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## UpdateAdd
 
 `PUT /metadata_templates/enterprise/securityClassification-6VMVochwUWo/schema`
@@ -16,6 +26,16 @@ Access via `client.NewClient().Classifications`.
 **Request body** (`application/json`): `[]ClassificationUpdateRequest`
 
 **Returns:** `ClassificationTemplate`
+
+**Example**
+
+```go
+result, err := client.Classifications.UpdateAdd(context.Background(), []ClassificationUpdateRequest{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 
 ## UpdateUpdate
 
@@ -25,6 +45,16 @@ Access via `client.NewClient().Classifications`.
 
 **Returns:** `ClassificationTemplate`
 
+**Example**
+
+```go
+result, err := client.Classifications.UpdateUpdate(context.Background(), []ClassificationUpdateRequest2{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## CreateMetadataTemplateSchemaClassifications
 
 `POST /metadata_templates/schema`
@@ -32,4 +62,14 @@ Access via `client.NewClient().Classifications`.
 **Request body** (`application/json`): `MetadataTemplateSchemaCreateRequest`
 
 **Returns:** `ClassificationTemplate`
+
+**Example**
+
+```go
+result, err := client.Classifications.CreateMetadataTemplateSchemaClassifications(context.Background(), &schemas.MetadataTemplateSchemaCreateRequest{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 

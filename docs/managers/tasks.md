@@ -13,6 +13,16 @@ Access via `client.NewClient().Tasks`.
 
 **Returns:** `Tasks`
 
+**Example**
+
+```go
+result, err := client.Tasks.ListFile(context.Background(), "FILE_ID")
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## Create
 
 `POST /tasks`
@@ -20,6 +30,16 @@ Access via `client.NewClient().Tasks`.
 **Request body** (`application/json`): `TaskCreateRequest`
 
 **Returns:** `Task`
+
+**Example**
+
+```go
+result, err := client.Tasks.Create(context.Background(), &schemas.TaskCreateRequest{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 
 ## Get
 
@@ -30,6 +50,16 @@ Access via `client.NewClient().Tasks`.
 | `task_id` | path | `string` | yes |
 
 **Returns:** `Task`
+
+**Example**
+
+```go
+result, err := client.Tasks.Get(context.Background(), "TASK_ID")
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 
 ## Update
 
@@ -43,6 +73,16 @@ Access via `client.NewClient().Tasks`.
 
 **Returns:** `Task`
 
+**Example**
+
+```go
+result, err := client.Tasks.Update(context.Background(), "TASK_ID", &schemas.TaskUpdateRequest{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## Delete
 
 `DELETE /tasks/{task_id}`
@@ -52,4 +92,12 @@ Access via `client.NewClient().Tasks`.
 | `task_id` | path | `string` | yes |
 
 **Returns:** no content
+
+**Example**
+
+```go
+if err := client.Tasks.Delete(context.Background(), "TASK_ID"); err != nil {
+	log.Fatal(err)
+}
+```
 

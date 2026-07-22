@@ -15,6 +15,17 @@ Access via `client.NewClient().ShieldInformationBarrierReports`.
 
 **Returns:** `ShieldInformationBarrierReports`
 
+**Example**
+
+```go
+for item, err := range client.ShieldInformationBarrierReports.List(context.Background(), "SHIELD_INFORMATION_BARRIER_ID", nil) {
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(item)
+}
+```
+
 Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor for you. See the [pagination guide](../pagination.md).
 
 ## Create
@@ -25,6 +36,16 @@ Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor f
 
 **Returns:** `ShieldInformationBarrierReport`
 
+**Example**
+
+```go
+result, err := client.ShieldInformationBarrierReports.Create(context.Background(), &schemas.ShieldInformationBarrierReference{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## Get
 
 `GET /shield_information_barrier_reports/{shield_information_barrier_report_id}`
@@ -34,4 +55,14 @@ Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor f
 | `shield_information_barrier_report_id` | path | `string` | yes |
 
 **Returns:** `ShieldInformationBarrierReport`
+
+**Example**
+
+```go
+result, err := client.ShieldInformationBarrierReports.Get(context.Background(), "SHIELD_INFORMATION_BARRIER_REPORT_ID")
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 

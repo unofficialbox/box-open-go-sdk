@@ -1,5 +1,7 @@
 README.md
 assets/banner.svg
+auth/auth.go
+auth/pkcs8.go
 buildinfo/buildinfo.go
 client/client.go
 docs/README.md
@@ -91,8 +93,6 @@ docs/managers/webhooks.md
 docs/managers/workflows.md
 docs/managers/zip_downloads.md
 docs/pagination.md
-gantryruntime/auth.go
-gantryruntime/pkcs8.go
 gantryruntime/runtime.go
 go.mod
 managers/ai.go

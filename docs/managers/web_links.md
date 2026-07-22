@@ -11,6 +11,16 @@ Access via `client.NewClient().WebLinks`.
 
 **Returns:** `WebLink`
 
+**Example**
+
+```go
+result, err := client.WebLinks.Create(context.Background(), &schemas.WebLinkCreateRequest{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## Get
 
 `GET /web_links/{web_link_id}`
@@ -21,6 +31,16 @@ Access via `client.NewClient().WebLinks`.
 | `boxapi` | header | `string` | no |
 
 **Returns:** `WebLink`
+
+**Example**
+
+```go
+result, err := client.WebLinks.Get(context.Background(), "WEB_LINK_ID", nil)
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 
 ## Update
 
@@ -34,6 +54,16 @@ Access via `client.NewClient().WebLinks`.
 
 **Returns:** `WebLink`
 
+**Example**
+
+```go
+result, err := client.WebLinks.Update(context.Background(), "WEB_LINK_ID", &schemas.WebLinkUpdateRequest{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## Delete
 
 `DELETE /web_links/{web_link_id}`
@@ -43,4 +73,12 @@ Access via `client.NewClient().WebLinks`.
 | `web_link_id` | path | `string` | yes |
 
 **Returns:** no content
+
+**Example**
+
+```go
+if err := client.WebLinks.Delete(context.Background(), "WEB_LINK_ID"); err != nil {
+	log.Fatal(err)
+}
+```
 

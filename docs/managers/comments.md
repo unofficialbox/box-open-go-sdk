@@ -16,6 +16,17 @@ Access via `client.NewClient().Comments`.
 
 **Returns:** `Comments`
 
+**Example**
+
+```go
+for item, err := range client.Comments.ListFile(context.Background(), "FILE_ID", nil) {
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(item)
+}
+```
+
 Paginated — `ListFile(...)` returns `iter.Seq2[*T, error]`, threading the cursor for you. See the [pagination guide](../pagination.md).
 
 ## Get
@@ -28,6 +39,16 @@ Paginated — `ListFile(...)` returns `iter.Seq2[*T, error]`, threading the curs
 | `fields` | query | `[]string` | no |
 
 **Returns:** `CommentFull`
+
+**Example**
+
+```go
+result, err := client.Comments.Get(context.Background(), "COMMENT_ID", nil)
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 
 ## Update
 
@@ -42,6 +63,16 @@ Paginated — `ListFile(...)` returns `iter.Seq2[*T, error]`, threading the curs
 
 **Returns:** `CommentFull`
 
+**Example**
+
+```go
+result, err := client.Comments.Update(context.Background(), "COMMENT_ID", &schemas.CommentUpdateRequest{}, nil)
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## Delete
 
 `DELETE /comments/{comment_id}`
@@ -51,6 +82,14 @@ Paginated — `ListFile(...)` returns `iter.Seq2[*T, error]`, threading the curs
 | `comment_id` | path | `string` | yes |
 
 **Returns:** no content
+
+**Example**
+
+```go
+if err := client.Comments.Delete(context.Background(), "COMMENT_ID"); err != nil {
+	log.Fatal(err)
+}
+```
 
 ## Create
 
@@ -63,4 +102,14 @@ Paginated — `ListFile(...)` returns `iter.Seq2[*T, error]`, threading the curs
 **Request body** (`application/json`): `CommentCreateRequest`
 
 **Returns:** `CommentFull`
+
+**Example**
+
+```go
+result, err := client.Comments.Create(context.Background(), &schemas.CommentCreateRequest{}, nil)
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 

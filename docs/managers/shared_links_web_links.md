@@ -15,6 +15,16 @@ Access via `client.NewClient().SharedLinksWebLinks`.
 
 **Returns:** `WebLink`
 
+**Example**
+
+```go
+result, err := client.SharedLinksWebLinks.GetSharedItemsWebLinks(context.Background(), "BOXAPI", nil)
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## GetWebLinkGetSharedLink
 
 `GET /web_links/{web_link_id}`
@@ -25,6 +35,16 @@ Access via `client.NewClient().SharedLinksWebLinks`.
 | `fields` | query | `string` | yes |
 
 **Returns:** `WebLink`
+
+**Example**
+
+```go
+result, err := client.SharedLinksWebLinks.GetWebLinkGetSharedLink(context.Background(), "WEB_LINK_ID", "FIELDS")
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 
 ## UpdateWebLinkAddSharedLink
 
@@ -39,6 +59,16 @@ Access via `client.NewClient().SharedLinksWebLinks`.
 
 **Returns:** `WebLink`
 
+**Example**
+
+```go
+result, err := client.SharedLinksWebLinks.UpdateWebLinkAddSharedLink(context.Background(), "WEB_LINK_ID", "FIELDS", &schemas.FileUpdateRequest2{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## UpdateWebLinkUpdateSharedLink
 
 `PUT /web_links/{web_link_id}`
@@ -52,6 +82,16 @@ Access via `client.NewClient().SharedLinksWebLinks`.
 
 **Returns:** `WebLink`
 
+**Example**
+
+```go
+result, err := client.SharedLinksWebLinks.UpdateWebLinkUpdateSharedLink(context.Background(), "WEB_LINK_ID", "FIELDS", &schemas.FileUpdateRequest2{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## UpdateWebLinkRemoveSharedLink
 
 `PUT /web_links/{web_link_id}`
@@ -64,4 +104,14 @@ Access via `client.NewClient().SharedLinksWebLinks`.
 **Request body** (`application/json`): `FileUpdateRequest3`
 
 **Returns:** `WebLink`
+
+**Example**
+
+```go
+result, err := client.SharedLinksWebLinks.UpdateWebLinkRemoveSharedLink(context.Background(), "WEB_LINK_ID", "FIELDS", &schemas.FileUpdateRequest3{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 

@@ -16,6 +16,16 @@ Access via `client.NewClient().TrashedFolders`.
 
 **Returns:** `TrashFolderRestored`
 
+**Example**
+
+```go
+result, err := client.TrashedFolders.CreateFolder(context.Background(), "FOLDER_ID", &schemas.FileCreateRequest{}, nil)
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## GetFolderTrash
 
 `GET /folders/{folder_id}/trash`
@@ -27,6 +37,16 @@ Access via `client.NewClient().TrashedFolders`.
 
 **Returns:** `TrashFolder`
 
+**Example**
+
+```go
+result, err := client.TrashedFolders.GetFolderTrash(context.Background(), "FOLDER_ID", nil)
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## DeleteFolderTrash
 
 `DELETE /folders/{folder_id}/trash`
@@ -36,4 +56,12 @@ Access via `client.NewClient().TrashedFolders`.
 | `folder_id` | path | `string` | yes |
 
 **Returns:** no content
+
+**Example**
+
+```go
+if err := client.TrashedFolders.DeleteFolderTrash(context.Background(), "FOLDER_ID"); err != nil {
+	log.Fatal(err)
+}
+```
 

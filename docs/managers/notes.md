@@ -11,3 +11,13 @@ Access via `client.NewClient().Notes`.
 
 **Returns:** `NotesConvertResponse`
 
+**Example**
+
+```go
+result, err := client.Notes.Convert(context.Background(), &schemas.NotesConvertRequestBody{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+

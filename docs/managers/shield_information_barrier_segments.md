@@ -13,6 +13,16 @@ Access via `client.NewClient().ShieldInformationBarrierSegments`.
 
 **Returns:** `ShieldInformationBarrierSegment`
 
+**Example**
+
+```go
+result, err := client.ShieldInformationBarrierSegments.Get(context.Background(), "SHIELD_INFORMATION_BARRIER_SEGMENT_ID")
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## Update
 
 `PUT /shield_information_barrier_segments/{shield_information_barrier_segment_id}`
@@ -25,6 +35,16 @@ Access via `client.NewClient().ShieldInformationBarrierSegments`.
 
 **Returns:** `ShieldInformationBarrierSegment`
 
+**Example**
+
+```go
+result, err := client.ShieldInformationBarrierSegments.Update(context.Background(), "SHIELD_INFORMATION_BARRIER_SEGMENT_ID", &schemas.ShieldInformationBarrierSegmentUpdateRequest{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## Delete
 
 `DELETE /shield_information_barrier_segments/{shield_information_barrier_segment_id}`
@@ -34,6 +54,14 @@ Access via `client.NewClient().ShieldInformationBarrierSegments`.
 | `shield_information_barrier_segment_id` | path | `string` | yes |
 
 **Returns:** no content
+
+**Example**
+
+```go
+if err := client.ShieldInformationBarrierSegments.Delete(context.Background(), "SHIELD_INFORMATION_BARRIER_SEGMENT_ID"); err != nil {
+	log.Fatal(err)
+}
+```
 
 ## List
 
@@ -47,6 +75,17 @@ Access via `client.NewClient().ShieldInformationBarrierSegments`.
 
 **Returns:** `ShieldInformationBarrierSegments`
 
+**Example**
+
+```go
+for item, err := range client.ShieldInformationBarrierSegments.List(context.Background(), "SHIELD_INFORMATION_BARRIER_ID", nil) {
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(item)
+}
+```
+
 Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor for you. See the [pagination guide](../pagination.md).
 
 ## Create
@@ -56,4 +95,14 @@ Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor f
 **Request body** (`application/json`): `ShieldInformationBarrierSegmentCreateRequest`
 
 **Returns:** `ShieldInformationBarrierSegment`
+
+**Example**
+
+```go
+result, err := client.ShieldInformationBarrierSegments.Create(context.Background(), &schemas.ShieldInformationBarrierSegmentCreateRequest{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 

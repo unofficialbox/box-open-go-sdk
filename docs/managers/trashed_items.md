@@ -19,5 +19,16 @@ Access via `client.NewClient().TrashedItems`.
 
 **Returns:** `Items`
 
+**Example**
+
+```go
+for item, err := range client.TrashedItems.ListFolderTrashItems(context.Background(), nil) {
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(item)
+}
+```
+
 Paginated — `ListFolderTrashItems(...)` returns `iter.Seq2[*T, error]`, threading the cursor for you. See the [pagination guide](../pagination.md).
 

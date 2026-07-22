@@ -15,6 +15,17 @@ Access via `client.NewClient().StoragePolicies`.
 
 **Returns:** `StoragePolicies`
 
+**Example**
+
+```go
+for item, err := range client.StoragePolicies.List(context.Background(), nil) {
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(item)
+}
+```
+
 Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor for you. See the [pagination guide](../pagination.md).
 
 ## Get
@@ -26,4 +37,14 @@ Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor f
 | `storage_policy_id` | path | `string` | yes |
 
 **Returns:** `StoragePolicy`
+
+**Example**
+
+```go
+result, err := client.StoragePolicies.Get(context.Background(), "STORAGE_POLICY_ID")
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 

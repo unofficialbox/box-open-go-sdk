@@ -15,6 +15,17 @@ Access via `client.NewClient().HubDocument`.
 
 **Returns:** `HubDocumentPages`
 
+**Example**
+
+```go
+for item, err := range client.HubDocument.ListPages(context.Background(), "HUB_ID", nil) {
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(item)
+}
+```
+
 Paginated — `ListPages(...)` returns `iter.Seq2[*T, error]`, threading the cursor for you. See the [pagination guide](../pagination.md).
 
 ## ListBlocks
@@ -29,6 +40,17 @@ Paginated — `ListPages(...)` returns `iter.Seq2[*T, error]`, threading the cur
 | `limit` | query | `int64` | no |
 
 **Returns:** `HubDocumentBlocks`
+
+**Example**
+
+```go
+for item, err := range client.HubDocument.ListBlocks(context.Background(), "HUB_ID", "PAGE_ID", nil) {
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(item)
+}
+```
 
 Paginated — `ListBlocks(...)` returns `iter.Seq2[*T, error]`, threading the cursor for you. See the [pagination guide](../pagination.md).
 

@@ -13,6 +13,16 @@ Access via `client.NewClient().TaskAssignments`.
 
 **Returns:** `TaskAssignments`
 
+**Example**
+
+```go
+result, err := client.TaskAssignments.ListTaskAssignments(context.Background(), "TASK_ID")
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## Create
 
 `POST /task_assignments`
@@ -20,6 +30,16 @@ Access via `client.NewClient().TaskAssignments`.
 **Request body** (`application/json`): `TaskAssignmentCreateRequest`
 
 **Returns:** `TaskAssignment`
+
+**Example**
+
+```go
+result, err := client.TaskAssignments.Create(context.Background(), &schemas.TaskAssignmentCreateRequest{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 
 ## Get
 
@@ -30,6 +50,16 @@ Access via `client.NewClient().TaskAssignments`.
 | `task_assignment_id` | path | `string` | yes |
 
 **Returns:** `TaskAssignment`
+
+**Example**
+
+```go
+result, err := client.TaskAssignments.Get(context.Background(), "TASK_ASSIGNMENT_ID")
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 
 ## Update
 
@@ -43,6 +73,16 @@ Access via `client.NewClient().TaskAssignments`.
 
 **Returns:** `TaskAssignment`
 
+**Example**
+
+```go
+result, err := client.TaskAssignments.Update(context.Background(), "TASK_ASSIGNMENT_ID", &schemas.TaskAssignmentUpdateRequest{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## Delete
 
 `DELETE /task_assignments/{task_assignment_id}`
@@ -52,4 +92,12 @@ Access via `client.NewClient().TaskAssignments`.
 | `task_assignment_id` | path | `string` | yes |
 
 **Returns:** no content
+
+**Example**
+
+```go
+if err := client.TaskAssignments.Delete(context.Background(), "TASK_ASSIGNMENT_ID"); err != nil {
+	log.Fatal(err)
+}
+```
 

@@ -16,6 +16,16 @@ Access via `client.NewClient().TrashedWebLinks`.
 
 **Returns:** `TrashWebLinkRestored`
 
+**Example**
+
+```go
+result, err := client.TrashedWebLinks.CreateWebLink(context.Background(), "WEB_LINK_ID", &schemas.FileCreateRequest{}, nil)
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## GetWebLinkTrash
 
 `GET /web_links/{web_link_id}/trash`
@@ -27,6 +37,16 @@ Access via `client.NewClient().TrashedWebLinks`.
 
 **Returns:** `TrashWebLink`
 
+**Example**
+
+```go
+result, err := client.TrashedWebLinks.GetWebLinkTrash(context.Background(), "WEB_LINK_ID", nil)
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## DeleteWebLinkTrash
 
 `DELETE /web_links/{web_link_id}/trash`
@@ -36,4 +56,12 @@ Access via `client.NewClient().TrashedWebLinks`.
 | `web_link_id` | path | `string` | yes |
 
 **Returns:** no content
+
+**Example**
+
+```go
+if err := client.TrashedWebLinks.DeleteWebLinkTrash(context.Background(), "WEB_LINK_ID"); err != nil {
+	log.Fatal(err)
+}
+```
 

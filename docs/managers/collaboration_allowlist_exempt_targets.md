@@ -14,6 +14,17 @@ Access via `client.NewClient().CollaborationAllowlistExemptTargets`.
 
 **Returns:** `CollaborationAllowlistExemptTargets`
 
+**Example**
+
+```go
+for item, err := range client.CollaborationAllowlistExemptTargets.ListCollaborationWhitelistExemptTargets(context.Background(), nil) {
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(item)
+}
+```
+
 Paginated — `ListCollaborationWhitelistExemptTargets(...)` returns `iter.Seq2[*T, error]`, threading the cursor for you. See the [pagination guide](../pagination.md).
 
 ## CreateCollaborationWhitelistExemptTargets
@@ -23,6 +34,16 @@ Paginated — `ListCollaborationWhitelistExemptTargets(...)` returns `iter.Seq2[
 **Request body** (`application/json`): `CollaborationWhitelistExemptTargetsCreateRequest`
 
 **Returns:** `CollaborationAllowlistExemptTarget`
+
+**Example**
+
+```go
+result, err := client.CollaborationAllowlistExemptTargets.CreateCollaborationWhitelistExemptTargets(context.Background(), &schemas.CollaborationWhitelistExemptTargetsCreateRequest{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 
 ## GetCollaborationWhitelistExemptTarget
 
@@ -34,6 +55,16 @@ Paginated — `ListCollaborationWhitelistExemptTargets(...)` returns `iter.Seq2[
 
 **Returns:** `CollaborationAllowlistExemptTarget`
 
+**Example**
+
+```go
+result, err := client.CollaborationAllowlistExemptTargets.GetCollaborationWhitelistExemptTarget(context.Background(), "COLLABORATION_WHITELIST_EXEMPT_TARGET_ID")
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## DeleteCollaborationWhitelistExemptTarget
 
 `DELETE /collaboration_whitelist_exempt_targets/{collaboration_whitelist_exempt_target_id}`
@@ -43,4 +74,12 @@ Paginated — `ListCollaborationWhitelistExemptTargets(...)` returns `iter.Seq2[
 | `collaboration_whitelist_exempt_target_id` | path | `string` | yes |
 
 **Returns:** no content
+
+**Example**
+
+```go
+if err := client.CollaborationAllowlistExemptTargets.DeleteCollaborationWhitelistExemptTarget(context.Background(), "COLLABORATION_WHITELIST_EXEMPT_TARGET_ID"); err != nil {
+	log.Fatal(err)
+}
+```
 

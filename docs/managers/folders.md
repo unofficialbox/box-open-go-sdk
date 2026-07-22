@@ -20,6 +20,16 @@ Access via `client.NewClient().Folders`.
 
 **Returns:** `FolderFull`
 
+**Example**
+
+```go
+result, err := client.Folders.Get(context.Background(), "FOLDER_ID", nil)
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## Update
 
 `PUT /folders/{folder_id}`
@@ -34,6 +44,16 @@ Access via `client.NewClient().Folders`.
 
 **Returns:** `FolderFull`
 
+**Example**
+
+```go
+result, err := client.Folders.Update(context.Background(), "FOLDER_ID", &schemas.FolderUpdateRequest{}, nil)
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## Delete
 
 `DELETE /folders/{folder_id}`
@@ -45,6 +65,14 @@ Access via `client.NewClient().Folders`.
 | `recursive` | query | `bool` | no |
 
 **Returns:** no content
+
+**Example**
+
+```go
+if err := client.Folders.Delete(context.Background(), "FOLDER_ID", nil); err != nil {
+	log.Fatal(err)
+}
+```
 
 ## ListItems
 
@@ -64,6 +92,17 @@ Access via `client.NewClient().Folders`.
 
 **Returns:** `Items`
 
+**Example**
+
+```go
+for item, err := range client.Folders.ListItems(context.Background(), "FOLDER_ID", nil) {
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(item)
+}
+```
+
 Paginated — `ListItems(...)` returns `iter.Seq2[*T, error]`, threading the cursor for you. See the [pagination guide](../pagination.md).
 
 ## Create
@@ -78,6 +117,16 @@ Paginated — `ListItems(...)` returns `iter.Seq2[*T, error]`, threading the cur
 
 **Returns:** `FolderFull`
 
+**Example**
+
+```go
+result, err := client.Folders.Create(context.Background(), &schemas.FolderCreateRequest{}, nil)
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## Copy
 
 `POST /folders/{folder_id}/copy`
@@ -90,4 +139,14 @@ Paginated — `ListItems(...)` returns `iter.Seq2[*T, error]`, threading the cur
 **Request body** (`application/json`): `FolderCopyRequest`
 
 **Returns:** `FolderFull`
+
+**Example**
+
+```go
+result, err := client.Folders.Copy(context.Background(), "FOLDER_ID", &schemas.FolderCopyRequest{}, nil)
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 

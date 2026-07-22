@@ -11,6 +11,16 @@ Access via `client.NewClient().SessionTermination`.
 
 **Returns:** `SessionTerminationMessage`
 
+**Example**
+
+```go
+result, err := client.SessionTermination.CreateUserTerminateSessions(context.Background(), &schemas.UserTerminateSessionsCreateRequest{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## CreateGroupTerminateSessions
 
 `POST /groups/terminate_sessions`
@@ -18,4 +28,14 @@ Access via `client.NewClient().SessionTermination`.
 **Request body** (`application/json`): `GroupTerminateSessionsCreateRequest`
 
 **Returns:** `SessionTerminationMessage`
+
+**Example**
+
+```go
+result, err := client.SessionTermination.CreateGroupTerminateSessions(context.Background(), &schemas.GroupTerminateSessionsCreateRequest{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 

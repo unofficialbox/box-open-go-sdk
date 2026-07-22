@@ -14,6 +14,16 @@ Access via `client.NewClient().FileMetadata`.
 
 **Returns:** `Metadatas`
 
+**Example**
+
+```go
+result, err := client.FileMetadata.ListFileMetadata(context.Background(), "FILE_ID", nil)
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## GetFileMetadata
 
 `GET /files/{file_id}/metadata/{scope}/{template_key}`
@@ -26,6 +36,16 @@ Access via `client.NewClient().FileMetadata`.
 | `view` | query | `string` | no |
 
 **Returns:** `MetadataFull`
+
+**Example**
+
+```go
+result, err := client.FileMetadata.GetFileMetadata(context.Background(), "FILE_ID", schemas.GetFileIdMetadataIdIdScope("..."), "TEMPLATE_KEY", nil)
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 
 ## UpdateFileMetadata
 
@@ -41,6 +61,16 @@ Access via `client.NewClient().FileMetadata`.
 
 **Returns:** `MetadataFull`
 
+**Example**
+
+```go
+result, err := client.FileMetadata.UpdateFileMetadata(context.Background(), "FILE_ID", schemas.GetFileIdMetadataIdIdScope("..."), "TEMPLATE_KEY", []FileMetadataUpdateRequest{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## CreateFileMetadata
 
 `POST /files/{file_id}/metadata/{scope}/{template_key}`
@@ -55,6 +85,16 @@ Access via `client.NewClient().FileMetadata`.
 
 **Returns:** `MetadataFull`
 
+**Example**
+
+```go
+result, err := client.FileMetadata.CreateFileMetadata(context.Background(), "FILE_ID", schemas.GetFileIdMetadataIdIdScope("..."), "TEMPLATE_KEY", map[string]any{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## DeleteFileMetadata
 
 `DELETE /files/{file_id}/metadata/{scope}/{template_key}`
@@ -66,4 +106,12 @@ Access via `client.NewClient().FileMetadata`.
 | `template_key` | path | `string` | yes |
 
 **Returns:** no content
+
+**Example**
+
+```go
+if err := client.FileMetadata.DeleteFileMetadata(context.Background(), "FILE_ID", schemas.GetFileIdMetadataIdIdScope("..."), "TEMPLATE_KEY"); err != nil {
+	log.Fatal(err)
+}
+```
 

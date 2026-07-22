@@ -13,3 +13,13 @@ Access via `client.NewClient().SharedLinksAppItems`.
 
 **Returns:** `AppItem`
 
+**Example**
+
+```go
+result, err := client.SharedLinksAppItems.GetSharedItemsAppItems(context.Background(), "BOXAPI")
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+

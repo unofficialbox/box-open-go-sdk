@@ -14,6 +14,16 @@ Access via `client.NewClient().UserCollaborations`.
 
 **Returns:** `Collaboration`
 
+**Example**
+
+```go
+result, err := client.UserCollaborations.GetCollaboration(context.Background(), "COLLABORATION_ID", nil)
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## UpdateCollaboration
 
 `PUT /collaborations/{collaboration_id}`
@@ -26,6 +36,16 @@ Access via `client.NewClient().UserCollaborations`.
 
 **Returns:** `Collaboration`
 
+**Example**
+
+```go
+result, err := client.UserCollaborations.UpdateCollaboration(context.Background(), "COLLABORATION_ID", &schemas.CollaborationUpdateRequest{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## DeleteCollaboration
 
 `DELETE /collaborations/{collaboration_id}`
@@ -35,6 +55,14 @@ Access via `client.NewClient().UserCollaborations`.
 | `collaboration_id` | path | `string` | yes |
 
 **Returns:** no content
+
+**Example**
+
+```go
+if err := client.UserCollaborations.DeleteCollaboration(context.Background(), "COLLABORATION_ID"); err != nil {
+	log.Fatal(err)
+}
+```
 
 ## CreateCollaborations
 
@@ -48,4 +76,14 @@ Access via `client.NewClient().UserCollaborations`.
 **Request body** (`application/json`): `CollaborationsCreateRequest`
 
 **Returns:** `Collaboration`
+
+**Example**
+
+```go
+result, err := client.UserCollaborations.CreateCollaborations(context.Background(), &schemas.CollaborationsCreateRequest{}, nil)
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 

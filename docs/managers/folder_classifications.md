@@ -13,6 +13,16 @@ Access via `client.NewClient().FolderClassifications`.
 
 **Returns:** `Classification`
 
+**Example**
+
+```go
+result, err := client.FolderClassifications.Get(context.Background(), "FOLDER_ID")
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## Update
 
 `PUT /folders/{folder_id}/metadata/enterprise/securityClassification-6VMVochwUWo`
@@ -24,6 +34,16 @@ Access via `client.NewClient().FolderClassifications`.
 **Request body** (`application/json-patch+json`): `[]FileClassificationUpdateRequest`
 
 **Returns:** `Classification`
+
+**Example**
+
+```go
+result, err := client.FolderClassifications.Update(context.Background(), "FOLDER_ID", []FileClassificationUpdateRequest{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 
 ## Create
 
@@ -37,6 +57,16 @@ Access via `client.NewClient().FolderClassifications`.
 
 **Returns:** `Classification`
 
+**Example**
+
+```go
+result, err := client.FolderClassifications.Create(context.Background(), "FOLDER_ID", &schemas.FileClassificationCreateRequest{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## Delete
 
 `DELETE /folders/{folder_id}/metadata/enterprise/securityClassification-6VMVochwUWo`
@@ -46,4 +76,12 @@ Access via `client.NewClient().FolderClassifications`.
 | `folder_id` | path | `string` | yes |
 
 **Returns:** no content
+
+**Example**
+
+```go
+if err := client.FolderClassifications.Delete(context.Background(), "FOLDER_ID"); err != nil {
+	log.Fatal(err)
+}
+```
 

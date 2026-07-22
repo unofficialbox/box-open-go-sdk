@@ -13,6 +13,16 @@ Access via `client.NewClient().EmailAliases`.
 
 **Returns:** `EmailAliases`
 
+**Example**
+
+```go
+result, err := client.EmailAliases.ListUser(context.Background(), "USER_ID")
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## CreateUser
 
 `POST /users/{user_id}/email_aliases`
@@ -25,6 +35,16 @@ Access via `client.NewClient().EmailAliases`.
 
 **Returns:** `EmailAlias`
 
+**Example**
+
+```go
+result, err := client.EmailAliases.CreateUser(context.Background(), "USER_ID", &schemas.UserIdCreateRequest{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## DeleteUser
 
 `DELETE /users/{user_id}/email_aliases/{email_alias_id}`
@@ -35,4 +55,12 @@ Access via `client.NewClient().EmailAliases`.
 | `email_alias_id` | path | `string` | yes |
 
 **Returns:** no content
+
+**Example**
+
+```go
+if err := client.EmailAliases.DeleteUser(context.Background(), "USER_ID", "EMAIL_ALIAS_ID"); err != nil {
+	log.Fatal(err)
+}
+```
 

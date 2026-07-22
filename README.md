@@ -21,6 +21,9 @@ go get github.com/unofficialbox/box-open-go-sdk@latest
 
 ## Quickstart
 
+Authenticate, look up the current user, create a folder, upload a file, extract
+its fields with Box AI, tag it with metadata, and query for it — end to end:
+
 ```go
 package main
 
@@ -28,44 +31,93 @@ import (
 	"context"
 	"fmt"
 	"log"
+	"strings"
 
+	"github.com/unofficialbox/box-open-go-sdk/auth"
 	"github.com/unofficialbox/box-open-go-sdk/client"
-	"github.com/unofficialbox/box-open-go-sdk/gantryruntime"
+	"github.com/unofficialbox/box-open-go-sdk/schemas"
 )
 
 func main() {
-	// Developer token for a quick start; CCG, OAuth, and JWT are also supported.
-	c := client.NewClient(gantryruntime.DeveloperToken("DEVELOPER_TOKEN"))
+	ctx := context.Background()
 
-	// Every API area is a manager on the client.
-	me, err := c.Users.GetMe(context.Background(), nil)
+	// Client Credentials Grant (server-to-server); developer token, OAuth, and
+	// JWT are also supported — see docs/auth.md.
+	c := client.NewClient(auth.ClientCredentials(auth.CCGConfig{
+		ClientID:     "CLIENT_ID",
+		ClientSecret: "CLIENT_SECRET",
+		EnterpriseID: "ENTERPRISE_ID",
+	}))
+
+	// The current user.
+	me, err := c.Users.GetMe(ctx, nil)
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Println(me)
+	fmt.Println("authenticated as", me.Id)
 
-	// List endpoints return a range-over-func iterator (Go 1.23+); paging is
-	// automatic.
-	for user, err := range c.Users.List(context.Background(), nil) {
-		if err != nil {
-			log.Fatal(err)
-		}
-		fmt.Println(user.Id)
+	// Create a folder at the account root ("0").
+	folder, err := c.Folders.Create(ctx, &schemas.FolderCreateRequest{
+		Name:   "Invoices",
+		Parent: schemas.AttributesParent{Id: "0"},
+	}, nil)
+	if err != nil {
+		log.Fatal(err)
 	}
+
+	// Upload a file into it.
+	uploaded, err := c.Uploads.UploadFile(ctx, &schemas.FileContentCreateRequest{
+		Attributes: schemas.PostFileContentAttributes{
+			Name:   "invoice.pdf",
+			Parent: schemas.AttributesParent{Id: folder.Id},
+		},
+		File: strings.NewReader("<file bytes>"),
+	}, nil)
+	if err != nil {
+		log.Fatal(err)
+	}
+	fileID := uploaded.Entries[0].Id
+
+	// Extract fields from the file with Box AI.
+	answer, err := c.Ai.Extract(ctx, &schemas.AiExtract{
+		Prompt: "Extract the invoice number and total amount.",
+		Items:  []schemas.AiItemBase{{Id: fileID, Type: schemas.AiCitationTypeFile}},
+	})
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(answer)
+
+	// Attach that metadata to the file (an enterprise template).
+	if _, err := c.FileMetadata.CreateFileMetadata(ctx, fileID,
+		schemas.GetFileIdMetadataIdIdScopeEnterprise, "invoiceData",
+		map[string]any{"invoiceNumber": "INV-0042", "total": 1250}); err != nil {
+		log.Fatal(err)
+	}
+
+	// Query for files carrying that metadata.
+	results, err := c.Search.QueryByMetadata(ctx, &schemas.MetadataQuery{
+		From:             "enterprise_0.invoiceData",
+		AncestorFolderId: folder.Id,
+	})
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(results)
 }
 ```
 
 ## Authentication
 
-The runtime implements Box's four auth flows — **developer token**, **client
-credentials (CCG)**, **OAuth 2.0** (with a pluggable refresh-token store), and
-**JWT** (server auth). See [`docs/auth.md`](./docs/auth.md).
+Box's four auth flows all live in the `auth` package — **developer token**,
+**client credentials (CCG)**, **OAuth 2.0** (with a pluggable refresh-token
+store), and **JWT** (server auth). See [`docs/auth.md`](./docs/auth.md).
 
 ## Documentation
 
 API reference on [pkg.go.dev](https://pkg.go.dev/github.com/unofficialbox/box-open-go-sdk); the [`docs/`](./docs)
-tree carries the per-manager reference and the authentication, pagination, and
-errors guides.
+tree carries the per-manager reference — a call snippet for every method — and
+the authentication, pagination, and errors guides.
 
 ## License
 

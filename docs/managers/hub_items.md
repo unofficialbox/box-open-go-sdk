@@ -16,6 +16,17 @@ Access via `client.NewClient().HubItems`.
 
 **Returns:** `HubItems`
 
+**Example**
+
+```go
+for item, err := range client.HubItems.List(context.Background(), "HUB_ID", nil) {
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(item)
+}
+```
+
 Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor for you. See the [pagination guide](../pagination.md).
 
 ## CreateHubManageItems
@@ -29,4 +40,14 @@ Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor f
 **Request body** (`application/json`): `HubItemsManageRequest`
 
 **Returns:** `HubItemsManageResponse`
+
+**Example**
+
+```go
+result, err := client.HubItems.CreateHubManageItems(context.Background(), "HUB_ID", &schemas.HubItemsManageRequest{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 

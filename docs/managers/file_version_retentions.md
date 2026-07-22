@@ -20,6 +20,17 @@ Access via `client.NewClient().FileVersionRetentions`.
 
 **Returns:** `FileVersionRetentions`
 
+**Example**
+
+```go
+for item, err := range client.FileVersionRetentions.List(context.Background(), nil) {
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(item)
+}
+```
+
 Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor for you. See the [pagination guide](../pagination.md).
 
 ## Get
@@ -31,4 +42,14 @@ Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor f
 | `file_version_retention_id` | path | `string` | yes |
 
 **Returns:** `FileVersionRetention`
+
+**Example**
+
+```go
+result, err := client.FileVersionRetentions.Get(context.Background(), "FILE_VERSION_RETENTION_ID")
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 

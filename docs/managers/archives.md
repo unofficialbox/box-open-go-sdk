@@ -14,6 +14,17 @@ Access via `client.NewClient().Archives`.
 
 **Returns:** `Archives`
 
+**Example**
+
+```go
+for item, err := range client.Archives.List(context.Background(), nil) {
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(item)
+}
+```
+
 Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor for you. See the [pagination guide](../pagination.md).
 
 ## Create
@@ -23,6 +34,16 @@ Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor f
 **Request body** (`application/json`): `ArchiveCreateRequest`
 
 **Returns:** `Archive`
+
+**Example**
+
+```go
+result, err := client.Archives.Create(context.Background(), &schemas.ArchiveCreateRequest{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 
 ## Update
 
@@ -36,6 +57,16 @@ Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor f
 
 **Returns:** `Archive`
 
+**Example**
+
+```go
+result, err := client.Archives.Update(context.Background(), "ARCHIVE_ID", &schemas.ArchiveUpdateRequest{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## Delete
 
 `DELETE /archives/{archive_id}`
@@ -45,4 +76,12 @@ Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor f
 | `archive_id` | path | `string` | yes |
 
 **Returns:** no content
+
+**Example**
+
+```go
+if err := client.Archives.Delete(context.Background(), "ARCHIVE_ID"); err != nil {
+	log.Fatal(err)
+}
+```
 

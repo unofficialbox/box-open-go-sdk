@@ -13,6 +13,16 @@ Access via `client.NewClient().FolderLocks`.
 
 **Returns:** `FolderLocks`
 
+**Example**
+
+```go
+result, err := client.FolderLocks.List(context.Background(), "FOLDER_ID")
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## Create
 
 `POST /folder_locks`
@@ -20,6 +30,16 @@ Access via `client.NewClient().FolderLocks`.
 **Request body** (`application/json`): `FolderLockCreateRequest`
 
 **Returns:** `FolderLock`
+
+**Example**
+
+```go
+result, err := client.FolderLocks.Create(context.Background(), &schemas.FolderLockCreateRequest{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 
 ## Delete
 
@@ -30,4 +50,12 @@ Access via `client.NewClient().FolderLocks`.
 | `folder_lock_id` | path | `string` | yes |
 
 **Returns:** no content
+
+**Example**
+
+```go
+if err := client.FolderLocks.Delete(context.Background(), "FOLDER_LOCK_ID"); err != nil {
+	log.Fatal(err)
+}
+```
 

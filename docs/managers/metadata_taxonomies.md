@@ -11,6 +11,16 @@ Access via `client.NewClient().MetadataTaxonomies`.
 
 **Returns:** `MetadataTaxonomy`
 
+**Example**
+
+```go
+result, err := client.MetadataTaxonomies.Create(context.Background(), &schemas.MetadataTaxonomyCreateRequest{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## List
 
 `GET /metadata_taxonomies/{namespace}`
@@ -22,6 +32,17 @@ Access via `client.NewClient().MetadataTaxonomies`.
 | `limit` | query | `int64` | no |
 
 **Returns:** `MetadataTaxonomies`
+
+**Example**
+
+```go
+for item, err := range client.MetadataTaxonomies.List(context.Background(), "NAMESPACE", nil) {
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(item)
+}
+```
 
 Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor for you. See the [pagination guide](../pagination.md).
 
@@ -36,6 +57,16 @@ Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor f
 
 **Returns:** `MetadataTaxonomy`
 
+**Example**
+
+```go
+result, err := client.MetadataTaxonomies.Get(context.Background(), "NAMESPACE", "TAXONOMY_KEY")
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## Delete
 
 `DELETE /metadata_taxonomies/{namespace}/{taxonomy_key}`
@@ -46,6 +77,14 @@ Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor f
 | `taxonomy_key` | path | `string` | yes |
 
 **Returns:** no content
+
+**Example**
+
+```go
+if err := client.MetadataTaxonomies.Delete(context.Background(), "NAMESPACE", "TAXONOMY_KEY"); err != nil {
+	log.Fatal(err)
+}
+```
 
 ## Update
 
@@ -60,6 +99,16 @@ Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor f
 
 **Returns:** `MetadataTaxonomy`
 
+**Example**
+
+```go
+result, err := client.MetadataTaxonomies.Update(context.Background(), "NAMESPACE", "TAXONOMY_KEY", &schemas.MetadataTaxonomyUpdateRequest{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## CreateLevels
 
 `POST /metadata_taxonomies/{namespace}/{taxonomy_key}/levels`
@@ -72,6 +121,16 @@ Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor f
 **Request body** (`application/json`): `[]MetadataTaxonomyLevel`
 
 **Returns:** `MetadataTaxonomyLevels`
+
+**Example**
+
+```go
+result, err := client.MetadataTaxonomies.CreateLevels(context.Background(), "NAMESPACE", "TAXONOMY_KEY", []MetadataTaxonomyLevel{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 
 ## UpdateLevel
 
@@ -87,6 +146,16 @@ Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor f
 
 **Returns:** `MetadataTaxonomyLevel`
 
+**Example**
+
+```go
+result, err := client.MetadataTaxonomies.UpdateLevel(context.Background(), "NAMESPACE", "TAXONOMY_KEY", 0, &schemas.LevelUpdateRequest{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## AppendLevels
 
 `POST /metadata_taxonomies/{namespace}/{taxonomy_key}/levels:append`
@@ -100,6 +169,16 @@ Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor f
 
 **Returns:** `MetadataTaxonomyLevels`
 
+**Example**
+
+```go
+result, err := client.MetadataTaxonomies.AppendLevels(context.Background(), "NAMESPACE", "TAXONOMY_KEY", &schemas.LevelUpdateRequest{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## TrimLevels
 
 `POST /metadata_taxonomies/{namespace}/{taxonomy_key}/levels:trim`
@@ -110,6 +189,16 @@ Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor f
 | `taxonomy_key` | path | `string` | yes |
 
 **Returns:** `MetadataTaxonomyLevels`
+
+**Example**
+
+```go
+result, err := client.MetadataTaxonomies.TrimLevels(context.Background(), "NAMESPACE", "TAXONOMY_KEY")
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 
 ## ListNodes
 
@@ -129,6 +218,17 @@ Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor f
 
 **Returns:** `MetadataTaxonomyNodes`
 
+**Example**
+
+```go
+for item, err := range client.MetadataTaxonomies.ListNodes(context.Background(), "NAMESPACE", "TAXONOMY_KEY", nil) {
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(item)
+}
+```
+
 Paginated — `ListNodes(...)` returns `iter.Seq2[*T, error]`, threading the cursor for you. See the [pagination guide](../pagination.md).
 
 ## CreateNodes
@@ -144,6 +244,16 @@ Paginated — `ListNodes(...)` returns `iter.Seq2[*T, error]`, threading the cur
 
 **Returns:** `MetadataTaxonomyNode`
 
+**Example**
+
+```go
+result, err := client.MetadataTaxonomies.CreateNodes(context.Background(), "NAMESPACE", "TAXONOMY_KEY", &schemas.NodesCreateRequest{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## GetNode
 
 `GET /metadata_taxonomies/{namespace}/{taxonomy_key}/nodes/{node_id}`
@@ -156,6 +266,16 @@ Paginated — `ListNodes(...)` returns `iter.Seq2[*T, error]`, threading the cur
 
 **Returns:** `MetadataTaxonomyNode`
 
+**Example**
+
+```go
+result, err := client.MetadataTaxonomies.GetNode(context.Background(), "NAMESPACE", "TAXONOMY_KEY", "NODE_ID")
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## DeleteNode
 
 `DELETE /metadata_taxonomies/{namespace}/{taxonomy_key}/nodes/{node_id}`
@@ -167,6 +287,14 @@ Paginated — `ListNodes(...)` returns `iter.Seq2[*T, error]`, threading the cur
 | `node_id` | path | `string` | yes |
 
 **Returns:** no content
+
+**Example**
+
+```go
+if err := client.MetadataTaxonomies.DeleteNode(context.Background(), "NAMESPACE", "TAXONOMY_KEY", "NODE_ID"); err != nil {
+	log.Fatal(err)
+}
+```
 
 ## UpdateNode
 
@@ -181,6 +309,16 @@ Paginated — `ListNodes(...)` returns `iter.Seq2[*T, error]`, threading the cur
 **Request body** (`application/json`): `NodeUpdateRequest`
 
 **Returns:** `MetadataTaxonomyNode`
+
+**Example**
+
+```go
+result, err := client.MetadataTaxonomies.UpdateNode(context.Background(), "NAMESPACE", "TAXONOMY_KEY", "NODE_ID", &schemas.NodeUpdateRequest{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 
 ## ListMetadataTemplateFieldOptions
 
@@ -201,6 +339,17 @@ Paginated — `ListNodes(...)` returns `iter.Seq2[*T, error]`, threading the cur
 | `limit` | query | `int64` | no |
 
 **Returns:** `MetadataTaxonomyNodes`
+
+**Example**
+
+```go
+for item, err := range client.MetadataTaxonomies.ListMetadataTemplateFieldOptions(context.Background(), "NAMESPACE", "TEMPLATE_KEY", "FIELD_KEY", nil) {
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(item)
+}
+```
 
 Paginated — `ListMetadataTemplateFieldOptions(...)` returns `iter.Seq2[*T, error]`, threading the cursor for you. See the [pagination guide](../pagination.md).
 

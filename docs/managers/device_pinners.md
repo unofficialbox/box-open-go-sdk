@@ -13,6 +13,16 @@ Access via `client.NewClient().DevicePinners`.
 
 **Returns:** `DevicePinner`
 
+**Example**
+
+```go
+result, err := client.DevicePinners.Get(context.Background(), "DEVICE_PINNER_ID")
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## Delete
 
 `DELETE /device_pinners/{device_pinner_id}`
@@ -22,6 +32,14 @@ Access via `client.NewClient().DevicePinners`.
 | `device_pinner_id` | path | `string` | yes |
 
 **Returns:** no content
+
+**Example**
+
+```go
+if err := client.DevicePinners.Delete(context.Background(), "DEVICE_PINNER_ID"); err != nil {
+	log.Fatal(err)
+}
+```
 
 ## ListEnterprise
 
@@ -35,6 +53,17 @@ Access via `client.NewClient().DevicePinners`.
 | `direction` | query | `OrderDirection` | no |
 
 **Returns:** `DevicePinners`
+
+**Example**
+
+```go
+for item, err := range client.DevicePinners.ListEnterprise(context.Background(), "ENTERPRISE_ID", nil) {
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(item)
+}
+```
 
 Paginated — `ListEnterprise(...)` returns `iter.Seq2[*T, error]`, threading the cursor for you. See the [pagination guide](../pagination.md).
 

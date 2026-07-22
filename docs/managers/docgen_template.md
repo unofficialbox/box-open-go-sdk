@@ -14,6 +14,17 @@ Access via `client.NewClient().DocgenTemplate`.
 
 **Returns:** `DocGenTemplates`
 
+**Example**
+
+```go
+for item, err := range client.DocgenTemplate.ListDocgenTemplates(context.Background(), nil) {
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(item)
+}
+```
+
 Paginated — `ListDocgenTemplates(...)` returns `iter.Seq2[*T, error]`, threading the cursor for you. See the [pagination guide](../pagination.md).
 
 ## CreateDocgenTemplates
@@ -23,6 +34,16 @@ Paginated — `ListDocgenTemplates(...)` returns `iter.Seq2[*T, error]`, threadi
 **Request body** (`application/json`): `DocGenTemplateCreateRequest`
 
 **Returns:** `DocGenTemplateBase`
+
+**Example**
+
+```go
+result, err := client.DocgenTemplate.CreateDocgenTemplates(context.Background(), &schemas.DocGenTemplateCreateRequest{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 
 ## GetDocgenTemplate
 
@@ -34,6 +55,16 @@ Paginated — `ListDocgenTemplates(...)` returns `iter.Seq2[*T, error]`, threadi
 
 **Returns:** `DocGenTemplate`
 
+**Example**
+
+```go
+result, err := client.DocgenTemplate.GetDocgenTemplate(context.Background(), "TEMPLATE_ID")
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## DeleteDocgenTemplate
 
 `DELETE /docgen_templates/{template_id}`
@@ -43,6 +74,14 @@ Paginated — `ListDocgenTemplates(...)` returns `iter.Seq2[*T, error]`, threadi
 | `template_id` | path | `string` | yes |
 
 **Returns:** no content
+
+**Example**
+
+```go
+if err := client.DocgenTemplate.DeleteDocgenTemplate(context.Background(), "TEMPLATE_ID"); err != nil {
+	log.Fatal(err)
+}
+```
 
 ## ListDocgenTemplateTags
 
@@ -57,6 +96,17 @@ Paginated — `ListDocgenTemplates(...)` returns `iter.Seq2[*T, error]`, threadi
 
 **Returns:** `DocGenTags`
 
+**Example**
+
+```go
+for item, err := range client.DocgenTemplate.ListDocgenTemplateTags(context.Background(), "TEMPLATE_ID", nil) {
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(item)
+}
+```
+
 Paginated — `ListDocgenTemplateTags(...)` returns `iter.Seq2[*T, error]`, threading the cursor for you. See the [pagination guide](../pagination.md).
 
 ## ListJob
@@ -70,6 +120,17 @@ Paginated — `ListDocgenTemplateTags(...)` returns `iter.Seq2[*T, error]`, thre
 | `limit` | query | `int64` | no |
 
 **Returns:** `DocGenJobs`
+
+**Example**
+
+```go
+for item, err := range client.DocgenTemplate.ListJob(context.Background(), "TEMPLATE_ID", nil) {
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(item)
+}
+```
 
 Paginated — `ListJob(...)` returns `iter.Seq2[*T, error]`, threading the cursor for you. See the [pagination guide](../pagination.md).
 

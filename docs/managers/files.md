@@ -17,6 +17,16 @@ Access via `client.NewClient().Files`.
 
 **Returns:** `FileFull`
 
+**Example**
+
+```go
+result, err := client.Files.Get(context.Background(), "FILE_ID", nil)
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## Update
 
 `PUT /files/{file_id}`
@@ -31,6 +41,16 @@ Access via `client.NewClient().Files`.
 
 **Returns:** `FileFull`
 
+**Example**
+
+```go
+result, err := client.Files.Update(context.Background(), "FILE_ID", &schemas.FileUpdateRequest{}, nil)
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## Delete
 
 `DELETE /files/{file_id}`
@@ -41,6 +61,14 @@ Access via `client.NewClient().Files`.
 | `if-match` | header | `string` | no |
 
 **Returns:** no content
+
+**Example**
+
+```go
+if err := client.Files.Delete(context.Background(), "FILE_ID", nil); err != nil {
+	log.Fatal(err)
+}
+```
 
 ## Copy
 
@@ -54,6 +82,16 @@ Access via `client.NewClient().Files`.
 **Request body** (`application/json`): `FileCopyRequest`
 
 **Returns:** `FileFull`
+
+**Example**
+
+```go
+result, err := client.Files.Copy(context.Background(), "FILE_ID", &schemas.FileCopyRequest{}, nil)
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 
 ## GetThumbnail
 
@@ -69,4 +107,14 @@ Access via `client.NewClient().Files`.
 | `max_width` | query | `int64` | no |
 
 **Returns:** a binary stream (`io.Reader`)
+
+**Example**
+
+```go
+result, err := client.Files.GetThumbnail(context.Background(), "FILE_ID", schemas.GetIdThumbnailIdExtension("..."), nil)
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
 
