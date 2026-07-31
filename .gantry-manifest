@@ -4,6 +4,7 @@ assets/banner.svg
 auth/auth.go
 auth/pkcs8.go
 buildinfo/buildinfo.go
+client/chunked_upload.go
 client/client.go
 doc.go
 docs/README.md

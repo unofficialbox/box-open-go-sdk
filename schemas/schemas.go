@@ -5456,13 +5456,13 @@ type OptionFileContentRequest struct {
 	Parent *PostFileIdParent `json:"parent,omitempty"`
 }
 
-type FileUploadSessionsCreateRequest struct {
+type FileUploadSessionCreateRequest struct {
 	FolderId string `json:"folder_id"`
 	FileSize int64  `json:"file_size"`
 	FileName string `json:"file_name"`
 }
 
-type FileIdUploadSessionsCreateRequest struct {
+type FileVersionUploadSessionCreateRequest struct {
 	FileSize int64   `json:"file_size"`
 	FileName *string `json:"file_name,omitempty"`
 }

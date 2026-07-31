@@ -3,25 +3,25 @@
 
 Access via `client.NewClient().ChunkedUploads`.
 
-## CreateFileUploadSessions
+## CreateFileUploadSession
 
 `POST /files/upload_sessions`
 
-**Request body** (`application/json`): `FileUploadSessionsCreateRequest`
+**Request body** (`application/json`): `FileUploadSessionCreateRequest`
 
 **Returns:** `UploadSession`
 
 **Example**
 
 ```go
-result, err := client.ChunkedUploads.CreateFileUploadSessions(context.Background(), &schemas.FileUploadSessionsCreateRequest{})
+result, err := client.ChunkedUploads.CreateFileUploadSession(context.Background(), &schemas.FileUploadSessionCreateRequest{})
 if err != nil {
 	log.Fatal(err)
 }
 fmt.Println(result)
 ```
 
-## CreateFileByIdUploadSessions
+## CreateFileVersionUploadSession
 
 `POST /files/{file_id}/upload_sessions`
 
@@ -29,14 +29,14 @@ fmt.Println(result)
 |---|---|---|---|
 | `file_id` | path | `string` | yes |
 
-**Request body** (`application/json`): `FileIdUploadSessionsCreateRequest`
+**Request body** (`application/json`): `FileVersionUploadSessionCreateRequest`
 
 **Returns:** `UploadSession`
 
 **Example**
 
 ```go
-result, err := client.ChunkedUploads.CreateFileByIdUploadSessions(context.Background(), "FILE_ID", &schemas.FileIdUploadSessionsCreateRequest{})
+result, err := client.ChunkedUploads.CreateFileVersionUploadSession(context.Background(), "FILE_ID", &schemas.FileVersionUploadSessionCreateRequest{})
 if err != nil {
 	log.Fatal(err)
 }

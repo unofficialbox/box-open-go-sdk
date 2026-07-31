@@ -22,7 +22,7 @@ func NewChunkedUploadsManager(session *gantryruntime.Client) *ChunkedUploadsMana
 	return &ChunkedUploadsManager{session: session}
 }
 
-func (m *ChunkedUploadsManager) CreateFileUploadSessions(ctx context.Context, body *schemas.FileUploadSessionsCreateRequest) (*schemas.UploadSession, error) {
+func (m *ChunkedUploadsManager) CreateFileUploadSession(ctx context.Context, body *schemas.FileUploadSessionCreateRequest) (*schemas.UploadSession, error) {
 	req := m.session.NewRequest("POST", m.session.BaseUrl("upload")+"/files"+"/upload_sessions")
 	payload, err := json.Marshal(body)
 	if err != nil {
@@ -44,7 +44,7 @@ func (m *ChunkedUploadsManager) CreateFileUploadSessions(ctx context.Context, bo
 	return out, nil
 }
 
-func (m *ChunkedUploadsManager) CreateFileByIdUploadSessions(ctx context.Context, fileId string, body *schemas.FileIdUploadSessionsCreateRequest) (*schemas.UploadSession, error) {
+func (m *ChunkedUploadsManager) CreateFileVersionUploadSession(ctx context.Context, fileId string, body *schemas.FileVersionUploadSessionCreateRequest) (*schemas.UploadSession, error) {
 	req := m.session.NewRequest("POST", m.session.BaseUrl("upload")+"/files"+"/"+url.PathEscape(fileId)+"/upload_sessions")
 	payload, err := json.Marshal(body)
 	if err != nil {
