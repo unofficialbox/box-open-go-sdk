@@ -25,7 +25,7 @@ type TrashedFilesCreateFileOptions struct {
 	Fields []string
 }
 
-func (m *TrashedFilesManager) CreateFile(ctx context.Context, fileId string, body *schemas.FileCreateRequest, opts *TrashedFilesCreateFileOptions) (*schemas.TrashFileRestored, error) {
+func (m *TrashedFilesManager) CreateFile(ctx context.Context, fileId string, body *schemas.CreateFileRequest, opts *TrashedFilesCreateFileOptions) (*schemas.TrashFileRestored, error) {
 	req := m.session.NewRequest("POST", m.session.BaseUrl("api")+"/files"+"/"+url.PathEscape(fileId))
 	if opts != nil {
 		if opts.Fields != nil {

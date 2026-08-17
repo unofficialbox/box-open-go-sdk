@@ -27,14 +27,14 @@ fmt.Println(result)
 
 `POST /tasks`
 
-**Request body** (`application/json`): `TaskCreateRequest`
+**Request body** (`application/json`): `CreateTaskRequest`
 
 **Returns:** `Task`
 
 **Example**
 
 ```go
-result, err := client.Tasks.Create(context.Background(), &schemas.TaskCreateRequest{})
+result, err := client.Tasks.Create(context.Background(), &schemas.CreateTaskRequest{})
 if err != nil {
 	log.Fatal(err)
 }
@@ -69,14 +69,14 @@ fmt.Println(result)
 |---|---|---|---|
 | `task_id` | path | `string` | yes |
 
-**Request body** (`application/json`): `TaskUpdateRequest`
+**Request body** (`application/json`): `UpdateTaskRequest`
 
 **Returns:** `Task`
 
 **Example**
 
 ```go
-result, err := client.Tasks.Update(context.Background(), "TASK_ID", &schemas.TaskUpdateRequest{})
+result, err := client.Tasks.Update(context.Background(), "TASK_ID", &schemas.UpdateTaskRequest{})
 if err != nil {
 	log.Fatal(err)
 }

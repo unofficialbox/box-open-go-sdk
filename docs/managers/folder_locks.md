@@ -27,14 +27,14 @@ fmt.Println(result)
 
 `POST /folder_locks`
 
-**Request body** (`application/json`): `FolderLockCreateRequest`
+**Request body** (`application/json`): `CreateFolderLockRequest`
 
 **Returns:** `FolderLock`
 
 **Example**
 
 ```go
-result, err := client.FolderLocks.Create(context.Background(), &schemas.FolderLockCreateRequest{})
+result, err := client.FolderLocks.Create(context.Background(), &schemas.CreateFolderLockRequest{})
 if err != nil {
 	log.Fatal(err)
 }

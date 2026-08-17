@@ -79,7 +79,7 @@ type FoldersUpdateOptions struct {
 	IfMatch *string
 }
 
-func (m *FoldersManager) Update(ctx context.Context, folderId string, body *schemas.FolderUpdateRequest, opts *FoldersUpdateOptions) (*schemas.FolderFull, error) {
+func (m *FoldersManager) Update(ctx context.Context, folderId string, body *schemas.UpdateFolderRequest, opts *FoldersUpdateOptions) (*schemas.FolderFull, error) {
 	req := m.session.NewRequest("PUT", m.session.BaseUrl("api")+"/folders"+"/"+url.PathEscape(folderId))
 	if opts != nil {
 		if opts.Fields != nil {
@@ -223,7 +223,7 @@ type FoldersCreateOptions struct {
 	Fields []string
 }
 
-func (m *FoldersManager) Create(ctx context.Context, body *schemas.FolderCreateRequest, opts *FoldersCreateOptions) (*schemas.FolderFull, error) {
+func (m *FoldersManager) Create(ctx context.Context, body *schemas.CreateFolderRequest, opts *FoldersCreateOptions) (*schemas.FolderFull, error) {
 	req := m.session.NewRequest("POST", m.session.BaseUrl("api")+"/folders")
 	if opts != nil {
 		if opts.Fields != nil {
@@ -255,7 +255,7 @@ type FoldersCopyOptions struct {
 	Fields []string
 }
 
-func (m *FoldersManager) Copy(ctx context.Context, folderId string, body *schemas.FolderCopyRequest, opts *FoldersCopyOptions) (*schemas.FolderFull, error) {
+func (m *FoldersManager) Copy(ctx context.Context, folderId string, body *schemas.CopyFolderRequest, opts *FoldersCopyOptions) (*schemas.FolderFull, error) {
 	req := m.session.NewRequest("POST", m.session.BaseUrl("api")+"/folders"+"/"+url.PathEscape(folderId)+"/copy")
 	if opts != nil {
 		if opts.Fields != nil {

@@ -31,14 +31,14 @@ Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor f
 
 `POST /archives`
 
-**Request body** (`application/json`): `ArchiveCreateRequest`
+**Request body** (`application/json`): `CreateArchiveRequest`
 
 **Returns:** `Archive`
 
 **Example**
 
 ```go
-result, err := client.Archives.Create(context.Background(), &schemas.ArchiveCreateRequest{})
+result, err := client.Archives.Create(context.Background(), &schemas.CreateArchiveRequest{})
 if err != nil {
 	log.Fatal(err)
 }
@@ -53,14 +53,14 @@ fmt.Println(result)
 |---|---|---|---|
 | `archive_id` | path | `string` | yes |
 
-**Request body** (`application/json`): `ArchiveUpdateRequest`
+**Request body** (`application/json`): `UpdateArchiveRequest`
 
 **Returns:** `Archive`
 
 **Example**
 
 ```go
-result, err := client.Archives.Update(context.Background(), "ARCHIVE_ID", &schemas.ArchiveUpdateRequest{})
+result, err := client.Archives.Update(context.Background(), "ARCHIVE_ID", &schemas.UpdateArchiveRequest{})
 if err != nil {
 	log.Fatal(err)
 }

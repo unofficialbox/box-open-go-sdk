@@ -37,7 +37,7 @@ func (m *FolderLocksManager) List(ctx context.Context, folderId string) (*schema
 	return out, nil
 }
 
-func (m *FolderLocksManager) Create(ctx context.Context, body *schemas.FolderLockCreateRequest) (*schemas.FolderLock, error) {
+func (m *FolderLocksManager) Create(ctx context.Context, body *schemas.CreateFolderLockRequest) (*schemas.FolderLock, error) {
 	req := m.session.NewRequest("POST", m.session.BaseUrl("api")+"/folder_locks")
 	payload, err := json.Marshal(body)
 	if err != nil {

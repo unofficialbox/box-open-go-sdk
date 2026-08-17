@@ -67,7 +67,7 @@ type FilesUpdateOptions struct {
 	IfMatch *string
 }
 
-func (m *FilesManager) Update(ctx context.Context, fileId string, body *schemas.FileUpdateRequest, opts *FilesUpdateOptions) (*schemas.FileFull, error) {
+func (m *FilesManager) Update(ctx context.Context, fileId string, body *schemas.UpdateFileRequest, opts *FilesUpdateOptions) (*schemas.FileFull, error) {
 	req := m.session.NewRequest("PUT", m.session.BaseUrl("api")+"/files"+"/"+url.PathEscape(fileId))
 	if opts != nil {
 		if opts.Fields != nil {
@@ -122,7 +122,7 @@ type FilesCopyOptions struct {
 	Fields []string
 }
 
-func (m *FilesManager) Copy(ctx context.Context, fileId string, body *schemas.FileCopyRequest, opts *FilesCopyOptions) (*schemas.FileFull, error) {
+func (m *FilesManager) Copy(ctx context.Context, fileId string, body *schemas.CopyFileRequest, opts *FilesCopyOptions) (*schemas.FileFull, error) {
 	req := m.session.NewRequest("POST", m.session.BaseUrl("api")+"/files"+"/"+url.PathEscape(fileId)+"/copy")
 	if opts != nil {
 		if opts.Fields != nil {

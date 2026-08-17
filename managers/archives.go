@@ -83,7 +83,7 @@ func (m *ArchivesManager) List(ctx context.Context, opts *ArchivesListOptions) i
 	}
 }
 
-func (m *ArchivesManager) Create(ctx context.Context, body *schemas.ArchiveCreateRequest) (*schemas.Archive, error) {
+func (m *ArchivesManager) Create(ctx context.Context, body *schemas.CreateArchiveRequest) (*schemas.Archive, error) {
 	req := m.session.NewRequest("POST", m.session.BaseUrl("api")+"/archives")
 	req = gantryruntime.WithHeader(req, "box-version", "2025.0")
 	payload, err := json.Marshal(body)
@@ -106,7 +106,7 @@ func (m *ArchivesManager) Create(ctx context.Context, body *schemas.ArchiveCreat
 	return out, nil
 }
 
-func (m *ArchivesManager) Update(ctx context.Context, archiveId string, body *schemas.ArchiveUpdateRequest) (*schemas.Archive, error) {
+func (m *ArchivesManager) Update(ctx context.Context, archiveId string, body *schemas.UpdateArchiveRequest) (*schemas.Archive, error) {
 	req := m.session.NewRequest("PUT", m.session.BaseUrl("api")+"/archives"+"/"+url.PathEscape(archiveId))
 	req = gantryruntime.WithHeader(req, "box-version", "2025.0")
 	payload, err := json.Marshal(body)

@@ -36,7 +36,7 @@ func (m *FolderClassificationsManager) Get(ctx context.Context, folderId string)
 	return out, nil
 }
 
-func (m *FolderClassificationsManager) Update(ctx context.Context, folderId string, body []schemas.FileClassificationUpdateRequest) (*schemas.Classification, error) {
+func (m *FolderClassificationsManager) Update(ctx context.Context, folderId string, body []schemas.UpdateFileClassificationRequest) (*schemas.Classification, error) {
 	req := m.session.NewRequest("PUT", m.session.BaseUrl("api")+"/folders"+"/"+url.PathEscape(folderId)+"/metadata"+"/enterprise"+"/securityClassification-6VMVochwUWo")
 	payload, err := json.Marshal(body)
 	if err != nil {
@@ -58,7 +58,7 @@ func (m *FolderClassificationsManager) Update(ctx context.Context, folderId stri
 	return out, nil
 }
 
-func (m *FolderClassificationsManager) Create(ctx context.Context, folderId string, body *schemas.FileClassificationCreateRequest) (*schemas.Classification, error) {
+func (m *FolderClassificationsManager) Create(ctx context.Context, folderId string, body *schemas.CreateFileClassificationRequest) (*schemas.Classification, error) {
 	req := m.session.NewRequest("POST", m.session.BaseUrl("api")+"/folders"+"/"+url.PathEscape(folderId)+"/metadata"+"/enterprise"+"/securityClassification-6VMVochwUWo")
 	payload, err := json.Marshal(body)
 	if err != nil {

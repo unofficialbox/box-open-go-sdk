@@ -58,14 +58,14 @@ fmt.Println(result)
 |---|---|---|---|
 | `integration_mapping_id` | path | `string` | yes |
 
-**Request body** (`application/json`): `SlackUpdateRequest`
+**Request body** (`application/json`): `UpdateSlackRequest`
 
 **Returns:** `IntegrationMapping`
 
 **Example**
 
 ```go
-result, err := client.IntegrationMappings.UpdateSlack(context.Background(), "INTEGRATION_MAPPING_ID", &schemas.SlackUpdateRequest{})
+result, err := client.IntegrationMappings.UpdateSlack(context.Background(), "INTEGRATION_MAPPING_ID", &schemas.UpdateSlackRequest{})
 if err != nil {
 	log.Fatal(err)
 }
@@ -139,14 +139,14 @@ fmt.Println(result)
 |---|---|---|---|
 | `integration_mapping_id` | path | `string` | yes |
 
-**Request body** (`application/json`): `TeamUpdateRequest`
+**Request body** (`application/json`): `UpdateTeamRequest`
 
 **Returns:** `IntegrationMappingTeams`
 
 **Example**
 
 ```go
-result, err := client.IntegrationMappings.UpdateTeam(context.Background(), "INTEGRATION_MAPPING_ID", &schemas.TeamUpdateRequest{})
+result, err := client.IntegrationMappings.UpdateTeam(context.Background(), "INTEGRATION_MAPPING_ID", &schemas.UpdateTeamRequest{})
 if err != nil {
 	log.Fatal(err)
 }

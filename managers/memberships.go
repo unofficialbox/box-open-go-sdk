@@ -144,12 +144,12 @@ func (m *MembershipsManager) ListGroup(ctx context.Context, groupId string, opts
 	}
 }
 
-// MembershipsCreateGroupOptions carries the optional parameters.
-type MembershipsCreateGroupOptions struct {
+// MembershipsCreateGroupMembershipOptions carries the optional parameters.
+type MembershipsCreateGroupMembershipOptions struct {
 	Fields []string
 }
 
-func (m *MembershipsManager) CreateGroup(ctx context.Context, body *schemas.GroupCreateRequest2, opts *MembershipsCreateGroupOptions) (*schemas.GroupMembership, error) {
+func (m *MembershipsManager) CreateGroupMembership(ctx context.Context, body *schemas.CreateGroupMembershipRequest, opts *MembershipsCreateGroupMembershipOptions) (*schemas.GroupMembership, error) {
 	req := m.session.NewRequest("POST", m.session.BaseUrl("api")+"/group_memberships")
 	if opts != nil {
 		if opts.Fields != nil {
@@ -176,12 +176,12 @@ func (m *MembershipsManager) CreateGroup(ctx context.Context, body *schemas.Grou
 	return out, nil
 }
 
-// MembershipsGetGroupOptions carries the optional parameters.
-type MembershipsGetGroupOptions struct {
+// MembershipsGetGroupMembershipOptions carries the optional parameters.
+type MembershipsGetGroupMembershipOptions struct {
 	Fields []string
 }
 
-func (m *MembershipsManager) GetGroup(ctx context.Context, groupMembershipId string, opts *MembershipsGetGroupOptions) (*schemas.GroupMembership, error) {
+func (m *MembershipsManager) GetGroupMembership(ctx context.Context, groupMembershipId string, opts *MembershipsGetGroupMembershipOptions) (*schemas.GroupMembership, error) {
 	req := m.session.NewRequest("GET", m.session.BaseUrl("api")+"/group_memberships"+"/"+url.PathEscape(groupMembershipId))
 	if opts != nil {
 		if opts.Fields != nil {
@@ -203,12 +203,12 @@ func (m *MembershipsManager) GetGroup(ctx context.Context, groupMembershipId str
 	return out, nil
 }
 
-// MembershipsUpdateGroupOptions carries the optional parameters.
-type MembershipsUpdateGroupOptions struct {
+// MembershipsUpdateGroupMembershipOptions carries the optional parameters.
+type MembershipsUpdateGroupMembershipOptions struct {
 	Fields []string
 }
 
-func (m *MembershipsManager) UpdateGroup(ctx context.Context, groupMembershipId string, body *schemas.GroupUpdateRequest2, opts *MembershipsUpdateGroupOptions) (*schemas.GroupMembership, error) {
+func (m *MembershipsManager) UpdateGroupMembership(ctx context.Context, groupMembershipId string, body *schemas.UpdateGroupMembershipRequest, opts *MembershipsUpdateGroupMembershipOptions) (*schemas.GroupMembership, error) {
 	req := m.session.NewRequest("PUT", m.session.BaseUrl("api")+"/group_memberships"+"/"+url.PathEscape(groupMembershipId))
 	if opts != nil {
 		if opts.Fields != nil {
@@ -235,7 +235,7 @@ func (m *MembershipsManager) UpdateGroup(ctx context.Context, groupMembershipId 
 	return out, nil
 }
 
-func (m *MembershipsManager) DeleteGroup(ctx context.Context, groupMembershipId string) error {
+func (m *MembershipsManager) DeleteGroupMembership(ctx context.Context, groupMembershipId string) error {
 	req := m.session.NewRequest("DELETE", m.session.BaseUrl("api")+"/group_memberships"+"/"+url.PathEscape(groupMembershipId))
 	resp, err := m.session.Fetch(ctx, req)
 	if err != nil {

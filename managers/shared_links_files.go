@@ -70,7 +70,7 @@ func (m *SharedLinksFilesManager) GetFileGetSharedLink(ctx context.Context, file
 	return out, nil
 }
 
-func (m *SharedLinksFilesManager) UpdateFileAddSharedLink(ctx context.Context, fileId string, fields string, body *schemas.FileUpdateRequest2) (*schemas.FileFull, error) {
+func (m *SharedLinksFilesManager) UpdateFileAddSharedLink(ctx context.Context, fileId string, fields string, body *schemas.UpdateFileAddSharedLinkRequest) (*schemas.FileFull, error) {
 	req := m.session.NewRequest("PUT", m.session.BaseUrl("api")+"/files"+"/"+url.PathEscape(fileId))
 	req = gantryruntime.WithQuery(req, "fields", fields)
 	payload, err := json.Marshal(body)
@@ -93,7 +93,7 @@ func (m *SharedLinksFilesManager) UpdateFileAddSharedLink(ctx context.Context, f
 	return out, nil
 }
 
-func (m *SharedLinksFilesManager) UpdateFileUpdateSharedLink(ctx context.Context, fileId string, fields string, body *schemas.FileUpdateRequest2) (*schemas.FileFull, error) {
+func (m *SharedLinksFilesManager) UpdateFileUpdateSharedLink(ctx context.Context, fileId string, fields string, body *schemas.UpdateFileAddSharedLinkRequest) (*schemas.FileFull, error) {
 	req := m.session.NewRequest("PUT", m.session.BaseUrl("api")+"/files"+"/"+url.PathEscape(fileId))
 	req = gantryruntime.WithQuery(req, "fields", fields)
 	payload, err := json.Marshal(body)
@@ -116,7 +116,7 @@ func (m *SharedLinksFilesManager) UpdateFileUpdateSharedLink(ctx context.Context
 	return out, nil
 }
 
-func (m *SharedLinksFilesManager) UpdateFileRemoveSharedLink(ctx context.Context, fileId string, fields string, body *schemas.FileUpdateRequest3) (*schemas.FileFull, error) {
+func (m *SharedLinksFilesManager) UpdateFileRemoveSharedLink(ctx context.Context, fileId string, fields string, body *schemas.UpdateFileRemoveSharedLinkRequest) (*schemas.FileFull, error) {
 	req := m.session.NewRequest("PUT", m.session.BaseUrl("api")+"/files"+"/"+url.PathEscape(fileId))
 	req = gantryruntime.WithQuery(req, "fields", fields)
 	payload, err := json.Marshal(body)

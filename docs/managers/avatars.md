@@ -31,14 +31,14 @@ fmt.Println(result)
 |---|---|---|---|
 | `user_id` | path | `string` | yes |
 
-**Request body** (`multipart/form-data`): `UserAvatarCreateRequest`
+**Request body** (`multipart/form-data`): `CreateUserAvatarRequest`
 
 **Returns:** `UserAvatar`
 
 **Example**
 
 ```go
-result, err := client.Avatars.CreateUserAvatar(context.Background(), "USER_ID", &schemas.UserAvatarCreateRequest{})
+result, err := client.Avatars.CreateUserAvatar(context.Background(), "USER_ID", &schemas.CreateUserAvatarRequest{})
 if err != nil {
 	log.Fatal(err)
 }

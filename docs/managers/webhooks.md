@@ -31,14 +31,14 @@ Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor f
 
 `POST /webhooks`
 
-**Request body** (`application/json`): `WebhookCreateRequest`
+**Request body** (`application/json`): `CreateWebhookRequest`
 
 **Returns:** `Webhook`
 
 **Example**
 
 ```go
-result, err := client.Webhooks.Create(context.Background(), &schemas.WebhookCreateRequest{})
+result, err := client.Webhooks.Create(context.Background(), &schemas.CreateWebhookRequest{})
 if err != nil {
 	log.Fatal(err)
 }
@@ -73,14 +73,14 @@ fmt.Println(result)
 |---|---|---|---|
 | `webhook_id` | path | `string` | yes |
 
-**Request body** (`application/json`): `WebhookUpdateRequest`
+**Request body** (`application/json`): `UpdateWebhookRequest`
 
 **Returns:** `Webhook`
 
 **Example**
 
 ```go
-result, err := client.Webhooks.Update(context.Background(), "WEBHOOK_ID", &schemas.WebhookUpdateRequest{})
+result, err := client.Webhooks.Update(context.Background(), "WEBHOOK_ID", &schemas.UpdateWebhookRequest{})
 if err != nil {
 	log.Fatal(err)
 }

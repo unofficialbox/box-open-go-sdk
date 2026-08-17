@@ -11,14 +11,14 @@ Access via `client.NewClient().Invites`.
 |---|---|---|---|
 | `fields` | query | `[]string` | no |
 
-**Request body** (`application/json`): `InviteCreateRequest`
+**Request body** (`application/json`): `CreateInviteRequest`
 
 **Returns:** `Invite`
 
 **Example**
 
 ```go
-result, err := client.Invites.Create(context.Background(), &schemas.InviteCreateRequest{}, nil)
+result, err := client.Invites.Create(context.Background(), &schemas.CreateInviteRequest{}, nil)
 if err != nil {
 	log.Fatal(err)
 }

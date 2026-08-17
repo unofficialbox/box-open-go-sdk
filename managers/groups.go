@@ -96,7 +96,7 @@ type GroupsCreateOptions struct {
 	Fields []string
 }
 
-func (m *GroupsManager) Create(ctx context.Context, body *schemas.GroupCreateRequest, opts *GroupsCreateOptions) (*schemas.GroupFull, error) {
+func (m *GroupsManager) Create(ctx context.Context, body *schemas.CreateGroupRequest, opts *GroupsCreateOptions) (*schemas.GroupFull, error) {
 	req := m.session.NewRequest("POST", m.session.BaseUrl("api")+"/groups")
 	if opts != nil {
 		if opts.Fields != nil {
@@ -155,7 +155,7 @@ type GroupsUpdateOptions struct {
 	Fields []string
 }
 
-func (m *GroupsManager) Update(ctx context.Context, groupId string, body *schemas.GroupUpdateRequest, opts *GroupsUpdateOptions) (*schemas.GroupFull, error) {
+func (m *GroupsManager) Update(ctx context.Context, groupId string, body *schemas.UpdateGroupRequest, opts *GroupsUpdateOptions) (*schemas.GroupFull, error) {
 	req := m.session.NewRequest("PUT", m.session.BaseUrl("api")+"/groups"+"/"+url.PathEscape(groupId))
 	if opts != nil {
 		if opts.Fields != nil {

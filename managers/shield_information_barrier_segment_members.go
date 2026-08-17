@@ -110,7 +110,7 @@ func (m *ShieldInformationBarrierSegmentMembersManager) List(ctx context.Context
 	}
 }
 
-func (m *ShieldInformationBarrierSegmentMembersManager) Create(ctx context.Context, body *schemas.ShieldInformationBarrierSegmentMemberCreateRequest) (*schemas.ShieldInformationBarrierSegmentMember, error) {
+func (m *ShieldInformationBarrierSegmentMembersManager) Create(ctx context.Context, body *schemas.CreateShieldInformationBarrierSegmentMemberRequest) (*schemas.ShieldInformationBarrierSegmentMember, error) {
 	req := m.session.NewRequest("POST", m.session.BaseUrl("api")+"/shield_information_barrier_segment_members")
 	payload, err := json.Marshal(body)
 	if err != nil {

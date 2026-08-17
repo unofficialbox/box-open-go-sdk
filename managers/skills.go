@@ -36,7 +36,7 @@ func (m *SkillsManager) Get(ctx context.Context, fileId string) (*schemas.SkillC
 	return out, nil
 }
 
-func (m *SkillsManager) Update(ctx context.Context, fileId string, body []schemas.SkillUpdateRequest) (*schemas.SkillCardsMetadata, error) {
+func (m *SkillsManager) Update(ctx context.Context, fileId string, body []schemas.UpdateSkillRequest) (*schemas.SkillCardsMetadata, error) {
 	req := m.session.NewRequest("PUT", m.session.BaseUrl("api")+"/files"+"/"+url.PathEscape(fileId)+"/metadata"+"/global"+"/boxSkillsCards")
 	payload, err := json.Marshal(body)
 	if err != nil {
@@ -58,7 +58,7 @@ func (m *SkillsManager) Update(ctx context.Context, fileId string, body []schema
 	return out, nil
 }
 
-func (m *SkillsManager) Create(ctx context.Context, fileId string, body *schemas.SkillCreateRequest) (*schemas.SkillCardsMetadata, error) {
+func (m *SkillsManager) Create(ctx context.Context, fileId string, body *schemas.CreateSkillRequest) (*schemas.SkillCardsMetadata, error) {
 	req := m.session.NewRequest("POST", m.session.BaseUrl("api")+"/files"+"/"+url.PathEscape(fileId)+"/metadata"+"/global"+"/boxSkillsCards")
 	payload, err := json.Marshal(body)
 	if err != nil {
@@ -90,7 +90,7 @@ func (m *SkillsManager) Delete(ctx context.Context, fileId string) error {
 	return nil
 }
 
-func (m *SkillsManager) UpdateSkillInvocation(ctx context.Context, skillId string, body *schemas.SkillInvocationUpdateRequest) error {
+func (m *SkillsManager) UpdateSkillInvocation(ctx context.Context, skillId string, body *schemas.UpdateSkillInvocationRequest) error {
 	req := m.session.NewRequest("PUT", m.session.BaseUrl("api")+"/skill_invocations"+"/"+url.PathEscape(skillId))
 	payload, err := json.Marshal(body)
 	if err != nil {

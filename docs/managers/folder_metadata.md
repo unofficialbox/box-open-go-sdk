@@ -31,7 +31,7 @@ fmt.Println(result)
 | Parameter | In | Type | Required |
 |---|---|---|---|
 | `folder_id` | path | `string` | yes |
-| `scope` | path | `GetFileIdMetadataIdIdScope` | yes |
+| `scope` | path | `GetFileIdMetadataIdScope` | yes |
 | `template_key` | path | `string` | yes |
 
 **Returns:** `MetadataFull`
@@ -39,7 +39,7 @@ fmt.Println(result)
 **Example**
 
 ```go
-result, err := client.FolderMetadata.GetFolderMetadata(context.Background(), "FOLDER_ID", schemas.GetFileIdMetadataIdIdScope("..."), "TEMPLATE_KEY")
+result, err := client.FolderMetadata.GetFolderMetadata(context.Background(), "FOLDER_ID", schemas.GetFileIdMetadataIdScope("..."), "TEMPLATE_KEY")
 if err != nil {
 	log.Fatal(err)
 }
@@ -53,17 +53,17 @@ fmt.Println(result)
 | Parameter | In | Type | Required |
 |---|---|---|---|
 | `folder_id` | path | `string` | yes |
-| `scope` | path | `GetFileIdMetadataIdIdScope` | yes |
+| `scope` | path | `GetFileIdMetadataIdScope` | yes |
 | `template_key` | path | `string` | yes |
 
-**Request body** (`application/json-patch+json`): `[]FileMetadataUpdateRequest`
+**Request body** (`application/json-patch+json`): `[]UpdateFileMetadataRequest`
 
 **Returns:** `MetadataFull`
 
 **Example**
 
 ```go
-result, err := client.FolderMetadata.UpdateFolderMetadata(context.Background(), "FOLDER_ID", schemas.GetFileIdMetadataIdIdScope("..."), "TEMPLATE_KEY", []FileMetadataUpdateRequest{})
+result, err := client.FolderMetadata.UpdateFolderMetadata(context.Background(), "FOLDER_ID", schemas.GetFileIdMetadataIdScope("..."), "TEMPLATE_KEY", []UpdateFileMetadataRequest{})
 if err != nil {
 	log.Fatal(err)
 }
@@ -77,7 +77,7 @@ fmt.Println(result)
 | Parameter | In | Type | Required |
 |---|---|---|---|
 | `folder_id` | path | `string` | yes |
-| `scope` | path | `GetFileIdMetadataIdIdScope` | yes |
+| `scope` | path | `GetFileIdMetadataIdScope` | yes |
 | `template_key` | path | `string` | yes |
 
 **Request body** (`application/json`): `map[string]any`
@@ -87,7 +87,7 @@ fmt.Println(result)
 **Example**
 
 ```go
-result, err := client.FolderMetadata.CreateFolderMetadata(context.Background(), "FOLDER_ID", schemas.GetFileIdMetadataIdIdScope("..."), "TEMPLATE_KEY", map[string]any{})
+result, err := client.FolderMetadata.CreateFolderMetadata(context.Background(), "FOLDER_ID", schemas.GetFileIdMetadataIdScope("..."), "TEMPLATE_KEY", map[string]any{})
 if err != nil {
 	log.Fatal(err)
 }
@@ -101,7 +101,7 @@ fmt.Println(result)
 | Parameter | In | Type | Required |
 |---|---|---|---|
 | `folder_id` | path | `string` | yes |
-| `scope` | path | `GetFileIdMetadataIdIdScope` | yes |
+| `scope` | path | `GetFileIdMetadataIdScope` | yes |
 | `template_key` | path | `string` | yes |
 
 **Returns:** no content
@@ -109,7 +109,7 @@ fmt.Println(result)
 **Example**
 
 ```go
-if err := client.FolderMetadata.DeleteFolderMetadata(context.Background(), "FOLDER_ID", schemas.GetFileIdMetadataIdIdScope("..."), "TEMPLATE_KEY"); err != nil {
+if err := client.FolderMetadata.DeleteFolderMetadata(context.Background(), "FOLDER_ID", schemas.GetFileIdMetadataIdScope("..."), "TEMPLATE_KEY"); err != nil {
 	log.Fatal(err)
 }
 ```

@@ -57,6 +57,7 @@ type Client struct {
 	MetadataTaxonomies                          *managers.MetadataTaxonomiesManager
 	MetadataTemplates                           *managers.MetadataTemplatesManager
 	Notes                                       *managers.NotesManager
+	Query                                       *managers.QueryManager
 	RecentItems                                 *managers.RecentItemsManager
 	RetentionPolicies                           *managers.RetentionPoliciesManager
 	RetentionPolicyAssignments                  *managers.RetentionPolicyAssignmentsManager
@@ -149,6 +150,7 @@ func NewClient(ts gantryruntime.TokenSource, opts ...gantryruntime.Option) *Clie
 	c.MetadataTaxonomies = managers.NewMetadataTaxonomiesManager(session)
 	c.MetadataTemplates = managers.NewMetadataTemplatesManager(session)
 	c.Notes = managers.NewNotesManager(session)
+	c.Query = managers.NewQueryManager(session)
 	c.RecentItems = managers.NewRecentItemsManager(session)
 	c.RetentionPolicies = managers.NewRetentionPoliciesManager(session)
 	c.RetentionPolicyAssignments = managers.NewRetentionPolicyAssignmentsManager(session)

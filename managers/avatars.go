@@ -29,7 +29,7 @@ func (m *AvatarsManager) GetUserAvatar(ctx context.Context, userId string) (io.R
 	return gantryruntime.ResponseStream(resp), nil
 }
 
-func (m *AvatarsManager) CreateUserAvatar(ctx context.Context, userId string, body *schemas.UserAvatarCreateRequest) (*schemas.UserAvatar, error) {
+func (m *AvatarsManager) CreateUserAvatar(ctx context.Context, userId string, body *schemas.CreateUserAvatarRequest) (*schemas.UserAvatar, error) {
 	req := m.session.NewRequest("POST", m.session.BaseUrl("api")+"/users"+"/"+url.PathEscape(userId)+"/avatar")
 	attributes, err := json.Marshal(body)
 	if err != nil {

@@ -41,14 +41,14 @@ Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor f
 |---|---|---|---|
 | `fields` | query | `[]string` | no |
 
-**Request body** (`application/json`): `UserCreateRequest`
+**Request body** (`application/json`): `CreateUserRequest`
 
 **Returns:** `UserFull`
 
 **Example**
 
 ```go
-result, err := client.Users.Create(context.Background(), &schemas.UserCreateRequest{}, nil)
+result, err := client.Users.Create(context.Background(), &schemas.CreateUserRequest{}, nil)
 if err != nil {
 	log.Fatal(err)
 }
@@ -105,14 +105,14 @@ fmt.Println(result)
 | `user_id` | path | `string` | yes |
 | `fields` | query | `[]string` | no |
 
-**Request body** (`application/json`): `UserUpdateRequest`
+**Request body** (`application/json`): `UpdateUserRequest`
 
 **Returns:** `UserFull`
 
 **Example**
 
 ```go
-result, err := client.Users.Update(context.Background(), "USER_ID", &schemas.UserUpdateRequest{}, nil)
+result, err := client.Users.Update(context.Background(), "USER_ID", &schemas.UpdateUserRequest{}, nil)
 if err != nil {
 	log.Fatal(err)
 }

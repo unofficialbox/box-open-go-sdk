@@ -48,7 +48,7 @@ func (m *UserCollaborationsManager) GetCollaboration(ctx context.Context, collab
 	return out, nil
 }
 
-func (m *UserCollaborationsManager) UpdateCollaboration(ctx context.Context, collaborationId string, body *schemas.CollaborationUpdateRequest) (*schemas.Collaboration, error) {
+func (m *UserCollaborationsManager) UpdateCollaboration(ctx context.Context, collaborationId string, body *schemas.UpdateCollaborationRequest) (*schemas.Collaboration, error) {
 	req := m.session.NewRequest("PUT", m.session.BaseUrl("api")+"/collaborations"+"/"+url.PathEscape(collaborationId))
 	payload, err := json.Marshal(body)
 	if err != nil {
@@ -86,7 +86,7 @@ type UserCollaborationsCreateCollaborationsOptions struct {
 	Notify *bool
 }
 
-func (m *UserCollaborationsManager) CreateCollaborations(ctx context.Context, body *schemas.CollaborationsCreateRequest, opts *UserCollaborationsCreateCollaborationsOptions) (*schemas.Collaboration, error) {
+func (m *UserCollaborationsManager) CreateCollaborations(ctx context.Context, body *schemas.CreateCollaborationsRequest, opts *UserCollaborationsCreateCollaborationsOptions) (*schemas.Collaboration, error) {
 	req := m.session.NewRequest("POST", m.session.BaseUrl("api")+"/collaborations")
 	if opts != nil {
 		if opts.Fields != nil {

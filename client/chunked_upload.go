@@ -30,7 +30,7 @@ func (c *Client) NewChunkedUpload() *ChunkedUpload {
 
 // Upload uploads content as a new file named fileName into folderID.
 func (u *ChunkedUpload) Upload(ctx context.Context, content []byte, fileName, folderID string) (*schemas.Files, error) {
-	session, err := u.client.ChunkedUploads.CreateFileUploadSession(ctx, &schemas.FileUploadSessionCreateRequest{
+	session, err := u.client.ChunkedUploads.CreateFileUploadSession(ctx, &schemas.CreateFileUploadSessionRequest{
 		FolderId: folderID,
 		FileSize: int64(len(content)),
 		FileName: fileName,
@@ -43,7 +43,7 @@ func (u *ChunkedUpload) Upload(ctx context.Context, content []byte, fileName, fo
 
 // UploadVersion uploads content as a new version of the existing file fileID.
 func (u *ChunkedUpload) UploadVersion(ctx context.Context, content []byte, fileName, fileID string) (*schemas.Files, error) {
-	session, err := u.client.ChunkedUploads.CreateFileVersionUploadSession(ctx, fileID, &schemas.FileVersionUploadSessionCreateRequest{
+	session, err := u.client.ChunkedUploads.CreateFileVersionUploadSession(ctx, fileID, &schemas.CreateFileVersionUploadSessionRequest{
 		FileSize: int64(len(content)),
 		FileName: &fileName,
 	})
@@ -108,7 +108,7 @@ func (u *ChunkedUpload) finish(ctx context.Context, session *schemas.UploadSessi
 	}
 
 	digest := "sha=" + base64.StdEncoding.EncodeToString(sha1sum(content))
-	return u.client.ChunkedUploads.CommitFileUploadSession(ctx, id, digest, &schemas.FileUploadSessionCommitRequest{Parts: parts}, nil)
+	return u.client.ChunkedUploads.CommitFileUploadSession(ctx, id, digest, &schemas.CommitFileUploadSessionRequest{Parts: parts}, nil)
 }
 
 func (u *ChunkedUpload) uploadPart(ctx context.Context, id string, content []byte, start, end, total int) (schemas.UploadPart, error) {

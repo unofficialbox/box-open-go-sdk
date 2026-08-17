@@ -7,14 +7,14 @@ Access via `client.NewClient().MetadataTaxonomies`.
 
 `POST /metadata_taxonomies`
 
-**Request body** (`application/json`): `MetadataTaxonomyCreateRequest`
+**Request body** (`application/json`): `CreateMetadataTaxonomyRequest`
 
 **Returns:** `MetadataTaxonomy`
 
 **Example**
 
 ```go
-result, err := client.MetadataTaxonomies.Create(context.Background(), &schemas.MetadataTaxonomyCreateRequest{})
+result, err := client.MetadataTaxonomies.Create(context.Background(), &schemas.CreateMetadataTaxonomyRequest{})
 if err != nil {
 	log.Fatal(err)
 }
@@ -95,14 +95,14 @@ if err := client.MetadataTaxonomies.Delete(context.Background(), "NAMESPACE", "T
 | `namespace` | path | `string` | yes |
 | `taxonomy_key` | path | `string` | yes |
 
-**Request body** (`application/json`): `MetadataTaxonomyUpdateRequest`
+**Request body** (`application/json`): `UpdateMetadataTaxonomyRequest`
 
 **Returns:** `MetadataTaxonomy`
 
 **Example**
 
 ```go
-result, err := client.MetadataTaxonomies.Update(context.Background(), "NAMESPACE", "TAXONOMY_KEY", &schemas.MetadataTaxonomyUpdateRequest{})
+result, err := client.MetadataTaxonomies.Update(context.Background(), "NAMESPACE", "TAXONOMY_KEY", &schemas.UpdateMetadataTaxonomyRequest{})
 if err != nil {
 	log.Fatal(err)
 }
@@ -142,14 +142,14 @@ fmt.Println(result)
 | `taxonomy_key` | path | `string` | yes |
 | `level_index` | path | `int64` | yes |
 
-**Request body** (`application/json`): `LevelUpdateRequest`
+**Request body** (`application/json`): `UpdateLevelRequest`
 
 **Returns:** `MetadataTaxonomyLevel`
 
 **Example**
 
 ```go
-result, err := client.MetadataTaxonomies.UpdateLevel(context.Background(), "NAMESPACE", "TAXONOMY_KEY", 0, &schemas.LevelUpdateRequest{})
+result, err := client.MetadataTaxonomies.UpdateLevel(context.Background(), "NAMESPACE", "TAXONOMY_KEY", 0, &schemas.UpdateLevelRequest{})
 if err != nil {
 	log.Fatal(err)
 }
@@ -165,14 +165,14 @@ fmt.Println(result)
 | `namespace` | path | `string` | yes |
 | `taxonomy_key` | path | `string` | yes |
 
-**Request body** (`application/json`): `LevelUpdateRequest`
+**Request body** (`application/json`): `UpdateLevelRequest`
 
 **Returns:** `MetadataTaxonomyLevels`
 
 **Example**
 
 ```go
-result, err := client.MetadataTaxonomies.AppendLevels(context.Background(), "NAMESPACE", "TAXONOMY_KEY", &schemas.LevelUpdateRequest{})
+result, err := client.MetadataTaxonomies.AppendLevels(context.Background(), "NAMESPACE", "TAXONOMY_KEY", &schemas.UpdateLevelRequest{})
 if err != nil {
 	log.Fatal(err)
 }
@@ -240,14 +240,14 @@ Paginated — `ListNodes(...)` returns `iter.Seq2[*T, error]`, threading the cur
 | `namespace` | path | `string` | yes |
 | `taxonomy_key` | path | `string` | yes |
 
-**Request body** (`application/json`): `NodesCreateRequest`
+**Request body** (`application/json`): `CreateNodesRequest`
 
 **Returns:** `MetadataTaxonomyNode`
 
 **Example**
 
 ```go
-result, err := client.MetadataTaxonomies.CreateNodes(context.Background(), "NAMESPACE", "TAXONOMY_KEY", &schemas.NodesCreateRequest{})
+result, err := client.MetadataTaxonomies.CreateNodes(context.Background(), "NAMESPACE", "TAXONOMY_KEY", &schemas.CreateNodesRequest{})
 if err != nil {
 	log.Fatal(err)
 }
@@ -306,14 +306,14 @@ if err := client.MetadataTaxonomies.DeleteNode(context.Background(), "NAMESPACE"
 | `taxonomy_key` | path | `string` | yes |
 | `node_id` | path | `string` | yes |
 
-**Request body** (`application/json`): `NodeUpdateRequest`
+**Request body** (`application/json`): `UpdateNodeRequest`
 
 **Returns:** `MetadataTaxonomyNode`
 
 **Example**
 
 ```go
-result, err := client.MetadataTaxonomies.UpdateNode(context.Background(), "NAMESPACE", "TAXONOMY_KEY", "NODE_ID", &schemas.NodeUpdateRequest{})
+result, err := client.MetadataTaxonomies.UpdateNode(context.Background(), "NAMESPACE", "TAXONOMY_KEY", "NODE_ID", &schemas.UpdateNodeRequest{})
 if err != nil {
 	log.Fatal(err)
 }

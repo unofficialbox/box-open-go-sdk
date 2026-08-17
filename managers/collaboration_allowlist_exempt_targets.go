@@ -21,13 +21,13 @@ func NewCollaborationAllowlistExemptTargetsManager(session *gantryruntime.Client
 	return &CollaborationAllowlistExemptTargetsManager{session: session}
 }
 
-// CollaborationAllowlistExemptTargetsListCollaborationWhitelistExemptTargetsOptions carries the optional parameters.
-type CollaborationAllowlistExemptTargetsListCollaborationWhitelistExemptTargetsOptions struct {
+// CollaborationAllowlistExemptTargetsListOptions carries the optional parameters.
+type CollaborationAllowlistExemptTargetsListOptions struct {
 	Marker *string
 	Limit  *int64
 }
 
-func (m *CollaborationAllowlistExemptTargetsManager) listCollaborationWhitelistExemptTargetsPage(ctx context.Context, opts *CollaborationAllowlistExemptTargetsListCollaborationWhitelistExemptTargetsOptions) (*schemas.CollaborationAllowlistExemptTargets, error) {
+func (m *CollaborationAllowlistExemptTargetsManager) listPage(ctx context.Context, opts *CollaborationAllowlistExemptTargetsListOptions) (*schemas.CollaborationAllowlistExemptTargets, error) {
 	req := m.session.NewRequest("GET", m.session.BaseUrl("api")+"/collaboration_whitelist_exempt_targets")
 	if opts != nil {
 		if opts.Marker != nil {
@@ -52,14 +52,14 @@ func (m *CollaborationAllowlistExemptTargetsManager) listCollaborationWhitelistE
 	return out, nil
 }
 
-func (m *CollaborationAllowlistExemptTargetsManager) ListCollaborationWhitelistExemptTargets(ctx context.Context, opts *CollaborationAllowlistExemptTargetsListCollaborationWhitelistExemptTargetsOptions) iter.Seq2[*schemas.CollaborationAllowlistExemptTarget, error] {
+func (m *CollaborationAllowlistExemptTargetsManager) List(ctx context.Context, opts *CollaborationAllowlistExemptTargetsListOptions) iter.Seq2[*schemas.CollaborationAllowlistExemptTarget, error] {
 	return func(yield func(*schemas.CollaborationAllowlistExemptTarget, error) bool) {
-		var o CollaborationAllowlistExemptTargetsListCollaborationWhitelistExemptTargetsOptions
+		var o CollaborationAllowlistExemptTargetsListOptions
 		if opts != nil {
 			o = *opts
 		}
 		for {
-			page, err := m.listCollaborationWhitelistExemptTargetsPage(ctx, &o)
+			page, err := m.listPage(ctx, &o)
 			if err != nil {
 				yield(nil, err)
 				return
@@ -82,7 +82,7 @@ func (m *CollaborationAllowlistExemptTargetsManager) ListCollaborationWhitelistE
 	}
 }
 
-func (m *CollaborationAllowlistExemptTargetsManager) CreateCollaborationWhitelistExemptTargets(ctx context.Context, body *schemas.CollaborationWhitelistExemptTargetsCreateRequest) (*schemas.CollaborationAllowlistExemptTarget, error) {
+func (m *CollaborationAllowlistExemptTargetsManager) Create(ctx context.Context, body *schemas.CreateCollaborationAllowlistExemptTargetRequest) (*schemas.CollaborationAllowlistExemptTarget, error) {
 	req := m.session.NewRequest("POST", m.session.BaseUrl("api")+"/collaboration_whitelist_exempt_targets")
 	payload, err := json.Marshal(body)
 	if err != nil {
@@ -104,7 +104,7 @@ func (m *CollaborationAllowlistExemptTargetsManager) CreateCollaborationWhitelis
 	return out, nil
 }
 
-func (m *CollaborationAllowlistExemptTargetsManager) GetCollaborationWhitelistExemptTarget(ctx context.Context, collaborationWhitelistExemptTargetId string) (*schemas.CollaborationAllowlistExemptTarget, error) {
+func (m *CollaborationAllowlistExemptTargetsManager) Get(ctx context.Context, collaborationWhitelistExemptTargetId string) (*schemas.CollaborationAllowlistExemptTarget, error) {
 	req := m.session.NewRequest("GET", m.session.BaseUrl("api")+"/collaboration_whitelist_exempt_targets"+"/"+url.PathEscape(collaborationWhitelistExemptTargetId))
 	resp, err := m.session.Fetch(ctx, req)
 	if err != nil {
@@ -121,7 +121,7 @@ func (m *CollaborationAllowlistExemptTargetsManager) GetCollaborationWhitelistEx
 	return out, nil
 }
 
-func (m *CollaborationAllowlistExemptTargetsManager) DeleteCollaborationWhitelistExemptTarget(ctx context.Context, collaborationWhitelistExemptTargetId string) error {
+func (m *CollaborationAllowlistExemptTargetsManager) Delete(ctx context.Context, collaborationWhitelistExemptTargetId string) error {
 	req := m.session.NewRequest("DELETE", m.session.BaseUrl("api")+"/collaboration_whitelist_exempt_targets"+"/"+url.PathEscape(collaborationWhitelistExemptTargetId))
 	resp, err := m.session.Fetch(ctx, req)
 	if err != nil {

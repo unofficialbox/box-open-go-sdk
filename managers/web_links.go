@@ -19,7 +19,7 @@ func NewWebLinksManager(session *gantryruntime.Client) *WebLinksManager {
 	return &WebLinksManager{session: session}
 }
 
-func (m *WebLinksManager) Create(ctx context.Context, body *schemas.WebLinkCreateRequest) (*schemas.WebLink, error) {
+func (m *WebLinksManager) Create(ctx context.Context, body *schemas.CreateWebLinkRequest) (*schemas.WebLink, error) {
 	req := m.session.NewRequest("POST", m.session.BaseUrl("api")+"/web_links")
 	payload, err := json.Marshal(body)
 	if err != nil {
@@ -68,7 +68,7 @@ func (m *WebLinksManager) Get(ctx context.Context, webLinkId string, opts *WebLi
 	return out, nil
 }
 
-func (m *WebLinksManager) Update(ctx context.Context, webLinkId string, body *schemas.WebLinkUpdateRequest) (*schemas.WebLink, error) {
+func (m *WebLinksManager) Update(ctx context.Context, webLinkId string, body *schemas.UpdateWebLinkRequest) (*schemas.WebLink, error) {
 	req := m.session.NewRequest("PUT", m.session.BaseUrl("api")+"/web_links"+"/"+url.PathEscape(webLinkId))
 	payload, err := json.Marshal(body)
 	if err != nil {

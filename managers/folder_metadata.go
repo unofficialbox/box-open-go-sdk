@@ -46,7 +46,7 @@ func (m *FolderMetadataManager) ListFolderMetadata(ctx context.Context, folderId
 	return out, nil
 }
 
-func (m *FolderMetadataManager) GetFolderMetadata(ctx context.Context, folderId string, scope schemas.GetFileIdMetadataIdIdScope, templateKey string) (*schemas.MetadataFull, error) {
+func (m *FolderMetadataManager) GetFolderMetadata(ctx context.Context, folderId string, scope schemas.GetFileIdMetadataIdScope, templateKey string) (*schemas.MetadataFull, error) {
 	req := m.session.NewRequest("GET", m.session.BaseUrl("api")+"/folders"+"/"+url.PathEscape(folderId)+"/metadata"+"/"+url.PathEscape(string(scope))+"/"+url.PathEscape(templateKey))
 	resp, err := m.session.Fetch(ctx, req)
 	if err != nil {
@@ -63,7 +63,7 @@ func (m *FolderMetadataManager) GetFolderMetadata(ctx context.Context, folderId 
 	return out, nil
 }
 
-func (m *FolderMetadataManager) UpdateFolderMetadata(ctx context.Context, folderId string, scope schemas.GetFileIdMetadataIdIdScope, templateKey string, body []schemas.FileMetadataUpdateRequest) (*schemas.MetadataFull, error) {
+func (m *FolderMetadataManager) UpdateFolderMetadata(ctx context.Context, folderId string, scope schemas.GetFileIdMetadataIdScope, templateKey string, body []schemas.UpdateFileMetadataRequest) (*schemas.MetadataFull, error) {
 	req := m.session.NewRequest("PUT", m.session.BaseUrl("api")+"/folders"+"/"+url.PathEscape(folderId)+"/metadata"+"/"+url.PathEscape(string(scope))+"/"+url.PathEscape(templateKey))
 	payload, err := json.Marshal(body)
 	if err != nil {
@@ -85,7 +85,7 @@ func (m *FolderMetadataManager) UpdateFolderMetadata(ctx context.Context, folder
 	return out, nil
 }
 
-func (m *FolderMetadataManager) CreateFolderMetadata(ctx context.Context, folderId string, scope schemas.GetFileIdMetadataIdIdScope, templateKey string, body map[string]any) (*schemas.MetadataFull, error) {
+func (m *FolderMetadataManager) CreateFolderMetadata(ctx context.Context, folderId string, scope schemas.GetFileIdMetadataIdScope, templateKey string, body map[string]any) (*schemas.MetadataFull, error) {
 	req := m.session.NewRequest("POST", m.session.BaseUrl("api")+"/folders"+"/"+url.PathEscape(folderId)+"/metadata"+"/"+url.PathEscape(string(scope))+"/"+url.PathEscape(templateKey))
 	payload, err := json.Marshal(body)
 	if err != nil {
@@ -107,7 +107,7 @@ func (m *FolderMetadataManager) CreateFolderMetadata(ctx context.Context, folder
 	return out, nil
 }
 
-func (m *FolderMetadataManager) DeleteFolderMetadata(ctx context.Context, folderId string, scope schemas.GetFileIdMetadataIdIdScope, templateKey string) error {
+func (m *FolderMetadataManager) DeleteFolderMetadata(ctx context.Context, folderId string, scope schemas.GetFileIdMetadataIdScope, templateKey string) error {
 	req := m.session.NewRequest("DELETE", m.session.BaseUrl("api")+"/folders"+"/"+url.PathEscape(folderId)+"/metadata"+"/"+url.PathEscape(string(scope))+"/"+url.PathEscape(templateKey))
 	resp, err := m.session.Fetch(ctx, req)
 	if err != nil {

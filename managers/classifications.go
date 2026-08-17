@@ -35,7 +35,7 @@ func (m *ClassificationsManager) Get(ctx context.Context) (*schemas.Classificati
 	return out, nil
 }
 
-func (m *ClassificationsManager) UpdateAdd(ctx context.Context, body []schemas.ClassificationUpdateRequest) (*schemas.ClassificationTemplate, error) {
+func (m *ClassificationsManager) UpdateAdd(ctx context.Context, body []schemas.UpdateClassificationAddRequest) (*schemas.ClassificationTemplate, error) {
 	req := m.session.NewRequest("PUT", m.session.BaseUrl("api")+"/metadata_templates"+"/enterprise"+"/securityClassification-6VMVochwUWo"+"/schema")
 	payload, err := json.Marshal(body)
 	if err != nil {
@@ -57,7 +57,7 @@ func (m *ClassificationsManager) UpdateAdd(ctx context.Context, body []schemas.C
 	return out, nil
 }
 
-func (m *ClassificationsManager) UpdateUpdate(ctx context.Context, body []schemas.ClassificationUpdateRequest2) (*schemas.ClassificationTemplate, error) {
+func (m *ClassificationsManager) UpdateUpdate(ctx context.Context, body []schemas.UpdateClassificationUpdateRequest) (*schemas.ClassificationTemplate, error) {
 	req := m.session.NewRequest("PUT", m.session.BaseUrl("api")+"/metadata_templates"+"/enterprise"+"/securityClassification-6VMVochwUWo"+"/schema")
 	payload, err := json.Marshal(body)
 	if err != nil {
@@ -79,7 +79,7 @@ func (m *ClassificationsManager) UpdateUpdate(ctx context.Context, body []schema
 	return out, nil
 }
 
-func (m *ClassificationsManager) CreateMetadataTemplateSchemaClassifications(ctx context.Context, body *schemas.MetadataTemplateSchemaCreateRequest) (*schemas.ClassificationTemplate, error) {
+func (m *ClassificationsManager) CreateMetadataTemplateSchemaClassifications(ctx context.Context, body *schemas.CreateMetadataTemplateSchemaClassificationsRequest) (*schemas.ClassificationTemplate, error) {
 	req := m.session.NewRequest("POST", m.session.BaseUrl("api")+"/metadata_templates"+"/schema")
 	payload, err := json.Marshal(body)
 	if err != nil {

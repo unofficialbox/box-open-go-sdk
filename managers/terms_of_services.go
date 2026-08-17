@@ -46,7 +46,7 @@ func (m *TermsOfServicesManager) List(ctx context.Context, opts *TermsOfServices
 	return out, nil
 }
 
-func (m *TermsOfServicesManager) Create(ctx context.Context, body *schemas.TermsOfServiceCreateRequest) (*schemas.TermsOfService, error) {
+func (m *TermsOfServicesManager) Create(ctx context.Context, body *schemas.CreateTermsOfServiceRequest) (*schemas.TermsOfService, error) {
 	req := m.session.NewRequest("POST", m.session.BaseUrl("api")+"/terms_of_services")
 	payload, err := json.Marshal(body)
 	if err != nil {
@@ -85,7 +85,7 @@ func (m *TermsOfServicesManager) Get(ctx context.Context, termsOfServiceId strin
 	return out, nil
 }
 
-func (m *TermsOfServicesManager) Update(ctx context.Context, termsOfServiceId string, body *schemas.TermsOfServiceUpdateRequest) (*schemas.TermsOfService, error) {
+func (m *TermsOfServicesManager) Update(ctx context.Context, termsOfServiceId string, body *schemas.UpdateTermsOfServiceRequest) (*schemas.TermsOfService, error) {
 	req := m.session.NewRequest("PUT", m.session.BaseUrl("api")+"/terms_of_services"+"/"+url.PathEscape(termsOfServiceId))
 	payload, err := json.Marshal(body)
 	if err != nil {

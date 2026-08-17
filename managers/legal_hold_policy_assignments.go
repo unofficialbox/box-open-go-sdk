@@ -96,7 +96,7 @@ func (m *LegalHoldPolicyAssignmentsManager) List(ctx context.Context, policyId s
 	}
 }
 
-func (m *LegalHoldPolicyAssignmentsManager) Create(ctx context.Context, body *schemas.LegalHoldPolicyAssignmentCreateRequest) (*schemas.LegalHoldPolicyAssignment, error) {
+func (m *LegalHoldPolicyAssignmentsManager) Create(ctx context.Context, body *schemas.CreateLegalHoldPolicyAssignmentRequest) (*schemas.LegalHoldPolicyAssignment, error) {
 	req := m.session.NewRequest("POST", m.session.BaseUrl("api")+"/legal_hold_policy_assignments")
 	payload, err := json.Marshal(body)
 	if err != nil {

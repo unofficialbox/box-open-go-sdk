@@ -27,7 +27,7 @@ type TransferTransferFoldersOptions struct {
 	Notify *bool
 }
 
-func (m *TransferManager) TransferFolders(ctx context.Context, userId string, body *schemas.UserFolder0UpdateRequest, opts *TransferTransferFoldersOptions) (*schemas.FolderFull, error) {
+func (m *TransferManager) TransferFolders(ctx context.Context, userId string, body *schemas.TransferFoldersRequest, opts *TransferTransferFoldersOptions) (*schemas.FolderFull, error) {
 	req := m.session.NewRequest("PUT", m.session.BaseUrl("api")+"/users"+"/"+url.PathEscape(userId)+"/folders"+"/0")
 	if opts != nil {
 		if opts.Fields != nil {

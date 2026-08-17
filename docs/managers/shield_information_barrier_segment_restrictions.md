@@ -70,14 +70,14 @@ Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor f
 
 `POST /shield_information_barrier_segment_restrictions`
 
-**Request body** (`application/json`): `ShieldInformationBarrierSegmentRestrictionCreateRequest`
+**Request body** (`application/json`): `CreateShieldInformationBarrierSegmentRestrictionRequest`
 
 **Returns:** `ShieldInformationBarrierSegmentRestriction`
 
 **Example**
 
 ```go
-result, err := client.ShieldInformationBarrierSegmentRestrictions.Create(context.Background(), &schemas.ShieldInformationBarrierSegmentRestrictionCreateRequest{})
+result, err := client.ShieldInformationBarrierSegmentRestrictions.Create(context.Background(), &schemas.CreateShieldInformationBarrierSegmentRestrictionRequest{})
 if err != nil {
 	log.Fatal(err)
 }

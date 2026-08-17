@@ -36,7 +36,7 @@ func (m *TaskAssignmentsManager) ListTaskAssignments(ctx context.Context, taskId
 	return out, nil
 }
 
-func (m *TaskAssignmentsManager) Create(ctx context.Context, body *schemas.TaskAssignmentCreateRequest) (*schemas.TaskAssignment, error) {
+func (m *TaskAssignmentsManager) Create(ctx context.Context, body *schemas.CreateTaskAssignmentRequest) (*schemas.TaskAssignment, error) {
 	req := m.session.NewRequest("POST", m.session.BaseUrl("api")+"/task_assignments")
 	payload, err := json.Marshal(body)
 	if err != nil {
@@ -75,7 +75,7 @@ func (m *TaskAssignmentsManager) Get(ctx context.Context, taskAssignmentId strin
 	return out, nil
 }
 
-func (m *TaskAssignmentsManager) Update(ctx context.Context, taskAssignmentId string, body *schemas.TaskAssignmentUpdateRequest) (*schemas.TaskAssignment, error) {
+func (m *TaskAssignmentsManager) Update(ctx context.Context, taskAssignmentId string, body *schemas.UpdateTaskAssignmentRequest) (*schemas.TaskAssignment, error) {
 	req := m.session.NewRequest("PUT", m.session.BaseUrl("api")+"/task_assignments"+"/"+url.PathEscape(taskAssignmentId))
 	payload, err := json.Marshal(body)
 	if err != nil {

@@ -35,14 +35,14 @@ Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor f
 
 `POST /retention_policies`
 
-**Request body** (`application/json`): `RetentionPolicyCreateRequest`
+**Request body** (`application/json`): `CreateRetentionPolicyRequest`
 
 **Returns:** `RetentionPolicy`
 
 **Example**
 
 ```go
-result, err := client.RetentionPolicies.Create(context.Background(), &schemas.RetentionPolicyCreateRequest{})
+result, err := client.RetentionPolicies.Create(context.Background(), &schemas.CreateRetentionPolicyRequest{})
 if err != nil {
 	log.Fatal(err)
 }
@@ -78,14 +78,14 @@ fmt.Println(result)
 |---|---|---|---|
 | `retention_policy_id` | path | `string` | yes |
 
-**Request body** (`application/json`): `RetentionPolicyUpdateRequest`
+**Request body** (`application/json`): `UpdateRetentionPolicyRequest`
 
 **Returns:** `RetentionPolicy`
 
 **Example**
 
 ```go
-result, err := client.RetentionPolicies.Update(context.Background(), "RETENTION_POLICY_ID", &schemas.RetentionPolicyUpdateRequest{})
+result, err := client.RetentionPolicies.Update(context.Background(), "RETENTION_POLICY_ID", &schemas.UpdateRetentionPolicyRequest{})
 if err != nil {
 	log.Fatal(err)
 }

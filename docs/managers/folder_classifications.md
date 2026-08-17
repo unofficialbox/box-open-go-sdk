@@ -31,14 +31,14 @@ fmt.Println(result)
 |---|---|---|---|
 | `folder_id` | path | `string` | yes |
 
-**Request body** (`application/json-patch+json`): `[]FileClassificationUpdateRequest`
+**Request body** (`application/json-patch+json`): `[]UpdateFileClassificationRequest`
 
 **Returns:** `Classification`
 
 **Example**
 
 ```go
-result, err := client.FolderClassifications.Update(context.Background(), "FOLDER_ID", []FileClassificationUpdateRequest{})
+result, err := client.FolderClassifications.Update(context.Background(), "FOLDER_ID", []UpdateFileClassificationRequest{})
 if err != nil {
 	log.Fatal(err)
 }
@@ -53,14 +53,14 @@ fmt.Println(result)
 |---|---|---|---|
 | `folder_id` | path | `string` | yes |
 
-**Request body** (`application/json`): `FileClassificationCreateRequest`
+**Request body** (`application/json`): `CreateFileClassificationRequest`
 
 **Returns:** `Classification`
 
 **Example**
 
 ```go
-result, err := client.FolderClassifications.Create(context.Background(), "FOLDER_ID", &schemas.FileClassificationCreateRequest{})
+result, err := client.FolderClassifications.Create(context.Background(), "FOLDER_ID", &schemas.CreateFileClassificationRequest{})
 if err != nil {
 	log.Fatal(err)
 }

@@ -31,14 +31,14 @@ fmt.Println(result)
 |---|---|---|---|
 | `folder_id` | path | `string` | yes |
 
-**Request body** (`application/json`): `FileWatermarkUpdateRequest`
+**Request body** (`application/json`): `UpdateFileWatermarkRequest`
 
 **Returns:** `Watermark`
 
 **Example**
 
 ```go
-result, err := client.FolderWatermarks.UpdateFolderWatermark(context.Background(), "FOLDER_ID", &schemas.FileWatermarkUpdateRequest{})
+result, err := client.FolderWatermarks.UpdateFolderWatermark(context.Background(), "FOLDER_ID", &schemas.UpdateFileWatermarkRequest{})
 if err != nil {
 	log.Fatal(err)
 }

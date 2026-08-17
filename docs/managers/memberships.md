@@ -53,7 +53,7 @@ for item, err := range client.Memberships.ListGroup(context.Background(), "GROUP
 
 Paginated — `ListGroup(...)` returns `iter.Seq2[*T, error]`, threading the cursor for you. See the [pagination guide](../pagination.md).
 
-## CreateGroup
+## CreateGroupMembership
 
 `POST /group_memberships`
 
@@ -61,21 +61,21 @@ Paginated — `ListGroup(...)` returns `iter.Seq2[*T, error]`, threading the cur
 |---|---|---|---|
 | `fields` | query | `[]string` | no |
 
-**Request body** (`application/json`): `GroupCreateRequest2`
+**Request body** (`application/json`): `CreateGroupMembershipRequest`
 
 **Returns:** `GroupMembership`
 
 **Example**
 
 ```go
-result, err := client.Memberships.CreateGroup(context.Background(), &schemas.GroupCreateRequest2{}, nil)
+result, err := client.Memberships.CreateGroupMembership(context.Background(), &schemas.CreateGroupMembershipRequest{}, nil)
 if err != nil {
 	log.Fatal(err)
 }
 fmt.Println(result)
 ```
 
-## GetGroup
+## GetGroupMembership
 
 `GET /group_memberships/{group_membership_id}`
 
@@ -89,14 +89,14 @@ fmt.Println(result)
 **Example**
 
 ```go
-result, err := client.Memberships.GetGroup(context.Background(), "GROUP_MEMBERSHIP_ID", nil)
+result, err := client.Memberships.GetGroupMembership(context.Background(), "GROUP_MEMBERSHIP_ID", nil)
 if err != nil {
 	log.Fatal(err)
 }
 fmt.Println(result)
 ```
 
-## UpdateGroup
+## UpdateGroupMembership
 
 `PUT /group_memberships/{group_membership_id}`
 
@@ -105,21 +105,21 @@ fmt.Println(result)
 | `group_membership_id` | path | `string` | yes |
 | `fields` | query | `[]string` | no |
 
-**Request body** (`application/json`): `GroupUpdateRequest2`
+**Request body** (`application/json`): `UpdateGroupMembershipRequest`
 
 **Returns:** `GroupMembership`
 
 **Example**
 
 ```go
-result, err := client.Memberships.UpdateGroup(context.Background(), "GROUP_MEMBERSHIP_ID", &schemas.GroupUpdateRequest2{}, nil)
+result, err := client.Memberships.UpdateGroupMembership(context.Background(), "GROUP_MEMBERSHIP_ID", &schemas.UpdateGroupMembershipRequest{}, nil)
 if err != nil {
 	log.Fatal(err)
 }
 fmt.Println(result)
 ```
 
-## DeleteGroup
+## DeleteGroupMembership
 
 `DELETE /group_memberships/{group_membership_id}`
 
@@ -132,7 +132,7 @@ fmt.Println(result)
 **Example**
 
 ```go
-if err := client.Memberships.DeleteGroup(context.Background(), "GROUP_MEMBERSHIP_ID"); err != nil {
+if err := client.Memberships.DeleteGroupMembership(context.Background(), "GROUP_MEMBERSHIP_ID"); err != nil {
 	log.Fatal(err)
 }
 ```

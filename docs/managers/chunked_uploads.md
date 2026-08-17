@@ -7,14 +7,14 @@ Access via `client.NewClient().ChunkedUploads`.
 
 `POST /files/upload_sessions`
 
-**Request body** (`application/json`): `FileUploadSessionCreateRequest`
+**Request body** (`application/json`): `CreateFileUploadSessionRequest`
 
 **Returns:** `UploadSession`
 
 **Example**
 
 ```go
-result, err := client.ChunkedUploads.CreateFileUploadSession(context.Background(), &schemas.FileUploadSessionCreateRequest{})
+result, err := client.ChunkedUploads.CreateFileUploadSession(context.Background(), &schemas.CreateFileUploadSessionRequest{})
 if err != nil {
 	log.Fatal(err)
 }
@@ -29,14 +29,14 @@ fmt.Println(result)
 |---|---|---|---|
 | `file_id` | path | `string` | yes |
 
-**Request body** (`application/json`): `FileVersionUploadSessionCreateRequest`
+**Request body** (`application/json`): `CreateFileVersionUploadSessionRequest`
 
 **Returns:** `UploadSession`
 
 **Example**
 
 ```go
-result, err := client.ChunkedUploads.CreateFileVersionUploadSession(context.Background(), "FILE_ID", &schemas.FileVersionUploadSessionCreateRequest{})
+result, err := client.ChunkedUploads.CreateFileVersionUploadSession(context.Background(), "FILE_ID", &schemas.CreateFileVersionUploadSessionRequest{})
 if err != nil {
 	log.Fatal(err)
 }
@@ -141,14 +141,14 @@ Paginated — `ListFileUploadSessionParts(...)` returns `iter.Seq2[*T, error]`, 
 | `if-match` | header | `string` | no |
 | `if-none-match` | header | `string` | no |
 
-**Request body** (`application/json`): `FileUploadSessionCommitRequest`
+**Request body** (`application/json`): `CommitFileUploadSessionRequest`
 
 **Returns:** `Files`
 
 **Example**
 
 ```go
-result, err := client.ChunkedUploads.CommitFileUploadSession(context.Background(), "UPLOAD_SESSION_ID", "DIGEST", &schemas.FileUploadSessionCommitRequest{}, nil)
+result, err := client.ChunkedUploads.CommitFileUploadSession(context.Background(), "UPLOAD_SESSION_ID", "DIGEST", &schemas.CommitFileUploadSessionRequest{}, nil)
 if err != nil {
 	log.Fatal(err)
 }

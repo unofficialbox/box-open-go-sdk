@@ -55,14 +55,14 @@ fmt.Println(result)
 | `file_id` | path | `string` | yes |
 | `fields` | query | `string` | yes |
 
-**Request body** (`application/json`): `FileUpdateRequest2`
+**Request body** (`application/json`): `UpdateFileAddSharedLinkRequest`
 
 **Returns:** `FileFull`
 
 **Example**
 
 ```go
-result, err := client.SharedLinksFiles.UpdateFileAddSharedLink(context.Background(), "FILE_ID", "FIELDS", &schemas.FileUpdateRequest2{})
+result, err := client.SharedLinksFiles.UpdateFileAddSharedLink(context.Background(), "FILE_ID", "FIELDS", &schemas.UpdateFileAddSharedLinkRequest{})
 if err != nil {
 	log.Fatal(err)
 }
@@ -78,14 +78,14 @@ fmt.Println(result)
 | `file_id` | path | `string` | yes |
 | `fields` | query | `string` | yes |
 
-**Request body** (`application/json`): `FileUpdateRequest2`
+**Request body** (`application/json`): `UpdateFileAddSharedLinkRequest`
 
 **Returns:** `FileFull`
 
 **Example**
 
 ```go
-result, err := client.SharedLinksFiles.UpdateFileUpdateSharedLink(context.Background(), "FILE_ID", "FIELDS", &schemas.FileUpdateRequest2{})
+result, err := client.SharedLinksFiles.UpdateFileUpdateSharedLink(context.Background(), "FILE_ID", "FIELDS", &schemas.UpdateFileAddSharedLinkRequest{})
 if err != nil {
 	log.Fatal(err)
 }
@@ -101,14 +101,14 @@ fmt.Println(result)
 | `file_id` | path | `string` | yes |
 | `fields` | query | `string` | yes |
 
-**Request body** (`application/json`): `FileUpdateRequest3`
+**Request body** (`application/json`): `UpdateFileRemoveSharedLinkRequest`
 
 **Returns:** `FileFull`
 
 **Example**
 
 ```go
-result, err := client.SharedLinksFiles.UpdateFileRemoveSharedLink(context.Background(), "FILE_ID", "FIELDS", &schemas.FileUpdateRequest3{})
+result, err := client.SharedLinksFiles.UpdateFileRemoveSharedLink(context.Background(), "FILE_ID", "FIELDS", &schemas.UpdateFileRemoveSharedLinkRequest{})
 if err != nil {
 	log.Fatal(err)
 }

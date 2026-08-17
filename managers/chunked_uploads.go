@@ -22,7 +22,7 @@ func NewChunkedUploadsManager(session *gantryruntime.Client) *ChunkedUploadsMana
 	return &ChunkedUploadsManager{session: session}
 }
 
-func (m *ChunkedUploadsManager) CreateFileUploadSession(ctx context.Context, body *schemas.FileUploadSessionCreateRequest) (*schemas.UploadSession, error) {
+func (m *ChunkedUploadsManager) CreateFileUploadSession(ctx context.Context, body *schemas.CreateFileUploadSessionRequest) (*schemas.UploadSession, error) {
 	req := m.session.NewRequest("POST", m.session.BaseUrl("upload")+"/files"+"/upload_sessions")
 	payload, err := json.Marshal(body)
 	if err != nil {
@@ -44,7 +44,7 @@ func (m *ChunkedUploadsManager) CreateFileUploadSession(ctx context.Context, bod
 	return out, nil
 }
 
-func (m *ChunkedUploadsManager) CreateFileVersionUploadSession(ctx context.Context, fileId string, body *schemas.FileVersionUploadSessionCreateRequest) (*schemas.UploadSession, error) {
+func (m *ChunkedUploadsManager) CreateFileVersionUploadSession(ctx context.Context, fileId string, body *schemas.CreateFileVersionUploadSessionRequest) (*schemas.UploadSession, error) {
 	req := m.session.NewRequest("POST", m.session.BaseUrl("upload")+"/files"+"/"+url.PathEscape(fileId)+"/upload_sessions")
 	payload, err := json.Marshal(body)
 	if err != nil {
@@ -180,7 +180,7 @@ type ChunkedUploadsCommitFileUploadSessionOptions struct {
 	IfNoneMatch *string
 }
 
-func (m *ChunkedUploadsManager) CommitFileUploadSession(ctx context.Context, uploadSessionId string, digest string, body *schemas.FileUploadSessionCommitRequest, opts *ChunkedUploadsCommitFileUploadSessionOptions) (*schemas.Files, error) {
+func (m *ChunkedUploadsManager) CommitFileUploadSession(ctx context.Context, uploadSessionId string, digest string, body *schemas.CommitFileUploadSessionRequest, opts *ChunkedUploadsCommitFileUploadSessionOptions) (*schemas.Files, error) {
 	req := m.session.NewRequest("POST", m.session.BaseUrl("upload_session")+"/files"+"/upload_sessions"+"/"+url.PathEscape(uploadSessionId)+"/commit")
 	req = gantryruntime.WithHeader(req, "digest", digest)
 	if opts != nil {

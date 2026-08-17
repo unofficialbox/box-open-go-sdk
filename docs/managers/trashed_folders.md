@@ -12,14 +12,14 @@ Access via `client.NewClient().TrashedFolders`.
 | `folder_id` | path | `string` | yes |
 | `fields` | query | `[]string` | no |
 
-**Request body** (`application/json`): `FileCreateRequest`
+**Request body** (`application/json`): `CreateFileRequest`
 
 **Returns:** `TrashFolderRestored`
 
 **Example**
 
 ```go
-result, err := client.TrashedFolders.CreateFolder(context.Background(), "FOLDER_ID", &schemas.FileCreateRequest{}, nil)
+result, err := client.TrashedFolders.CreateFolder(context.Background(), "FOLDER_ID", &schemas.CreateFileRequest{}, nil)
 if err != nil {
 	log.Fatal(err)
 }

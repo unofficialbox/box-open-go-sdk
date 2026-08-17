@@ -36,7 +36,7 @@ func (m *EmailAliasesManager) ListUser(ctx context.Context, userId string) (*sch
 	return out, nil
 }
 
-func (m *EmailAliasesManager) CreateUser(ctx context.Context, userId string, body *schemas.UserIdCreateRequest) (*schemas.EmailAlias, error) {
+func (m *EmailAliasesManager) CreateUser(ctx context.Context, userId string, body *schemas.CreateUserIdRequest) (*schemas.EmailAlias, error) {
 	req := m.session.NewRequest("POST", m.session.BaseUrl("api")+"/users"+"/"+url.PathEscape(userId)+"/email_aliases")
 	payload, err := json.Marshal(body)
 	if err != nil {

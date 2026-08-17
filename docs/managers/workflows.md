@@ -37,14 +37,14 @@ Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor f
 |---|---|---|---|
 | `workflow_id` | path | `string` | yes |
 
-**Request body** (`application/json`): `WorkflowStartRequest`
+**Request body** (`application/json`): `StartWorkflowRequest`
 
 **Returns:** no content
 
 **Example**
 
 ```go
-if err := client.Workflows.Start(context.Background(), "WORKFLOW_ID", &schemas.WorkflowStartRequest{}); err != nil {
+if err := client.Workflows.Start(context.Background(), "WORKFLOW_ID", &schemas.StartWorkflowRequest{}); err != nil {
 	log.Fatal(err)
 }
 ```

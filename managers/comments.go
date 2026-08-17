@@ -119,7 +119,7 @@ type CommentsUpdateOptions struct {
 	Fields []string
 }
 
-func (m *CommentsManager) Update(ctx context.Context, commentId string, body *schemas.CommentUpdateRequest, opts *CommentsUpdateOptions) (*schemas.CommentFull, error) {
+func (m *CommentsManager) Update(ctx context.Context, commentId string, body *schemas.UpdateCommentRequest, opts *CommentsUpdateOptions) (*schemas.CommentFull, error) {
 	req := m.session.NewRequest("PUT", m.session.BaseUrl("api")+"/comments"+"/"+url.PathEscape(commentId))
 	if opts != nil {
 		if opts.Fields != nil {
@@ -161,7 +161,7 @@ type CommentsCreateOptions struct {
 	Fields []string
 }
 
-func (m *CommentsManager) Create(ctx context.Context, body *schemas.CommentCreateRequest, opts *CommentsCreateOptions) (*schemas.CommentFull, error) {
+func (m *CommentsManager) Create(ctx context.Context, body *schemas.CreateCommentRequest, opts *CommentsCreateOptions) (*schemas.CommentFull, error) {
 	req := m.session.NewRequest("POST", m.session.BaseUrl("api")+"/comments")
 	if opts != nil {
 		if opts.Fields != nil {

@@ -27,14 +27,14 @@ fmt.Println(result)
 
 `POST /task_assignments`
 
-**Request body** (`application/json`): `TaskAssignmentCreateRequest`
+**Request body** (`application/json`): `CreateTaskAssignmentRequest`
 
 **Returns:** `TaskAssignment`
 
 **Example**
 
 ```go
-result, err := client.TaskAssignments.Create(context.Background(), &schemas.TaskAssignmentCreateRequest{})
+result, err := client.TaskAssignments.Create(context.Background(), &schemas.CreateTaskAssignmentRequest{})
 if err != nil {
 	log.Fatal(err)
 }
@@ -69,14 +69,14 @@ fmt.Println(result)
 |---|---|---|---|
 | `task_assignment_id` | path | `string` | yes |
 
-**Request body** (`application/json`): `TaskAssignmentUpdateRequest`
+**Request body** (`application/json`): `UpdateTaskAssignmentRequest`
 
 **Returns:** `TaskAssignment`
 
 **Example**
 
 ```go
-result, err := client.TaskAssignments.Update(context.Background(), "TASK_ASSIGNMENT_ID", &schemas.TaskAssignmentUpdateRequest{})
+result, err := client.TaskAssignments.Update(context.Background(), "TASK_ASSIGNMENT_ID", &schemas.UpdateTaskAssignmentRequest{})
 if err != nil {
 	log.Fatal(err)
 }

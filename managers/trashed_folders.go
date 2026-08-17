@@ -25,7 +25,7 @@ type TrashedFoldersCreateFolderOptions struct {
 	Fields []string
 }
 
-func (m *TrashedFoldersManager) CreateFolder(ctx context.Context, folderId string, body *schemas.FileCreateRequest, opts *TrashedFoldersCreateFolderOptions) (*schemas.TrashFolderRestored, error) {
+func (m *TrashedFoldersManager) CreateFolder(ctx context.Context, folderId string, body *schemas.CreateFileRequest, opts *TrashedFoldersCreateFolderOptions) (*schemas.TrashFolderRestored, error) {
 	req := m.session.NewRequest("POST", m.session.BaseUrl("api")+"/folders"+"/"+url.PathEscape(folderId))
 	if opts != nil {
 		if opts.Fields != nil {

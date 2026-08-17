@@ -14,14 +14,14 @@ Access via `client.NewClient().Uploads`.
 | `fields` | query | `[]string` | no |
 | `content-md5` | header | `string` | no |
 
-**Request body** (`multipart/form-data`): `FileIdContentCreateRequest`
+**Request body** (`multipart/form-data`): `CreateFileIdContentRequest`
 
 **Returns:** `Files`
 
 **Example**
 
 ```go
-result, err := client.Uploads.UploadFileVersion(context.Background(), "FILE_ID", &schemas.FileIdContentCreateRequest{}, nil)
+result, err := client.Uploads.UploadFileVersion(context.Background(), "FILE_ID", &schemas.CreateFileIdContentRequest{}, nil)
 if err != nil {
 	log.Fatal(err)
 }
@@ -37,14 +37,14 @@ fmt.Println(result)
 | `fields` | query | `[]string` | no |
 | `content-md5` | header | `string` | no |
 
-**Request body** (`multipart/form-data`): `FileContentCreateRequest`
+**Request body** (`multipart/form-data`): `CreateFileContentRequest`
 
 **Returns:** `Files`
 
 **Example**
 
 ```go
-result, err := client.Uploads.UploadFile(context.Background(), &schemas.FileContentCreateRequest{}, nil)
+result, err := client.Uploads.UploadFile(context.Background(), &schemas.CreateFileContentRequest{}, nil)
 if err != nil {
 	log.Fatal(err)
 }

@@ -82,7 +82,7 @@ func (m *WebhooksManager) List(ctx context.Context, opts *WebhooksListOptions) i
 	}
 }
 
-func (m *WebhooksManager) Create(ctx context.Context, body *schemas.WebhookCreateRequest) (*schemas.Webhook, error) {
+func (m *WebhooksManager) Create(ctx context.Context, body *schemas.CreateWebhookRequest) (*schemas.Webhook, error) {
 	req := m.session.NewRequest("POST", m.session.BaseUrl("api")+"/webhooks")
 	payload, err := json.Marshal(body)
 	if err != nil {
@@ -121,7 +121,7 @@ func (m *WebhooksManager) Get(ctx context.Context, webhookId string) (*schemas.W
 	return out, nil
 }
 
-func (m *WebhooksManager) Update(ctx context.Context, webhookId string, body *schemas.WebhookUpdateRequest) (*schemas.Webhook, error) {
+func (m *WebhooksManager) Update(ctx context.Context, webhookId string, body *schemas.UpdateWebhookRequest) (*schemas.Webhook, error) {
 	req := m.session.NewRequest("PUT", m.session.BaseUrl("api")+"/webhooks"+"/"+url.PathEscape(webhookId))
 	payload, err := json.Marshal(body)
 	if err != nil {

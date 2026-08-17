@@ -31,14 +31,14 @@ fmt.Println(result)
 |---|---|---|---|
 | `file_id` | path | `string` | yes |
 
-**Request body** (`application/json-patch+json`): `[]SkillUpdateRequest`
+**Request body** (`application/json-patch+json`): `[]UpdateSkillRequest`
 
 **Returns:** `SkillCardsMetadata`
 
 **Example**
 
 ```go
-result, err := client.Skills.Update(context.Background(), "FILE_ID", []SkillUpdateRequest{})
+result, err := client.Skills.Update(context.Background(), "FILE_ID", []UpdateSkillRequest{})
 if err != nil {
 	log.Fatal(err)
 }
@@ -53,14 +53,14 @@ fmt.Println(result)
 |---|---|---|---|
 | `file_id` | path | `string` | yes |
 
-**Request body** (`application/json`): `SkillCreateRequest`
+**Request body** (`application/json`): `CreateSkillRequest`
 
 **Returns:** `SkillCardsMetadata`
 
 **Example**
 
 ```go
-result, err := client.Skills.Create(context.Background(), "FILE_ID", &schemas.SkillCreateRequest{})
+result, err := client.Skills.Create(context.Background(), "FILE_ID", &schemas.CreateSkillRequest{})
 if err != nil {
 	log.Fatal(err)
 }
@@ -93,14 +93,14 @@ if err := client.Skills.Delete(context.Background(), "FILE_ID"); err != nil {
 |---|---|---|---|
 | `skill_id` | path | `string` | yes |
 
-**Request body** (`application/json`): `SkillInvocationUpdateRequest`
+**Request body** (`application/json`): `UpdateSkillInvocationRequest`
 
 **Returns:** no content
 
 **Example**
 
 ```go
-if err := client.Skills.UpdateSkillInvocation(context.Background(), "SKILL_ID", &schemas.SkillInvocationUpdateRequest{}); err != nil {
+if err := client.Skills.UpdateSkillInvocation(context.Background(), "SKILL_ID", &schemas.UpdateSkillInvocationRequest{}); err != nil {
 	log.Fatal(err)
 }
 ```

@@ -3,7 +3,7 @@
 
 Access via `client.NewClient().CollaborationAllowlistEntries`.
 
-## ListCollaborationWhitelistEntries
+## List
 
 `GET /collaboration_whitelist_entries`
 
@@ -17,7 +17,7 @@ Access via `client.NewClient().CollaborationAllowlistEntries`.
 **Example**
 
 ```go
-for item, err := range client.CollaborationAllowlistEntries.ListCollaborationWhitelistEntries(context.Background(), nil) {
+for item, err := range client.CollaborationAllowlistEntries.List(context.Background(), nil) {
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -25,27 +25,27 @@ for item, err := range client.CollaborationAllowlistEntries.ListCollaborationWhi
 }
 ```
 
-Paginated — `ListCollaborationWhitelistEntries(...)` returns `iter.Seq2[*T, error]`, threading the cursor for you. See the [pagination guide](../pagination.md).
+Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor for you. See the [pagination guide](../pagination.md).
 
-## CreateCollaborationWhitelistEntries
+## Create
 
 `POST /collaboration_whitelist_entries`
 
-**Request body** (`application/json`): `CollaborationWhitelistEntriesCreateRequest`
+**Request body** (`application/json`): `CreateCollaborationAllowlistEntryRequest`
 
 **Returns:** `CollaborationAllowlistEntry`
 
 **Example**
 
 ```go
-result, err := client.CollaborationAllowlistEntries.CreateCollaborationWhitelistEntries(context.Background(), &schemas.CollaborationWhitelistEntriesCreateRequest{})
+result, err := client.CollaborationAllowlistEntries.Create(context.Background(), &schemas.CreateCollaborationAllowlistEntryRequest{})
 if err != nil {
 	log.Fatal(err)
 }
 fmt.Println(result)
 ```
 
-## GetCollaborationWhitelistEntry
+## Get
 
 `GET /collaboration_whitelist_entries/{collaboration_whitelist_entry_id}`
 
@@ -58,14 +58,14 @@ fmt.Println(result)
 **Example**
 
 ```go
-result, err := client.CollaborationAllowlistEntries.GetCollaborationWhitelistEntry(context.Background(), "COLLABORATION_WHITELIST_ENTRY_ID")
+result, err := client.CollaborationAllowlistEntries.Get(context.Background(), "COLLABORATION_WHITELIST_ENTRY_ID")
 if err != nil {
 	log.Fatal(err)
 }
 fmt.Println(result)
 ```
 
-## DeleteCollaborationWhitelistEntry
+## Delete
 
 `DELETE /collaboration_whitelist_entries/{collaboration_whitelist_entry_id}`
 
@@ -78,7 +78,7 @@ fmt.Println(result)
 **Example**
 
 ```go
-if err := client.CollaborationAllowlistEntries.DeleteCollaborationWhitelistEntry(context.Background(), "COLLABORATION_WHITELIST_ENTRY_ID"); err != nil {
+if err := client.CollaborationAllowlistEntries.Delete(context.Background(), "COLLABORATION_WHITELIST_ENTRY_ID"); err != nil {
 	log.Fatal(err)
 }
 ```

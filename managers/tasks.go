@@ -36,7 +36,7 @@ func (m *TasksManager) ListFile(ctx context.Context, fileId string) (*schemas.Ta
 	return out, nil
 }
 
-func (m *TasksManager) Create(ctx context.Context, body *schemas.TaskCreateRequest) (*schemas.Task, error) {
+func (m *TasksManager) Create(ctx context.Context, body *schemas.CreateTaskRequest) (*schemas.Task, error) {
 	req := m.session.NewRequest("POST", m.session.BaseUrl("api")+"/tasks")
 	payload, err := json.Marshal(body)
 	if err != nil {
@@ -75,7 +75,7 @@ func (m *TasksManager) Get(ctx context.Context, taskId string) (*schemas.Task, e
 	return out, nil
 }
 
-func (m *TasksManager) Update(ctx context.Context, taskId string, body *schemas.TaskUpdateRequest) (*schemas.Task, error) {
+func (m *TasksManager) Update(ctx context.Context, taskId string, body *schemas.UpdateTaskRequest) (*schemas.Task, error) {
 	req := m.session.NewRequest("PUT", m.session.BaseUrl("api")+"/tasks"+"/"+url.PathEscape(taskId))
 	payload, err := json.Marshal(body)
 	if err != nil {

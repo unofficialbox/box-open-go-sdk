@@ -51,7 +51,7 @@ type FileMetadataGetFileMetadataOptions struct {
 	View *string
 }
 
-func (m *FileMetadataManager) GetFileMetadata(ctx context.Context, fileId string, scope schemas.GetFileIdMetadataIdIdScope, templateKey string, opts *FileMetadataGetFileMetadataOptions) (*schemas.MetadataFull, error) {
+func (m *FileMetadataManager) GetFileMetadata(ctx context.Context, fileId string, scope schemas.GetFileIdMetadataIdScope, templateKey string, opts *FileMetadataGetFileMetadataOptions) (*schemas.MetadataFull, error) {
 	req := m.session.NewRequest("GET", m.session.BaseUrl("api")+"/files"+"/"+url.PathEscape(fileId)+"/metadata"+"/"+url.PathEscape(string(scope))+"/"+url.PathEscape(templateKey))
 	if opts != nil {
 		if opts.View != nil {
@@ -73,7 +73,7 @@ func (m *FileMetadataManager) GetFileMetadata(ctx context.Context, fileId string
 	return out, nil
 }
 
-func (m *FileMetadataManager) UpdateFileMetadata(ctx context.Context, fileId string, scope schemas.GetFileIdMetadataIdIdScope, templateKey string, body []schemas.FileMetadataUpdateRequest) (*schemas.MetadataFull, error) {
+func (m *FileMetadataManager) UpdateFileMetadata(ctx context.Context, fileId string, scope schemas.GetFileIdMetadataIdScope, templateKey string, body []schemas.UpdateFileMetadataRequest) (*schemas.MetadataFull, error) {
 	req := m.session.NewRequest("PUT", m.session.BaseUrl("api")+"/files"+"/"+url.PathEscape(fileId)+"/metadata"+"/"+url.PathEscape(string(scope))+"/"+url.PathEscape(templateKey))
 	payload, err := json.Marshal(body)
 	if err != nil {
@@ -95,7 +95,7 @@ func (m *FileMetadataManager) UpdateFileMetadata(ctx context.Context, fileId str
 	return out, nil
 }
 
-func (m *FileMetadataManager) CreateFileMetadata(ctx context.Context, fileId string, scope schemas.GetFileIdMetadataIdIdScope, templateKey string, body map[string]any) (*schemas.MetadataFull, error) {
+func (m *FileMetadataManager) CreateFileMetadata(ctx context.Context, fileId string, scope schemas.GetFileIdMetadataIdScope, templateKey string, body map[string]any) (*schemas.MetadataFull, error) {
 	req := m.session.NewRequest("POST", m.session.BaseUrl("api")+"/files"+"/"+url.PathEscape(fileId)+"/metadata"+"/"+url.PathEscape(string(scope))+"/"+url.PathEscape(templateKey))
 	payload, err := json.Marshal(body)
 	if err != nil {
@@ -117,7 +117,7 @@ func (m *FileMetadataManager) CreateFileMetadata(ctx context.Context, fileId str
 	return out, nil
 }
 
-func (m *FileMetadataManager) DeleteFileMetadata(ctx context.Context, fileId string, scope schemas.GetFileIdMetadataIdIdScope, templateKey string) error {
+func (m *FileMetadataManager) DeleteFileMetadata(ctx context.Context, fileId string, scope schemas.GetFileIdMetadataIdScope, templateKey string) error {
 	req := m.session.NewRequest("DELETE", m.session.BaseUrl("api")+"/files"+"/"+url.PathEscape(fileId)+"/metadata"+"/"+url.PathEscape(string(scope))+"/"+url.PathEscape(templateKey))
 	resp, err := m.session.Fetch(ctx, req)
 	if err != nil {

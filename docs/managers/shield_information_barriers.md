@@ -27,14 +27,14 @@ fmt.Println(result)
 
 `POST /shield_information_barriers/change_status`
 
-**Request body** (`application/json`): `ChangeStatusCreateRequest`
+**Request body** (`application/json`): `CreateChangeStatusRequest`
 
 **Returns:** `ShieldInformationBarrier`
 
 **Example**
 
 ```go
-result, err := client.ShieldInformationBarriers.CreateChangeStatus(context.Background(), &schemas.ChangeStatusCreateRequest{})
+result, err := client.ShieldInformationBarriers.CreateChangeStatus(context.Background(), &schemas.CreateChangeStatusRequest{})
 if err != nil {
 	log.Fatal(err)
 }
@@ -69,14 +69,14 @@ Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor f
 
 `POST /shield_information_barriers`
 
-**Request body** (`application/json`): `ShieldInformationBarrierCreateRequest`
+**Request body** (`application/json`): `CreateShieldInformationBarrierRequest`
 
 **Returns:** `ShieldInformationBarrier`
 
 **Example**
 
 ```go
-result, err := client.ShieldInformationBarriers.Create(context.Background(), &schemas.ShieldInformationBarrierCreateRequest{})
+result, err := client.ShieldInformationBarriers.Create(context.Background(), &schemas.CreateShieldInformationBarrierRequest{})
 if err != nil {
 	log.Fatal(err)
 }

@@ -99,7 +99,7 @@ func (m *RetentionPoliciesManager) List(ctx context.Context, opts *RetentionPoli
 	}
 }
 
-func (m *RetentionPoliciesManager) Create(ctx context.Context, body *schemas.RetentionPolicyCreateRequest) (*schemas.RetentionPolicy, error) {
+func (m *RetentionPoliciesManager) Create(ctx context.Context, body *schemas.CreateRetentionPolicyRequest) (*schemas.RetentionPolicy, error) {
 	req := m.session.NewRequest("POST", m.session.BaseUrl("api")+"/retention_policies")
 	payload, err := json.Marshal(body)
 	if err != nil {
@@ -148,7 +148,7 @@ func (m *RetentionPoliciesManager) Get(ctx context.Context, retentionPolicyId st
 	return out, nil
 }
 
-func (m *RetentionPoliciesManager) Update(ctx context.Context, retentionPolicyId string, body *schemas.RetentionPolicyUpdateRequest) (*schemas.RetentionPolicy, error) {
+func (m *RetentionPoliciesManager) Update(ctx context.Context, retentionPolicyId string, body *schemas.UpdateRetentionPolicyRequest) (*schemas.RetentionPolicy, error) {
 	req := m.session.NewRequest("PUT", m.session.BaseUrl("api")+"/retention_policies"+"/"+url.PathEscape(retentionPolicyId))
 	payload, err := json.Marshal(body)
 	if err != nil {

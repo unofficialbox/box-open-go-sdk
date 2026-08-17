@@ -27,7 +27,7 @@ type UploadsUploadFileVersionOptions struct {
 	ContentMd5 *string
 }
 
-func (m *UploadsManager) UploadFileVersion(ctx context.Context, fileId string, body *schemas.FileIdContentCreateRequest, opts *UploadsUploadFileVersionOptions) (*schemas.Files, error) {
+func (m *UploadsManager) UploadFileVersion(ctx context.Context, fileId string, body *schemas.CreateFileIdContentRequest, opts *UploadsUploadFileVersionOptions) (*schemas.Files, error) {
 	req := m.session.NewRequest("POST", m.session.BaseUrl("upload")+"/files"+"/"+url.PathEscape(fileId)+"/content")
 	if opts != nil {
 		if opts.IfMatch != nil {
@@ -66,7 +66,7 @@ type UploadsUploadFileOptions struct {
 	ContentMd5 *string
 }
 
-func (m *UploadsManager) UploadFile(ctx context.Context, body *schemas.FileContentCreateRequest, opts *UploadsUploadFileOptions) (*schemas.Files, error) {
+func (m *UploadsManager) UploadFile(ctx context.Context, body *schemas.CreateFileContentRequest, opts *UploadsUploadFileOptions) (*schemas.Files, error) {
 	req := m.session.NewRequest("POST", m.session.BaseUrl("upload")+"/files"+"/content")
 	if opts != nil {
 		if opts.Fields != nil {

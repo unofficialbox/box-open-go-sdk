@@ -13,14 +13,14 @@ Access via `client.NewClient().Transfer`.
 | `fields` | query | `[]string` | no |
 | `notify` | query | `bool` | no |
 
-**Request body** (`application/json`): `UserFolder0UpdateRequest`
+**Request body** (`application/json`): `TransferFoldersRequest`
 
 **Returns:** `FolderFull`
 
 **Example**
 
 ```go
-result, err := client.Transfer.TransferFolders(context.Background(), "USER_ID", &schemas.UserFolder0UpdateRequest{}, nil)
+result, err := client.Transfer.TransferFolders(context.Background(), "USER_ID", &schemas.TransferFoldersRequest{}, nil)
 if err != nil {
 	log.Fatal(err)
 }

@@ -31,14 +31,14 @@ fmt.Println(result)
 |---|---|---|---|
 | `shield_information_barrier_segment_id` | path | `string` | yes |
 
-**Request body** (`application/json`): `ShieldInformationBarrierSegmentUpdateRequest`
+**Request body** (`application/json`): `UpdateShieldInformationBarrierSegmentRequest`
 
 **Returns:** `ShieldInformationBarrierSegment`
 
 **Example**
 
 ```go
-result, err := client.ShieldInformationBarrierSegments.Update(context.Background(), "SHIELD_INFORMATION_BARRIER_SEGMENT_ID", &schemas.ShieldInformationBarrierSegmentUpdateRequest{})
+result, err := client.ShieldInformationBarrierSegments.Update(context.Background(), "SHIELD_INFORMATION_BARRIER_SEGMENT_ID", &schemas.UpdateShieldInformationBarrierSegmentRequest{})
 if err != nil {
 	log.Fatal(err)
 }
@@ -92,14 +92,14 @@ Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor f
 
 `POST /shield_information_barrier_segments`
 
-**Request body** (`application/json`): `ShieldInformationBarrierSegmentCreateRequest`
+**Request body** (`application/json`): `CreateShieldInformationBarrierSegmentRequest`
 
 **Returns:** `ShieldInformationBarrierSegment`
 
 **Example**
 
 ```go
-result, err := client.ShieldInformationBarrierSegments.Create(context.Background(), &schemas.ShieldInformationBarrierSegmentCreateRequest{})
+result, err := client.ShieldInformationBarrierSegments.Create(context.Background(), &schemas.CreateShieldInformationBarrierSegmentRequest{})
 if err != nil {
 	log.Fatal(err)
 }

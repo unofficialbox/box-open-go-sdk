@@ -33,14 +33,14 @@ Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor f
 
 `POST /metadata_cascade_policies`
 
-**Request body** (`application/json`): `MetadataCascadePolicyCreateRequest`
+**Request body** (`application/json`): `CreateMetadataCascadePolicyRequest`
 
 **Returns:** `MetadataCascadePolicy`
 
 **Example**
 
 ```go
-result, err := client.MetadataCascadePolicies.Create(context.Background(), &schemas.MetadataCascadePolicyCreateRequest{})
+result, err := client.MetadataCascadePolicies.Create(context.Background(), &schemas.CreateMetadataCascadePolicyRequest{})
 if err != nil {
 	log.Fatal(err)
 }
@@ -93,14 +93,14 @@ if err := client.MetadataCascadePolicies.Delete(context.Background(), "METADATA_
 |---|---|---|---|
 | `metadata_cascade_policy_id` | path | `string` | yes |
 
-**Request body** (`application/json`): `MetadataCascadePolicyApplyRequest`
+**Request body** (`application/json`): `ApplyMetadataCascadePolicyRequest`
 
 **Returns:** no content
 
 **Example**
 
 ```go
-if err := client.MetadataCascadePolicies.Apply(context.Background(), "METADATA_CASCADE_POLICY_ID", &schemas.MetadataCascadePolicyApplyRequest{}); err != nil {
+if err := client.MetadataCascadePolicies.Apply(context.Background(), "METADATA_CASCADE_POLICY_ID", &schemas.ApplyMetadataCascadePolicyRequest{}); err != nil {
 	log.Fatal(err)
 }
 ```

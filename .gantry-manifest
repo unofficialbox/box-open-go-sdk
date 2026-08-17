@@ -59,6 +59,7 @@ docs/managers/metadata_cascade_policies.md
 docs/managers/metadata_taxonomies.md
 docs/managers/metadata_templates.md
 docs/managers/notes.md
+docs/managers/query.md
 docs/managers/recent_items.md
 docs/managers/retention_policies.md
 docs/managers/retention_policy_assignments.md
@@ -148,6 +149,7 @@ managers/metadata_cascade_policies.go
 managers/metadata_taxonomies.go
 managers/metadata_templates.go
 managers/notes.go
+managers/query.go
 managers/recent_items.go
 managers/retention_policies.go
 managers/retention_policy_assignments.go

@@ -34,14 +34,14 @@ Paginated — `ListRetentionPolicyAssignments(...)` returns `iter.Seq2[*T, error
 
 `POST /retention_policy_assignments`
 
-**Request body** (`application/json`): `RetentionPolicyAssignmentCreateRequest`
+**Request body** (`application/json`): `CreateRetentionPolicyAssignmentRequest`
 
 **Returns:** `RetentionPolicyAssignment`
 
 **Example**
 
 ```go
-result, err := client.RetentionPolicyAssignments.Create(context.Background(), &schemas.RetentionPolicyAssignmentCreateRequest{})
+result, err := client.RetentionPolicyAssignments.Create(context.Background(), &schemas.CreateRetentionPolicyAssignmentRequest{})
 if err != nil {
 	log.Fatal(err)
 }

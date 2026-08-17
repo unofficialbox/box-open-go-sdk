@@ -36,7 +36,7 @@ func (m *FolderWatermarksManager) GetFolderWatermark(ctx context.Context, folder
 	return out, nil
 }
 
-func (m *FolderWatermarksManager) UpdateFolderWatermark(ctx context.Context, folderId string, body *schemas.FileWatermarkUpdateRequest) (*schemas.Watermark, error) {
+func (m *FolderWatermarksManager) UpdateFolderWatermark(ctx context.Context, folderId string, body *schemas.UpdateFileWatermarkRequest) (*schemas.Watermark, error) {
 	req := m.session.NewRequest("PUT", m.session.BaseUrl("api")+"/folders"+"/"+url.PathEscape(folderId)+"/watermark")
 	payload, err := json.Marshal(body)
 	if err != nil {

@@ -22,7 +22,7 @@ func NewMetadataTaxonomiesManager(session *gantryruntime.Client) *MetadataTaxono
 	return &MetadataTaxonomiesManager{session: session}
 }
 
-func (m *MetadataTaxonomiesManager) Create(ctx context.Context, body *schemas.MetadataTaxonomyCreateRequest) (*schemas.MetadataTaxonomy, error) {
+func (m *MetadataTaxonomiesManager) Create(ctx context.Context, body *schemas.CreateMetadataTaxonomyRequest) (*schemas.MetadataTaxonomy, error) {
 	req := m.session.NewRequest("POST", m.session.BaseUrl("api")+"/metadata_taxonomies")
 	payload, err := json.Marshal(body)
 	if err != nil {
@@ -132,7 +132,7 @@ func (m *MetadataTaxonomiesManager) Delete(ctx context.Context, namespace string
 	return nil
 }
 
-func (m *MetadataTaxonomiesManager) Update(ctx context.Context, namespace string, taxonomyKey string, body *schemas.MetadataTaxonomyUpdateRequest) (*schemas.MetadataTaxonomy, error) {
+func (m *MetadataTaxonomiesManager) Update(ctx context.Context, namespace string, taxonomyKey string, body *schemas.UpdateMetadataTaxonomyRequest) (*schemas.MetadataTaxonomy, error) {
 	req := m.session.NewRequest("PATCH", m.session.BaseUrl("api")+"/metadata_taxonomies"+"/"+url.PathEscape(namespace)+"/"+url.PathEscape(taxonomyKey))
 	payload, err := json.Marshal(body)
 	if err != nil {
@@ -176,7 +176,7 @@ func (m *MetadataTaxonomiesManager) CreateLevels(ctx context.Context, namespace 
 	return out, nil
 }
 
-func (m *MetadataTaxonomiesManager) UpdateLevel(ctx context.Context, namespace string, taxonomyKey string, levelIndex int64, body *schemas.LevelUpdateRequest) (*schemas.MetadataTaxonomyLevel, error) {
+func (m *MetadataTaxonomiesManager) UpdateLevel(ctx context.Context, namespace string, taxonomyKey string, levelIndex int64, body *schemas.UpdateLevelRequest) (*schemas.MetadataTaxonomyLevel, error) {
 	req := m.session.NewRequest("PATCH", m.session.BaseUrl("api")+"/metadata_taxonomies"+"/"+url.PathEscape(namespace)+"/"+url.PathEscape(taxonomyKey)+"/levels"+"/"+url.PathEscape(strconv.FormatInt(levelIndex, 10)))
 	payload, err := json.Marshal(body)
 	if err != nil {
@@ -198,7 +198,7 @@ func (m *MetadataTaxonomiesManager) UpdateLevel(ctx context.Context, namespace s
 	return out, nil
 }
 
-func (m *MetadataTaxonomiesManager) AppendLevels(ctx context.Context, namespace string, taxonomyKey string, body *schemas.LevelUpdateRequest) (*schemas.MetadataTaxonomyLevels, error) {
+func (m *MetadataTaxonomiesManager) AppendLevels(ctx context.Context, namespace string, taxonomyKey string, body *schemas.UpdateLevelRequest) (*schemas.MetadataTaxonomyLevels, error) {
 	req := m.session.NewRequest("POST", m.session.BaseUrl("api")+"/metadata_taxonomies"+"/"+url.PathEscape(namespace)+"/"+url.PathEscape(taxonomyKey)+"/levels:append")
 	payload, err := json.Marshal(body)
 	if err != nil {
@@ -318,7 +318,7 @@ func (m *MetadataTaxonomiesManager) ListNodes(ctx context.Context, namespace str
 	}
 }
 
-func (m *MetadataTaxonomiesManager) CreateNodes(ctx context.Context, namespace string, taxonomyKey string, body *schemas.NodesCreateRequest) (*schemas.MetadataTaxonomyNode, error) {
+func (m *MetadataTaxonomiesManager) CreateNodes(ctx context.Context, namespace string, taxonomyKey string, body *schemas.CreateNodesRequest) (*schemas.MetadataTaxonomyNode, error) {
 	req := m.session.NewRequest("POST", m.session.BaseUrl("api")+"/metadata_taxonomies"+"/"+url.PathEscape(namespace)+"/"+url.PathEscape(taxonomyKey)+"/nodes")
 	payload, err := json.Marshal(body)
 	if err != nil {
@@ -367,7 +367,7 @@ func (m *MetadataTaxonomiesManager) DeleteNode(ctx context.Context, namespace st
 	return nil
 }
 
-func (m *MetadataTaxonomiesManager) UpdateNode(ctx context.Context, namespace string, taxonomyKey string, nodeId string, body *schemas.NodeUpdateRequest) (*schemas.MetadataTaxonomyNode, error) {
+func (m *MetadataTaxonomiesManager) UpdateNode(ctx context.Context, namespace string, taxonomyKey string, nodeId string, body *schemas.UpdateNodeRequest) (*schemas.MetadataTaxonomyNode, error) {
 	req := m.session.NewRequest("PATCH", m.session.BaseUrl("api")+"/metadata_taxonomies"+"/"+url.PathEscape(namespace)+"/"+url.PathEscape(taxonomyKey)+"/nodes"+"/"+url.PathEscape(nodeId))
 	payload, err := json.Marshal(body)
 	if err != nil {

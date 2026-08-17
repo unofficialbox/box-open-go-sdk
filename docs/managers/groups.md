@@ -37,14 +37,14 @@ Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor f
 |---|---|---|---|
 | `fields` | query | `[]string` | no |
 
-**Request body** (`application/json`): `GroupCreateRequest`
+**Request body** (`application/json`): `CreateGroupRequest`
 
 **Returns:** `GroupFull`
 
 **Example**
 
 ```go
-result, err := client.Groups.Create(context.Background(), &schemas.GroupCreateRequest{}, nil)
+result, err := client.Groups.Create(context.Background(), &schemas.CreateGroupRequest{}, nil)
 if err != nil {
 	log.Fatal(err)
 }
@@ -81,14 +81,14 @@ fmt.Println(result)
 | `group_id` | path | `string` | yes |
 | `fields` | query | `[]string` | no |
 
-**Request body** (`application/json`): `GroupUpdateRequest`
+**Request body** (`application/json`): `UpdateGroupRequest`
 
 **Returns:** `GroupFull`
 
 **Example**
 
 ```go
-result, err := client.Groups.Update(context.Background(), "GROUP_ID", &schemas.GroupUpdateRequest{}, nil)
+result, err := client.Groups.Update(context.Background(), "GROUP_ID", &schemas.UpdateGroupRequest{}, nil)
 if err != nil {
 	log.Fatal(err)
 }

@@ -91,7 +91,7 @@ func (m *LegalHoldPoliciesManager) List(ctx context.Context, opts *LegalHoldPoli
 	}
 }
 
-func (m *LegalHoldPoliciesManager) Create(ctx context.Context, body *schemas.LegalHoldPolicyCreateRequest) (*schemas.LegalHoldPolicy, error) {
+func (m *LegalHoldPoliciesManager) Create(ctx context.Context, body *schemas.CreateLegalHoldPolicyRequest) (*schemas.LegalHoldPolicy, error) {
 	req := m.session.NewRequest("POST", m.session.BaseUrl("api")+"/legal_hold_policies")
 	payload, err := json.Marshal(body)
 	if err != nil {
@@ -130,7 +130,7 @@ func (m *LegalHoldPoliciesManager) Get(ctx context.Context, legalHoldPolicyId st
 	return out, nil
 }
 
-func (m *LegalHoldPoliciesManager) Update(ctx context.Context, legalHoldPolicyId string, body *schemas.LegalHoldPolicyUpdateRequest) (*schemas.LegalHoldPolicy, error) {
+func (m *LegalHoldPoliciesManager) Update(ctx context.Context, legalHoldPolicyId string, body *schemas.UpdateLegalHoldPolicyRequest) (*schemas.LegalHoldPolicy, error) {
 	req := m.session.NewRequest("PUT", m.session.BaseUrl("api")+"/legal_hold_policies"+"/"+url.PathEscape(legalHoldPolicyId))
 	payload, err := json.Marshal(body)
 	if err != nil {

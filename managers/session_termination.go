@@ -18,7 +18,7 @@ func NewSessionTerminationManager(session *gantryruntime.Client) *SessionTermina
 	return &SessionTerminationManager{session: session}
 }
 
-func (m *SessionTerminationManager) CreateUserTerminateSessions(ctx context.Context, body *schemas.UserTerminateSessionsCreateRequest) (*schemas.SessionTerminationMessage, error) {
+func (m *SessionTerminationManager) CreateUserTerminateSessions(ctx context.Context, body *schemas.CreateUserTerminateSessionsRequest) (*schemas.SessionTerminationMessage, error) {
 	req := m.session.NewRequest("POST", m.session.BaseUrl("api")+"/users"+"/terminate_sessions")
 	payload, err := json.Marshal(body)
 	if err != nil {
@@ -40,7 +40,7 @@ func (m *SessionTerminationManager) CreateUserTerminateSessions(ctx context.Cont
 	return out, nil
 }
 
-func (m *SessionTerminationManager) CreateGroupTerminateSessions(ctx context.Context, body *schemas.GroupTerminateSessionsCreateRequest) (*schemas.SessionTerminationMessage, error) {
+func (m *SessionTerminationManager) CreateGroupTerminateSessions(ctx context.Context, body *schemas.CreateGroupTerminateSessionsRequest) (*schemas.SessionTerminationMessage, error) {
 	req := m.session.NewRequest("POST", m.session.BaseUrl("api")+"/groups"+"/terminate_sessions")
 	payload, err := json.Marshal(body)
 	if err != nil {

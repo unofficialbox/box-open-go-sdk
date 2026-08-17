@@ -40,14 +40,14 @@ fmt.Println(result)
 | `fields` | query | `[]string` | no |
 | `if-match` | header | `string` | no |
 
-**Request body** (`application/json`): `FolderUpdateRequest`
+**Request body** (`application/json`): `UpdateFolderRequest`
 
 **Returns:** `FolderFull`
 
 **Example**
 
 ```go
-result, err := client.Folders.Update(context.Background(), "FOLDER_ID", &schemas.FolderUpdateRequest{}, nil)
+result, err := client.Folders.Update(context.Background(), "FOLDER_ID", &schemas.UpdateFolderRequest{}, nil)
 if err != nil {
 	log.Fatal(err)
 }
@@ -113,14 +113,14 @@ Paginated — `ListItems(...)` returns `iter.Seq2[*T, error]`, threading the cur
 |---|---|---|---|
 | `fields` | query | `[]string` | no |
 
-**Request body** (`application/json`): `FolderCreateRequest`
+**Request body** (`application/json`): `CreateFolderRequest`
 
 **Returns:** `FolderFull`
 
 **Example**
 
 ```go
-result, err := client.Folders.Create(context.Background(), &schemas.FolderCreateRequest{}, nil)
+result, err := client.Folders.Create(context.Background(), &schemas.CreateFolderRequest{}, nil)
 if err != nil {
 	log.Fatal(err)
 }
@@ -136,14 +136,14 @@ fmt.Println(result)
 | `folder_id` | path | `string` | yes |
 | `fields` | query | `[]string` | no |
 
-**Request body** (`application/json`): `FolderCopyRequest`
+**Request body** (`application/json`): `CopyFolderRequest`
 
 **Returns:** `FolderFull`
 
 **Example**
 
 ```go
-result, err := client.Folders.Copy(context.Background(), "FOLDER_ID", &schemas.FolderCopyRequest{}, nil)
+result, err := client.Folders.Copy(context.Background(), "FOLDER_ID", &schemas.CopyFolderRequest{}, nil)
 if err != nil {
 	log.Fatal(err)
 }

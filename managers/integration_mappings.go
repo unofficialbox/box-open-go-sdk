@@ -124,7 +124,7 @@ func (m *IntegrationMappingsManager) CreateSlack(ctx context.Context, body *sche
 	return out, nil
 }
 
-func (m *IntegrationMappingsManager) UpdateSlack(ctx context.Context, integrationMappingId string, body *schemas.SlackUpdateRequest) (*schemas.IntegrationMapping, error) {
+func (m *IntegrationMappingsManager) UpdateSlack(ctx context.Context, integrationMappingId string, body *schemas.UpdateSlackRequest) (*schemas.IntegrationMapping, error) {
 	req := m.session.NewRequest("PUT", m.session.BaseUrl("api")+"/integration_mappings"+"/slack"+"/"+url.PathEscape(integrationMappingId))
 	payload, err := json.Marshal(body)
 	if err != nil {
@@ -217,7 +217,7 @@ func (m *IntegrationMappingsManager) CreateTeams(ctx context.Context, body *sche
 	return out, nil
 }
 
-func (m *IntegrationMappingsManager) UpdateTeam(ctx context.Context, integrationMappingId string, body *schemas.TeamUpdateRequest) (*schemas.IntegrationMappingTeams, error) {
+func (m *IntegrationMappingsManager) UpdateTeam(ctx context.Context, integrationMappingId string, body *schemas.UpdateTeamRequest) (*schemas.IntegrationMappingTeams, error) {
 	req := m.session.NewRequest("PUT", m.session.BaseUrl("api")+"/integration_mappings"+"/teams"+"/"+url.PathEscape(integrationMappingId))
 	payload, err := json.Marshal(body)
 	if err != nil {

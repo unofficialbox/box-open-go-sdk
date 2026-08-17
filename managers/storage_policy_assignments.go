@@ -79,7 +79,7 @@ func (m *StoragePolicyAssignmentsManager) List(ctx context.Context, resolvedForT
 	}
 }
 
-func (m *StoragePolicyAssignmentsManager) Create(ctx context.Context, body *schemas.StoragePolicyAssignmentCreateRequest) (*schemas.StoragePolicyAssignment, error) {
+func (m *StoragePolicyAssignmentsManager) Create(ctx context.Context, body *schemas.CreateStoragePolicyAssignmentRequest) (*schemas.StoragePolicyAssignment, error) {
 	req := m.session.NewRequest("POST", m.session.BaseUrl("api")+"/storage_policy_assignments")
 	payload, err := json.Marshal(body)
 	if err != nil {
@@ -118,7 +118,7 @@ func (m *StoragePolicyAssignmentsManager) Get(ctx context.Context, storagePolicy
 	return out, nil
 }
 
-func (m *StoragePolicyAssignmentsManager) Update(ctx context.Context, storagePolicyAssignmentId string, body *schemas.StoragePolicyAssignmentUpdateRequest) (*schemas.StoragePolicyAssignment, error) {
+func (m *StoragePolicyAssignmentsManager) Update(ctx context.Context, storagePolicyAssignmentId string, body *schemas.UpdateStoragePolicyAssignmentRequest) (*schemas.StoragePolicyAssignment, error) {
 	req := m.session.NewRequest("PUT", m.session.BaseUrl("api")+"/storage_policy_assignments"+"/"+url.PathEscape(storagePolicyAssignmentId))
 	payload, err := json.Marshal(body)
 	if err != nil {

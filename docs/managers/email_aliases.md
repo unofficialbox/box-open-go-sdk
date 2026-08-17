@@ -31,14 +31,14 @@ fmt.Println(result)
 |---|---|---|---|
 | `user_id` | path | `string` | yes |
 
-**Request body** (`application/json`): `UserIdCreateRequest`
+**Request body** (`application/json`): `CreateUserIdRequest`
 
 **Returns:** `EmailAlias`
 
 **Example**
 
 ```go
-result, err := client.EmailAliases.CreateUser(context.Background(), "USER_ID", &schemas.UserIdCreateRequest{})
+result, err := client.EmailAliases.CreateUser(context.Background(), "USER_ID", &schemas.CreateUserIdRequest{})
 if err != nil {
 	log.Fatal(err)
 }

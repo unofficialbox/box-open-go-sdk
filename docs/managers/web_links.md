@@ -7,14 +7,14 @@ Access via `client.NewClient().WebLinks`.
 
 `POST /web_links`
 
-**Request body** (`application/json`): `WebLinkCreateRequest`
+**Request body** (`application/json`): `CreateWebLinkRequest`
 
 **Returns:** `WebLink`
 
 **Example**
 
 ```go
-result, err := client.WebLinks.Create(context.Background(), &schemas.WebLinkCreateRequest{})
+result, err := client.WebLinks.Create(context.Background(), &schemas.CreateWebLinkRequest{})
 if err != nil {
 	log.Fatal(err)
 }
@@ -50,14 +50,14 @@ fmt.Println(result)
 |---|---|---|---|
 | `web_link_id` | path | `string` | yes |
 
-**Request body** (`application/json`): `WebLinkUpdateRequest`
+**Request body** (`application/json`): `UpdateWebLinkRequest`
 
 **Returns:** `WebLink`
 
 **Example**
 
 ```go
-result, err := client.WebLinks.Update(context.Background(), "WEB_LINK_ID", &schemas.WebLinkUpdateRequest{})
+result, err := client.WebLinks.Update(context.Background(), "WEB_LINK_ID", &schemas.UpdateWebLinkRequest{})
 if err != nil {
 	log.Fatal(err)
 }

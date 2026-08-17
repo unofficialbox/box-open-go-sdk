@@ -36,7 +36,7 @@ func (m *FileWatermarksManager) GetFileWatermark(ctx context.Context, fileId str
 	return out, nil
 }
 
-func (m *FileWatermarksManager) UpdateFileWatermark(ctx context.Context, fileId string, body *schemas.FileWatermarkUpdateRequest) (*schemas.Watermark, error) {
+func (m *FileWatermarksManager) UpdateFileWatermark(ctx context.Context, fileId string, body *schemas.UpdateFileWatermarkRequest) (*schemas.Watermark, error) {
 	req := m.session.NewRequest("PUT", m.session.BaseUrl("api")+"/files"+"/"+url.PathEscape(fileId)+"/watermark")
 	payload, err := json.Marshal(body)
 	if err != nil {

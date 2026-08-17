@@ -32,14 +32,14 @@ Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor f
 
 `POST /storage_policy_assignments`
 
-**Request body** (`application/json`): `StoragePolicyAssignmentCreateRequest`
+**Request body** (`application/json`): `CreateStoragePolicyAssignmentRequest`
 
 **Returns:** `StoragePolicyAssignment`
 
 **Example**
 
 ```go
-result, err := client.StoragePolicyAssignments.Create(context.Background(), &schemas.StoragePolicyAssignmentCreateRequest{})
+result, err := client.StoragePolicyAssignments.Create(context.Background(), &schemas.CreateStoragePolicyAssignmentRequest{})
 if err != nil {
 	log.Fatal(err)
 }
@@ -74,14 +74,14 @@ fmt.Println(result)
 |---|---|---|---|
 | `storage_policy_assignment_id` | path | `string` | yes |
 
-**Request body** (`application/json`): `StoragePolicyAssignmentUpdateRequest`
+**Request body** (`application/json`): `UpdateStoragePolicyAssignmentRequest`
 
 **Returns:** `StoragePolicyAssignment`
 
 **Example**
 
 ```go
-result, err := client.StoragePolicyAssignments.Update(context.Background(), "STORAGE_POLICY_ASSIGNMENT_ID", &schemas.StoragePolicyAssignmentUpdateRequest{})
+result, err := client.StoragePolicyAssignments.Update(context.Background(), "STORAGE_POLICY_ASSIGNMENT_ID", &schemas.UpdateStoragePolicyAssignmentRequest{})
 if err != nil {
 	log.Fatal(err)
 }

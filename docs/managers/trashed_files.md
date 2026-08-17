@@ -12,14 +12,14 @@ Access via `client.NewClient().TrashedFiles`.
 | `file_id` | path | `string` | yes |
 | `fields` | query | `[]string` | no |
 
-**Request body** (`application/json`): `FileCreateRequest`
+**Request body** (`application/json`): `CreateFileRequest`
 
 **Returns:** `TrashFileRestored`
 
 **Example**
 
 ```go
-result, err := client.TrashedFiles.CreateFile(context.Background(), "FILE_ID", &schemas.FileCreateRequest{}, nil)
+result, err := client.TrashedFiles.CreateFile(context.Background(), "FILE_ID", &schemas.CreateFileRequest{}, nil)
 if err != nil {
 	log.Fatal(err)
 }

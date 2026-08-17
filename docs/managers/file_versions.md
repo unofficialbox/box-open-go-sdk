@@ -60,14 +60,14 @@ fmt.Println(result)
 | `file_id` | path | `string` | yes |
 | `file_version_id` | path | `string` | yes |
 
-**Request body** (`application/json`): `FileVersionUpdateRequest`
+**Request body** (`application/json`): `UpdateFileVersionRequest`
 
 **Returns:** `FileVersionFull`
 
 **Example**
 
 ```go
-result, err := client.FileVersions.UpdateFileVersion(context.Background(), "FILE_ID", "FILE_VERSION_ID", &schemas.FileVersionUpdateRequest{})
+result, err := client.FileVersions.UpdateFileVersion(context.Background(), "FILE_ID", "FILE_VERSION_ID", &schemas.UpdateFileVersionRequest{})
 if err != nil {
 	log.Fatal(err)
 }
@@ -103,14 +103,14 @@ if err := client.FileVersions.DeleteFileVersion(context.Background(), "FILE_ID",
 | `file_id` | path | `string` | yes |
 | `fields` | query | `[]string` | no |
 
-**Request body** (`application/json`): `FileVersionCurrentCreateRequest`
+**Request body** (`application/json`): `CreateFileVersionCurrentRequest`
 
 **Returns:** `FileVersionFull`
 
 **Example**
 
 ```go
-result, err := client.FileVersions.CreateFileVersionCurrent(context.Background(), "FILE_ID", &schemas.FileVersionCurrentCreateRequest{}, nil)
+result, err := client.FileVersions.CreateFileVersionCurrent(context.Background(), "FILE_ID", &schemas.CreateFileVersionCurrentRequest{}, nil)
 if err != nil {
 	log.Fatal(err)
 }

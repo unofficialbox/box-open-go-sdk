@@ -35,14 +35,14 @@ Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor f
 
 `POST /legal_hold_policy_assignments`
 
-**Request body** (`application/json`): `LegalHoldPolicyAssignmentCreateRequest`
+**Request body** (`application/json`): `CreateLegalHoldPolicyAssignmentRequest`
 
 **Returns:** `LegalHoldPolicyAssignment`
 
 **Example**
 
 ```go
-result, err := client.LegalHoldPolicyAssignments.Create(context.Background(), &schemas.LegalHoldPolicyAssignmentCreateRequest{})
+result, err := client.LegalHoldPolicyAssignments.Create(context.Background(), &schemas.CreateLegalHoldPolicyAssignmentRequest{})
 if err != nil {
 	log.Fatal(err)
 }

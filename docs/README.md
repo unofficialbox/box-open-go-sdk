@@ -63,6 +63,7 @@ One resource manager per Box API tag, reached through the single
 | [MetadataTaxonomies](managers/metadata_taxonomies.md) | 15 |
 | [MetadataTemplates](managers/metadata_templates.md) | 8 |
 | [Notes](managers/notes.md) | 1 |
+| [Query](managers/query.md) | 2 |
 | [RecentItems](managers/recent_items.md) | 1 |
 | [RetentionPolicies](managers/retention_policies.md) | 5 |
 | [RetentionPolicyAssignments](managers/retention_policy_assignments.md) | 6 |

@@ -32,14 +32,14 @@ fmt.Println(result)
 |---|---|---|---|
 | `collaboration_id` | path | `string` | yes |
 
-**Request body** (`application/json`): `CollaborationUpdateRequest`
+**Request body** (`application/json`): `UpdateCollaborationRequest`
 
 **Returns:** `Collaboration`
 
 **Example**
 
 ```go
-result, err := client.UserCollaborations.UpdateCollaboration(context.Background(), "COLLABORATION_ID", &schemas.CollaborationUpdateRequest{})
+result, err := client.UserCollaborations.UpdateCollaboration(context.Background(), "COLLABORATION_ID", &schemas.UpdateCollaborationRequest{})
 if err != nil {
 	log.Fatal(err)
 }
@@ -73,14 +73,14 @@ if err := client.UserCollaborations.DeleteCollaboration(context.Background(), "C
 | `fields` | query | `[]string` | no |
 | `notify` | query | `bool` | no |
 
-**Request body** (`application/json`): `CollaborationsCreateRequest`
+**Request body** (`application/json`): `CreateCollaborationsRequest`
 
 **Returns:** `Collaboration`
 
 **Example**
 
 ```go
-result, err := client.UserCollaborations.CreateCollaborations(context.Background(), &schemas.CollaborationsCreateRequest{}, nil)
+result, err := client.UserCollaborations.CreateCollaborations(context.Background(), &schemas.CreateCollaborationsRequest{}, nil)
 if err != nil {
 	log.Fatal(err)
 }

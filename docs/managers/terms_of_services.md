@@ -27,14 +27,14 @@ fmt.Println(result)
 
 `POST /terms_of_services`
 
-**Request body** (`application/json`): `TermsOfServiceCreateRequest`
+**Request body** (`application/json`): `CreateTermsOfServiceRequest`
 
 **Returns:** `TermsOfService`
 
 **Example**
 
 ```go
-result, err := client.TermsOfServices.Create(context.Background(), &schemas.TermsOfServiceCreateRequest{})
+result, err := client.TermsOfServices.Create(context.Background(), &schemas.CreateTermsOfServiceRequest{})
 if err != nil {
 	log.Fatal(err)
 }
@@ -69,14 +69,14 @@ fmt.Println(result)
 |---|---|---|---|
 | `terms_of_service_id` | path | `string` | yes |
 
-**Request body** (`application/json`): `TermsOfServiceUpdateRequest`
+**Request body** (`application/json`): `UpdateTermsOfServiceRequest`
 
 **Returns:** `TermsOfService`
 
 **Example**
 
 ```go
-result, err := client.TermsOfServices.Update(context.Background(), "TERMS_OF_SERVICE_ID", &schemas.TermsOfServiceUpdateRequest{})
+result, err := client.TermsOfServices.Update(context.Background(), "TERMS_OF_SERVICE_ID", &schemas.UpdateTermsOfServiceRequest{})
 if err != nil {
 	log.Fatal(err)
 }

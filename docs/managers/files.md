@@ -37,14 +37,14 @@ fmt.Println(result)
 | `fields` | query | `[]string` | no |
 | `if-match` | header | `string` | no |
 
-**Request body** (`application/json`): `FileUpdateRequest`
+**Request body** (`application/json`): `UpdateFileRequest`
 
 **Returns:** `FileFull`
 
 **Example**
 
 ```go
-result, err := client.Files.Update(context.Background(), "FILE_ID", &schemas.FileUpdateRequest{}, nil)
+result, err := client.Files.Update(context.Background(), "FILE_ID", &schemas.UpdateFileRequest{}, nil)
 if err != nil {
 	log.Fatal(err)
 }
@@ -79,14 +79,14 @@ if err := client.Files.Delete(context.Background(), "FILE_ID", nil); err != nil 
 | `file_id` | path | `string` | yes |
 | `fields` | query | `[]string` | no |
 
-**Request body** (`application/json`): `FileCopyRequest`
+**Request body** (`application/json`): `CopyFileRequest`
 
 **Returns:** `FileFull`
 
 **Example**
 
 ```go
-result, err := client.Files.Copy(context.Background(), "FILE_ID", &schemas.FileCopyRequest{}, nil)
+result, err := client.Files.Copy(context.Background(), "FILE_ID", &schemas.CopyFileRequest{}, nil)
 if err != nil {
 	log.Fatal(err)
 }

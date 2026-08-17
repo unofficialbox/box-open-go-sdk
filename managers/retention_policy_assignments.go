@@ -91,7 +91,7 @@ func (m *RetentionPolicyAssignmentsManager) ListRetentionPolicyAssignments(ctx c
 	}
 }
 
-func (m *RetentionPolicyAssignmentsManager) Create(ctx context.Context, body *schemas.RetentionPolicyAssignmentCreateRequest) (*schemas.RetentionPolicyAssignment, error) {
+func (m *RetentionPolicyAssignmentsManager) Create(ctx context.Context, body *schemas.CreateRetentionPolicyAssignmentRequest) (*schemas.RetentionPolicyAssignment, error) {
 	req := m.session.NewRequest("POST", m.session.BaseUrl("api")+"/retention_policy_assignments")
 	payload, err := json.Marshal(body)
 	if err != nil {

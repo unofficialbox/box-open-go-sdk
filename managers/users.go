@@ -112,7 +112,7 @@ type UsersCreateOptions struct {
 	Fields []string
 }
 
-func (m *UsersManager) Create(ctx context.Context, body *schemas.UserCreateRequest, opts *UsersCreateOptions) (*schemas.UserFull, error) {
+func (m *UsersManager) Create(ctx context.Context, body *schemas.CreateUserRequest, opts *UsersCreateOptions) (*schemas.UserFull, error) {
 	req := m.session.NewRequest("POST", m.session.BaseUrl("api")+"/users")
 	if opts != nil {
 		if opts.Fields != nil {
@@ -198,7 +198,7 @@ type UsersUpdateOptions struct {
 	Fields []string
 }
 
-func (m *UsersManager) Update(ctx context.Context, userId string, body *schemas.UserUpdateRequest, opts *UsersUpdateOptions) (*schemas.UserFull, error) {
+func (m *UsersManager) Update(ctx context.Context, userId string, body *schemas.UpdateUserRequest, opts *UsersUpdateOptions) (*schemas.UserFull, error) {
 	req := m.session.NewRequest("PUT", m.session.BaseUrl("api")+"/users"+"/"+url.PathEscape(userId))
 	if opts != nil {
 		if opts.Fields != nil {

@@ -3,7 +3,7 @@
 
 Access via `client.NewClient().CollaborationAllowlistExemptTargets`.
 
-## ListCollaborationWhitelistExemptTargets
+## List
 
 `GET /collaboration_whitelist_exempt_targets`
 
@@ -17,7 +17,7 @@ Access via `client.NewClient().CollaborationAllowlistExemptTargets`.
 **Example**
 
 ```go
-for item, err := range client.CollaborationAllowlistExemptTargets.ListCollaborationWhitelistExemptTargets(context.Background(), nil) {
+for item, err := range client.CollaborationAllowlistExemptTargets.List(context.Background(), nil) {
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -25,27 +25,27 @@ for item, err := range client.CollaborationAllowlistExemptTargets.ListCollaborat
 }
 ```
 
-Paginated — `ListCollaborationWhitelistExemptTargets(...)` returns `iter.Seq2[*T, error]`, threading the cursor for you. See the [pagination guide](../pagination.md).
+Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor for you. See the [pagination guide](../pagination.md).
 
-## CreateCollaborationWhitelistExemptTargets
+## Create
 
 `POST /collaboration_whitelist_exempt_targets`
 
-**Request body** (`application/json`): `CollaborationWhitelistExemptTargetsCreateRequest`
+**Request body** (`application/json`): `CreateCollaborationAllowlistExemptTargetRequest`
 
 **Returns:** `CollaborationAllowlistExemptTarget`
 
 **Example**
 
 ```go
-result, err := client.CollaborationAllowlistExemptTargets.CreateCollaborationWhitelistExemptTargets(context.Background(), &schemas.CollaborationWhitelistExemptTargetsCreateRequest{})
+result, err := client.CollaborationAllowlistExemptTargets.Create(context.Background(), &schemas.CreateCollaborationAllowlistExemptTargetRequest{})
 if err != nil {
 	log.Fatal(err)
 }
 fmt.Println(result)
 ```
 
-## GetCollaborationWhitelistExemptTarget
+## Get
 
 `GET /collaboration_whitelist_exempt_targets/{collaboration_whitelist_exempt_target_id}`
 
@@ -58,14 +58,14 @@ fmt.Println(result)
 **Example**
 
 ```go
-result, err := client.CollaborationAllowlistExemptTargets.GetCollaborationWhitelistExemptTarget(context.Background(), "COLLABORATION_WHITELIST_EXEMPT_TARGET_ID")
+result, err := client.CollaborationAllowlistExemptTargets.Get(context.Background(), "COLLABORATION_WHITELIST_EXEMPT_TARGET_ID")
 if err != nil {
 	log.Fatal(err)
 }
 fmt.Println(result)
 ```
 
-## DeleteCollaborationWhitelistExemptTarget
+## Delete
 
 `DELETE /collaboration_whitelist_exempt_targets/{collaboration_whitelist_exempt_target_id}`
 
@@ -78,7 +78,7 @@ fmt.Println(result)
 **Example**
 
 ```go
-if err := client.CollaborationAllowlistExemptTargets.DeleteCollaborationWhitelistExemptTarget(context.Background(), "COLLABORATION_WHITELIST_EXEMPT_TARGET_ID"); err != nil {
+if err := client.CollaborationAllowlistExemptTargets.Delete(context.Background(), "COLLABORATION_WHITELIST_EXEMPT_TARGET_ID"); err != nil {
 	log.Fatal(err)
 }
 ```

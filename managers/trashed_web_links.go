@@ -25,7 +25,7 @@ type TrashedWebLinksCreateWebLinkOptions struct {
 	Fields []string
 }
 
-func (m *TrashedWebLinksManager) CreateWebLink(ctx context.Context, webLinkId string, body *schemas.FileCreateRequest, opts *TrashedWebLinksCreateWebLinkOptions) (*schemas.TrashWebLinkRestored, error) {
+func (m *TrashedWebLinksManager) CreateWebLink(ctx context.Context, webLinkId string, body *schemas.CreateFileRequest, opts *TrashedWebLinksCreateWebLinkOptions) (*schemas.TrashWebLinkRestored, error) {
 	req := m.session.NewRequest("POST", m.session.BaseUrl("api")+"/web_links"+"/"+url.PathEscape(webLinkId))
 	if opts != nil {
 		if opts.Fields != nil {

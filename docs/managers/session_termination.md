@@ -7,14 +7,14 @@ Access via `client.NewClient().SessionTermination`.
 
 `POST /users/terminate_sessions`
 
-**Request body** (`application/json`): `UserTerminateSessionsCreateRequest`
+**Request body** (`application/json`): `CreateUserTerminateSessionsRequest`
 
 **Returns:** `SessionTerminationMessage`
 
 **Example**
 
 ```go
-result, err := client.SessionTermination.CreateUserTerminateSessions(context.Background(), &schemas.UserTerminateSessionsCreateRequest{})
+result, err := client.SessionTermination.CreateUserTerminateSessions(context.Background(), &schemas.CreateUserTerminateSessionsRequest{})
 if err != nil {
 	log.Fatal(err)
 }
@@ -25,14 +25,14 @@ fmt.Println(result)
 
 `POST /groups/terminate_sessions`
 
-**Request body** (`application/json`): `GroupTerminateSessionsCreateRequest`
+**Request body** (`application/json`): `CreateGroupTerminateSessionsRequest`
 
 **Returns:** `SessionTerminationMessage`
 
 **Example**
 
 ```go
-result, err := client.SessionTermination.CreateGroupTerminateSessions(context.Background(), &schemas.GroupTerminateSessionsCreateRequest{})
+result, err := client.SessionTermination.CreateGroupTerminateSessions(context.Background(), &schemas.CreateGroupTerminateSessionsRequest{})
 if err != nil {
 	log.Fatal(err)
 }

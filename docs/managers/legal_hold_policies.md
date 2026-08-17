@@ -33,14 +33,14 @@ Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor f
 
 `POST /legal_hold_policies`
 
-**Request body** (`application/json`): `LegalHoldPolicyCreateRequest`
+**Request body** (`application/json`): `CreateLegalHoldPolicyRequest`
 
 **Returns:** `LegalHoldPolicy`
 
 **Example**
 
 ```go
-result, err := client.LegalHoldPolicies.Create(context.Background(), &schemas.LegalHoldPolicyCreateRequest{})
+result, err := client.LegalHoldPolicies.Create(context.Background(), &schemas.CreateLegalHoldPolicyRequest{})
 if err != nil {
 	log.Fatal(err)
 }
@@ -75,14 +75,14 @@ fmt.Println(result)
 |---|---|---|---|
 | `legal_hold_policy_id` | path | `string` | yes |
 
-**Request body** (`application/json`): `LegalHoldPolicyUpdateRequest`
+**Request body** (`application/json`): `UpdateLegalHoldPolicyRequest`
 
 **Returns:** `LegalHoldPolicy`
 
 **Example**
 
 ```go
-result, err := client.LegalHoldPolicies.Update(context.Background(), "LEGAL_HOLD_POLICY_ID", &schemas.LegalHoldPolicyUpdateRequest{})
+result, err := client.LegalHoldPolicies.Update(context.Background(), "LEGAL_HOLD_POLICY_ID", &schemas.UpdateLegalHoldPolicyRequest{})
 if err != nil {
 	log.Fatal(err)
 }

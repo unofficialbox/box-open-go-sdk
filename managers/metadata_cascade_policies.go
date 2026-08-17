@@ -87,7 +87,7 @@ func (m *MetadataCascadePoliciesManager) List(ctx context.Context, folderId stri
 	}
 }
 
-func (m *MetadataCascadePoliciesManager) Create(ctx context.Context, body *schemas.MetadataCascadePolicyCreateRequest) (*schemas.MetadataCascadePolicy, error) {
+func (m *MetadataCascadePoliciesManager) Create(ctx context.Context, body *schemas.CreateMetadataCascadePolicyRequest) (*schemas.MetadataCascadePolicy, error) {
 	req := m.session.NewRequest("POST", m.session.BaseUrl("api")+"/metadata_cascade_policies")
 	payload, err := json.Marshal(body)
 	if err != nil {
@@ -136,7 +136,7 @@ func (m *MetadataCascadePoliciesManager) Delete(ctx context.Context, metadataCas
 	return nil
 }
 
-func (m *MetadataCascadePoliciesManager) Apply(ctx context.Context, metadataCascadePolicyId string, body *schemas.MetadataCascadePolicyApplyRequest) error {
+func (m *MetadataCascadePoliciesManager) Apply(ctx context.Context, metadataCascadePolicyId string, body *schemas.ApplyMetadataCascadePolicyRequest) error {
 	req := m.session.NewRequest("POST", m.session.BaseUrl("api")+"/metadata_cascade_policies"+"/"+url.PathEscape(metadataCascadePolicyId)+"/apply")
 	payload, err := json.Marshal(body)
 	if err != nil {

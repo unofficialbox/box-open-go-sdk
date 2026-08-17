@@ -83,7 +83,7 @@ func (m *MetadataTemplatesManager) List(ctx context.Context, metadataInstanceId 
 	}
 }
 
-func (m *MetadataTemplatesManager) GetSchema(ctx context.Context, scope schemas.GetFileIdMetadataIdIdScope, templateKey string) (*schemas.MetadataTemplate, error) {
+func (m *MetadataTemplatesManager) GetSchema(ctx context.Context, scope schemas.GetFileIdMetadataIdScope, templateKey string) (*schemas.MetadataTemplate, error) {
 	req := m.session.NewRequest("GET", m.session.BaseUrl("api")+"/metadata_templates"+"/"+url.PathEscape(string(scope))+"/"+url.PathEscape(templateKey)+"/schema")
 	resp, err := m.session.Fetch(ctx, req)
 	if err != nil {
@@ -100,7 +100,7 @@ func (m *MetadataTemplatesManager) GetSchema(ctx context.Context, scope schemas.
 	return out, nil
 }
 
-func (m *MetadataTemplatesManager) UpdateSchema(ctx context.Context, scope schemas.GetFileIdMetadataIdIdScope, templateKey string, body []schemas.SchemaUpdateRequest) (*schemas.MetadataTemplate, error) {
+func (m *MetadataTemplatesManager) UpdateSchema(ctx context.Context, scope schemas.GetFileIdMetadataIdScope, templateKey string, body []schemas.UpdateSchemaRequest) (*schemas.MetadataTemplate, error) {
 	req := m.session.NewRequest("PUT", m.session.BaseUrl("api")+"/metadata_templates"+"/"+url.PathEscape(string(scope))+"/"+url.PathEscape(templateKey)+"/schema")
 	payload, err := json.Marshal(body)
 	if err != nil {
@@ -122,7 +122,7 @@ func (m *MetadataTemplatesManager) UpdateSchema(ctx context.Context, scope schem
 	return out, nil
 }
 
-func (m *MetadataTemplatesManager) DeleteSchema(ctx context.Context, scope schemas.GetFileIdMetadataIdIdScope, templateKey string) error {
+func (m *MetadataTemplatesManager) DeleteSchema(ctx context.Context, scope schemas.GetFileIdMetadataIdScope, templateKey string) error {
 	req := m.session.NewRequest("DELETE", m.session.BaseUrl("api")+"/metadata_templates"+"/"+url.PathEscape(string(scope))+"/"+url.PathEscape(templateKey)+"/schema")
 	resp, err := m.session.Fetch(ctx, req)
 	if err != nil {
@@ -271,7 +271,7 @@ func (m *MetadataTemplatesManager) ListEnterprise(ctx context.Context, opts *Met
 	}
 }
 
-func (m *MetadataTemplatesManager) CreateSchema(ctx context.Context, body *schemas.SchemaCreateRequest) (*schemas.MetadataTemplate, error) {
+func (m *MetadataTemplatesManager) CreateSchema(ctx context.Context, body *schemas.CreateSchemaRequest) (*schemas.MetadataTemplate, error) {
 	req := m.session.NewRequest("POST", m.session.BaseUrl("api")+"/metadata_templates"+"/schema")
 	payload, err := json.Marshal(body)
 	if err != nil {

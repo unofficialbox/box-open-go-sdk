@@ -3,7 +3,9 @@
 
 # box-open-sdk (Go)
 
+[![release](https://img.shields.io/github/v/release/unofficialbox/box-open-go-sdk?sort=semver)](https://github.com/unofficialbox/box-open-go-sdk/releases/latest)
 [![Go Reference](https://pkg.go.dev/badge/github.com/unofficialbox/box-open-go-sdk.svg)](https://pkg.go.dev/github.com/unofficialbox/box-open-go-sdk)
+[![license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 An **open source, community-built** Box API client for Go — typed models for the whole
 Box surface, one manager per API area behind a single `Client`, and a
@@ -57,7 +59,7 @@ func main() {
 	fmt.Println("authenticated as", me.Id)
 
 	// Create a folder at the account root ("0").
-	folder, err := c.Folders.Create(ctx, &schemas.FolderCreateRequest{
+	folder, err := c.Folders.Create(ctx, &schemas.CreateFolderRequest{
 		Name:   "Invoices",
 		Parent: schemas.AttributesParent{Id: "0"},
 	}, nil)
@@ -66,7 +68,7 @@ func main() {
 	}
 
 	// Upload a file into it.
-	uploaded, err := c.Uploads.UploadFile(ctx, &schemas.FileContentCreateRequest{
+	uploaded, err := c.Uploads.UploadFile(ctx, &schemas.CreateFileContentRequest{
 		Attributes: schemas.PostFileContentAttributes{
 			Name:   "invoice.pdf",
 			Parent: schemas.AttributesParent{Id: folder.Id},
@@ -90,7 +92,7 @@ func main() {
 
 	// Attach that metadata to the file (an enterprise template).
 	if _, err := c.FileMetadata.CreateFileMetadata(ctx, fileID,
-		schemas.GetFileIdMetadataIdIdScopeEnterprise, "invoiceData",
+		schemas.GetFileIdMetadataIdScopeEnterprise, "invoiceData",
 		map[string]any{"invoiceNumber": "INV-0042", "total": 1250}); err != nil {
 		log.Fatal(err)
 	}

@@ -21,13 +21,13 @@ func NewCollaborationAllowlistEntriesManager(session *gantryruntime.Client) *Col
 	return &CollaborationAllowlistEntriesManager{session: session}
 }
 
-// CollaborationAllowlistEntriesListCollaborationWhitelistEntriesOptions carries the optional parameters.
-type CollaborationAllowlistEntriesListCollaborationWhitelistEntriesOptions struct {
+// CollaborationAllowlistEntriesListOptions carries the optional parameters.
+type CollaborationAllowlistEntriesListOptions struct {
 	Marker *string
 	Limit  *int64
 }
 
-func (m *CollaborationAllowlistEntriesManager) listCollaborationWhitelistEntriesPage(ctx context.Context, opts *CollaborationAllowlistEntriesListCollaborationWhitelistEntriesOptions) (*schemas.CollaborationAllowlistEntries, error) {
+func (m *CollaborationAllowlistEntriesManager) listPage(ctx context.Context, opts *CollaborationAllowlistEntriesListOptions) (*schemas.CollaborationAllowlistEntries, error) {
 	req := m.session.NewRequest("GET", m.session.BaseUrl("api")+"/collaboration_whitelist_entries")
 	if opts != nil {
 		if opts.Marker != nil {
@@ -52,14 +52,14 @@ func (m *CollaborationAllowlistEntriesManager) listCollaborationWhitelistEntries
 	return out, nil
 }
 
-func (m *CollaborationAllowlistEntriesManager) ListCollaborationWhitelistEntries(ctx context.Context, opts *CollaborationAllowlistEntriesListCollaborationWhitelistEntriesOptions) iter.Seq2[*schemas.CollaborationAllowlistEntry, error] {
+func (m *CollaborationAllowlistEntriesManager) List(ctx context.Context, opts *CollaborationAllowlistEntriesListOptions) iter.Seq2[*schemas.CollaborationAllowlistEntry, error] {
 	return func(yield func(*schemas.CollaborationAllowlistEntry, error) bool) {
-		var o CollaborationAllowlistEntriesListCollaborationWhitelistEntriesOptions
+		var o CollaborationAllowlistEntriesListOptions
 		if opts != nil {
 			o = *opts
 		}
 		for {
-			page, err := m.listCollaborationWhitelistEntriesPage(ctx, &o)
+			page, err := m.listPage(ctx, &o)
 			if err != nil {
 				yield(nil, err)
 				return
@@ -82,7 +82,7 @@ func (m *CollaborationAllowlistEntriesManager) ListCollaborationWhitelistEntries
 	}
 }
 
-func (m *CollaborationAllowlistEntriesManager) CreateCollaborationWhitelistEntries(ctx context.Context, body *schemas.CollaborationWhitelistEntriesCreateRequest) (*schemas.CollaborationAllowlistEntry, error) {
+func (m *CollaborationAllowlistEntriesManager) Create(ctx context.Context, body *schemas.CreateCollaborationAllowlistEntryRequest) (*schemas.CollaborationAllowlistEntry, error) {
 	req := m.session.NewRequest("POST", m.session.BaseUrl("api")+"/collaboration_whitelist_entries")
 	payload, err := json.Marshal(body)
 	if err != nil {
@@ -104,7 +104,7 @@ func (m *CollaborationAllowlistEntriesManager) CreateCollaborationWhitelistEntri
 	return out, nil
 }
 
-func (m *CollaborationAllowlistEntriesManager) GetCollaborationWhitelistEntry(ctx context.Context, collaborationWhitelistEntryId string) (*schemas.CollaborationAllowlistEntry, error) {
+func (m *CollaborationAllowlistEntriesManager) Get(ctx context.Context, collaborationWhitelistEntryId string) (*schemas.CollaborationAllowlistEntry, error) {
 	req := m.session.NewRequest("GET", m.session.BaseUrl("api")+"/collaboration_whitelist_entries"+"/"+url.PathEscape(collaborationWhitelistEntryId))
 	resp, err := m.session.Fetch(ctx, req)
 	if err != nil {
@@ -121,7 +121,7 @@ func (m *CollaborationAllowlistEntriesManager) GetCollaborationWhitelistEntry(ct
 	return out, nil
 }
 
-func (m *CollaborationAllowlistEntriesManager) DeleteCollaborationWhitelistEntry(ctx context.Context, collaborationWhitelistEntryId string) error {
+func (m *CollaborationAllowlistEntriesManager) Delete(ctx context.Context, collaborationWhitelistEntryId string) error {
 	req := m.session.NewRequest("DELETE", m.session.BaseUrl("api")+"/collaboration_whitelist_entries"+"/"+url.PathEscape(collaborationWhitelistEntryId))
 	resp, err := m.session.Fetch(ctx, req)
 	if err != nil {

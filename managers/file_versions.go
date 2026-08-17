@@ -114,7 +114,7 @@ func (m *FileVersionsManager) GetFileVersion(ctx context.Context, fileId string,
 	return out, nil
 }
 
-func (m *FileVersionsManager) UpdateFileVersion(ctx context.Context, fileId string, fileVersionId string, body *schemas.FileVersionUpdateRequest) (*schemas.FileVersionFull, error) {
+func (m *FileVersionsManager) UpdateFileVersion(ctx context.Context, fileId string, fileVersionId string, body *schemas.UpdateFileVersionRequest) (*schemas.FileVersionFull, error) {
 	req := m.session.NewRequest("PUT", m.session.BaseUrl("api")+"/files"+"/"+url.PathEscape(fileId)+"/versions"+"/"+url.PathEscape(fileVersionId))
 	payload, err := json.Marshal(body)
 	if err != nil {
@@ -161,7 +161,7 @@ type FileVersionsCreateFileVersionCurrentOptions struct {
 	Fields []string
 }
 
-func (m *FileVersionsManager) CreateFileVersionCurrent(ctx context.Context, fileId string, body *schemas.FileVersionCurrentCreateRequest, opts *FileVersionsCreateFileVersionCurrentOptions) (*schemas.FileVersionFull, error) {
+func (m *FileVersionsManager) CreateFileVersionCurrent(ctx context.Context, fileId string, body *schemas.CreateFileVersionCurrentRequest, opts *FileVersionsCreateFileVersionCurrentOptions) (*schemas.FileVersionFull, error) {
 	req := m.session.NewRequest("POST", m.session.BaseUrl("api")+"/files"+"/"+url.PathEscape(fileId)+"/versions"+"/current")
 	if opts != nil {
 		if opts.Fields != nil {

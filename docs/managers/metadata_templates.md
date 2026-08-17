@@ -34,7 +34,7 @@ Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor f
 
 | Parameter | In | Type | Required |
 |---|---|---|---|
-| `scope` | path | `GetFileIdMetadataIdIdScope` | yes |
+| `scope` | path | `GetFileIdMetadataIdScope` | yes |
 | `template_key` | path | `string` | yes |
 
 **Returns:** `MetadataTemplate`
@@ -42,7 +42,7 @@ Paginated — `List(...)` returns `iter.Seq2[*T, error]`, threading the cursor f
 **Example**
 
 ```go
-result, err := client.MetadataTemplates.GetSchema(context.Background(), schemas.GetFileIdMetadataIdIdScope("..."), "TEMPLATE_KEY")
+result, err := client.MetadataTemplates.GetSchema(context.Background(), schemas.GetFileIdMetadataIdScope("..."), "TEMPLATE_KEY")
 if err != nil {
 	log.Fatal(err)
 }
@@ -55,17 +55,17 @@ fmt.Println(result)
 
 | Parameter | In | Type | Required |
 |---|---|---|---|
-| `scope` | path | `GetFileIdMetadataIdIdScope` | yes |
+| `scope` | path | `GetFileIdMetadataIdScope` | yes |
 | `template_key` | path | `string` | yes |
 
-**Request body** (`application/json-patch+json`): `[]SchemaUpdateRequest`
+**Request body** (`application/json-patch+json`): `[]UpdateSchemaRequest`
 
 **Returns:** `MetadataTemplate`
 
 **Example**
 
 ```go
-result, err := client.MetadataTemplates.UpdateSchema(context.Background(), schemas.GetFileIdMetadataIdIdScope("..."), "TEMPLATE_KEY", []SchemaUpdateRequest{})
+result, err := client.MetadataTemplates.UpdateSchema(context.Background(), schemas.GetFileIdMetadataIdScope("..."), "TEMPLATE_KEY", []UpdateSchemaRequest{})
 if err != nil {
 	log.Fatal(err)
 }
@@ -78,7 +78,7 @@ fmt.Println(result)
 
 | Parameter | In | Type | Required |
 |---|---|---|---|
-| `scope` | path | `GetFileIdMetadataIdIdScope` | yes |
+| `scope` | path | `GetFileIdMetadataIdScope` | yes |
 | `template_key` | path | `string` | yes |
 
 **Returns:** no content
@@ -86,7 +86,7 @@ fmt.Println(result)
 **Example**
 
 ```go
-if err := client.MetadataTemplates.DeleteSchema(context.Background(), schemas.GetFileIdMetadataIdIdScope("..."), "TEMPLATE_KEY"); err != nil {
+if err := client.MetadataTemplates.DeleteSchema(context.Background(), schemas.GetFileIdMetadataIdScope("..."), "TEMPLATE_KEY"); err != nil {
 	log.Fatal(err)
 }
 ```
@@ -163,14 +163,14 @@ Paginated — `ListEnterprise(...)` returns `iter.Seq2[*T, error]`, threading th
 
 `POST /metadata_templates/schema`
 
-**Request body** (`application/json`): `SchemaCreateRequest`
+**Request body** (`application/json`): `CreateSchemaRequest`
 
 **Returns:** `MetadataTemplate`
 
 **Example**
 
 ```go
-result, err := client.MetadataTemplates.CreateSchema(context.Background(), &schemas.SchemaCreateRequest{})
+result, err := client.MetadataTemplates.CreateSchema(context.Background(), &schemas.CreateSchemaRequest{})
 if err != nil {
 	log.Fatal(err)
 }

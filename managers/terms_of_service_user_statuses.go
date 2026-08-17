@@ -47,7 +47,7 @@ func (m *TermsOfServiceUserStatusesManager) List(ctx context.Context, tosId stri
 	return out, nil
 }
 
-func (m *TermsOfServiceUserStatusesManager) Create(ctx context.Context, body *schemas.TermsOfServiceUserStatuseCreateRequest) (*schemas.TermsOfServiceUserStatus, error) {
+func (m *TermsOfServiceUserStatusesManager) Create(ctx context.Context, body *schemas.CreateTermsOfServiceUserStatusRequest) (*schemas.TermsOfServiceUserStatus, error) {
 	req := m.session.NewRequest("POST", m.session.BaseUrl("api")+"/terms_of_service_user_statuses")
 	payload, err := json.Marshal(body)
 	if err != nil {
@@ -69,7 +69,7 @@ func (m *TermsOfServiceUserStatusesManager) Create(ctx context.Context, body *sc
 	return out, nil
 }
 
-func (m *TermsOfServiceUserStatusesManager) Update(ctx context.Context, termsOfServiceUserStatusId string, body *schemas.TermsOfServiceUserStatuseUpdateRequest) (*schemas.TermsOfServiceUserStatus, error) {
+func (m *TermsOfServiceUserStatusesManager) Update(ctx context.Context, termsOfServiceUserStatusId string, body *schemas.UpdateTermsOfServiceUserStatusRequest) (*schemas.TermsOfServiceUserStatus, error) {
 	req := m.session.NewRequest("PUT", m.session.BaseUrl("api")+"/terms_of_service_user_statuses"+"/"+url.PathEscape(termsOfServiceUserStatusId))
 	payload, err := json.Marshal(body)
 	if err != nil {

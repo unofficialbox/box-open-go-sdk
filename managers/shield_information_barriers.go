@@ -38,7 +38,7 @@ func (m *ShieldInformationBarriersManager) Get(ctx context.Context, shieldInform
 	return out, nil
 }
 
-func (m *ShieldInformationBarriersManager) CreateChangeStatus(ctx context.Context, body *schemas.ChangeStatusCreateRequest) (*schemas.ShieldInformationBarrier, error) {
+func (m *ShieldInformationBarriersManager) CreateChangeStatus(ctx context.Context, body *schemas.CreateChangeStatusRequest) (*schemas.ShieldInformationBarrier, error) {
 	req := m.session.NewRequest("POST", m.session.BaseUrl("api")+"/shield_information_barriers"+"/change_status")
 	payload, err := json.Marshal(body)
 	if err != nil {
@@ -121,7 +121,7 @@ func (m *ShieldInformationBarriersManager) List(ctx context.Context, opts *Shiel
 	}
 }
 
-func (m *ShieldInformationBarriersManager) Create(ctx context.Context, body *schemas.ShieldInformationBarrierCreateRequest) (*schemas.ShieldInformationBarrier, error) {
+func (m *ShieldInformationBarriersManager) Create(ctx context.Context, body *schemas.CreateShieldInformationBarrierRequest) (*schemas.ShieldInformationBarrier, error) {
 	req := m.session.NewRequest("POST", m.session.BaseUrl("api")+"/shield_information_barriers")
 	payload, err := json.Marshal(body)
 	if err != nil {

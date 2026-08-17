@@ -28,14 +28,14 @@ fmt.Println(result)
 
 `POST /terms_of_service_user_statuses`
 
-**Request body** (`application/json`): `TermsOfServiceUserStatuseCreateRequest`
+**Request body** (`application/json`): `CreateTermsOfServiceUserStatusRequest`
 
 **Returns:** `TermsOfServiceUserStatus`
 
 **Example**
 
 ```go
-result, err := client.TermsOfServiceUserStatuses.Create(context.Background(), &schemas.TermsOfServiceUserStatuseCreateRequest{})
+result, err := client.TermsOfServiceUserStatuses.Create(context.Background(), &schemas.CreateTermsOfServiceUserStatusRequest{})
 if err != nil {
 	log.Fatal(err)
 }
@@ -50,14 +50,14 @@ fmt.Println(result)
 |---|---|---|---|
 | `terms_of_service_user_status_id` | path | `string` | yes |
 
-**Request body** (`application/json`): `TermsOfServiceUserStatuseUpdateRequest`
+**Request body** (`application/json`): `UpdateTermsOfServiceUserStatusRequest`
 
 **Returns:** `TermsOfServiceUserStatus`
 
 **Example**
 
 ```go
-result, err := client.TermsOfServiceUserStatuses.Update(context.Background(), "TERMS_OF_SERVICE_USER_STATUS_ID", &schemas.TermsOfServiceUserStatuseUpdateRequest{})
+result, err := client.TermsOfServiceUserStatuses.Update(context.Background(), "TERMS_OF_SERVICE_USER_STATUS_ID", &schemas.UpdateTermsOfServiceUserStatusRequest{})
 if err != nil {
 	log.Fatal(err)
 }

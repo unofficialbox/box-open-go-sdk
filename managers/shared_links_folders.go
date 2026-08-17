@@ -70,7 +70,7 @@ func (m *SharedLinksFoldersManager) GetFolderGetSharedLink(ctx context.Context, 
 	return out, nil
 }
 
-func (m *SharedLinksFoldersManager) UpdateFolderAddSharedLink(ctx context.Context, folderId string, fields string, body *schemas.FileUpdateRequest2) (*schemas.FolderFull, error) {
+func (m *SharedLinksFoldersManager) UpdateFolderAddSharedLink(ctx context.Context, folderId string, fields string, body *schemas.UpdateFileAddSharedLinkRequest) (*schemas.FolderFull, error) {
 	req := m.session.NewRequest("PUT", m.session.BaseUrl("api")+"/folders"+"/"+url.PathEscape(folderId))
 	req = gantryruntime.WithQuery(req, "fields", fields)
 	payload, err := json.Marshal(body)
@@ -93,7 +93,7 @@ func (m *SharedLinksFoldersManager) UpdateFolderAddSharedLink(ctx context.Contex
 	return out, nil
 }
 
-func (m *SharedLinksFoldersManager) UpdateFolderUpdateSharedLink(ctx context.Context, folderId string, fields string, body *schemas.FolderUpdateRequest2) (*schemas.FolderFull, error) {
+func (m *SharedLinksFoldersManager) UpdateFolderUpdateSharedLink(ctx context.Context, folderId string, fields string, body *schemas.UpdateFolderUpdateSharedLinkRequest) (*schemas.FolderFull, error) {
 	req := m.session.NewRequest("PUT", m.session.BaseUrl("api")+"/folders"+"/"+url.PathEscape(folderId))
 	req = gantryruntime.WithQuery(req, "fields", fields)
 	payload, err := json.Marshal(body)
@@ -116,7 +116,7 @@ func (m *SharedLinksFoldersManager) UpdateFolderUpdateSharedLink(ctx context.Con
 	return out, nil
 }
 
-func (m *SharedLinksFoldersManager) UpdateFolderRemoveSharedLink(ctx context.Context, folderId string, fields string, body *schemas.FileUpdateRequest3) (*schemas.FolderFull, error) {
+func (m *SharedLinksFoldersManager) UpdateFolderRemoveSharedLink(ctx context.Context, folderId string, fields string, body *schemas.UpdateFileRemoveSharedLinkRequest) (*schemas.FolderFull, error) {
 	req := m.session.NewRequest("PUT", m.session.BaseUrl("api")+"/folders"+"/"+url.PathEscape(folderId))
 	req = gantryruntime.WithQuery(req, "fields", fields)
 	payload, err := json.Marshal(body)

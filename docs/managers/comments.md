@@ -59,14 +59,14 @@ fmt.Println(result)
 | `comment_id` | path | `string` | yes |
 | `fields` | query | `[]string` | no |
 
-**Request body** (`application/json`): `CommentUpdateRequest`
+**Request body** (`application/json`): `UpdateCommentRequest`
 
 **Returns:** `CommentFull`
 
 **Example**
 
 ```go
-result, err := client.Comments.Update(context.Background(), "COMMENT_ID", &schemas.CommentUpdateRequest{}, nil)
+result, err := client.Comments.Update(context.Background(), "COMMENT_ID", &schemas.UpdateCommentRequest{}, nil)
 if err != nil {
 	log.Fatal(err)
 }
@@ -99,14 +99,14 @@ if err := client.Comments.Delete(context.Background(), "COMMENT_ID"); err != nil
 |---|---|---|---|
 | `fields` | query | `[]string` | no |
 
-**Request body** (`application/json`): `CommentCreateRequest`
+**Request body** (`application/json`): `CreateCommentRequest`
 
 **Returns:** `CommentFull`
 
 **Example**
 
 ```go
-result, err := client.Comments.Create(context.Background(), &schemas.CommentCreateRequest{}, nil)
+result, err := client.Comments.Create(context.Background(), &schemas.CreateCommentRequest{}, nil)
 if err != nil {
 	log.Fatal(err)
 }

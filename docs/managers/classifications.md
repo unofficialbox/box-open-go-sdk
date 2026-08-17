@@ -23,14 +23,14 @@ fmt.Println(result)
 
 `PUT /metadata_templates/enterprise/securityClassification-6VMVochwUWo/schema`
 
-**Request body** (`application/json`): `[]ClassificationUpdateRequest`
+**Request body** (`application/json`): `[]UpdateClassificationAddRequest`
 
 **Returns:** `ClassificationTemplate`
 
 **Example**
 
 ```go
-result, err := client.Classifications.UpdateAdd(context.Background(), []ClassificationUpdateRequest{})
+result, err := client.Classifications.UpdateAdd(context.Background(), []UpdateClassificationAddRequest{})
 if err != nil {
 	log.Fatal(err)
 }
@@ -41,14 +41,14 @@ fmt.Println(result)
 
 `PUT /metadata_templates/enterprise/securityClassification-6VMVochwUWo/schema`
 
-**Request body** (`application/json-patch+json`): `[]ClassificationUpdateRequest2`
+**Request body** (`application/json-patch+json`): `[]UpdateClassificationUpdateRequest`
 
 **Returns:** `ClassificationTemplate`
 
 **Example**
 
 ```go
-result, err := client.Classifications.UpdateUpdate(context.Background(), []ClassificationUpdateRequest2{})
+result, err := client.Classifications.UpdateUpdate(context.Background(), []UpdateClassificationUpdateRequest{})
 if err != nil {
 	log.Fatal(err)
 }
@@ -59,14 +59,14 @@ fmt.Println(result)
 
 `POST /metadata_templates/schema`
 
-**Request body** (`application/json`): `MetadataTemplateSchemaCreateRequest`
+**Request body** (`application/json`): `CreateMetadataTemplateSchemaClassificationsRequest`
 
 **Returns:** `ClassificationTemplate`
 
 **Example**
 
 ```go
-result, err := client.Classifications.CreateMetadataTemplateSchemaClassifications(context.Background(), &schemas.MetadataTemplateSchemaCreateRequest{})
+result, err := client.Classifications.CreateMetadataTemplateSchemaClassifications(context.Background(), &schemas.CreateMetadataTemplateSchemaClassificationsRequest{})
 if err != nil {
 	log.Fatal(err)
 }

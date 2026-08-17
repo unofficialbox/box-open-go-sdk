@@ -38,7 +38,7 @@ func (m *ShieldInformationBarrierSegmentsManager) Get(ctx context.Context, shiel
 	return out, nil
 }
 
-func (m *ShieldInformationBarrierSegmentsManager) Update(ctx context.Context, shieldInformationBarrierSegmentId string, body *schemas.ShieldInformationBarrierSegmentUpdateRequest) (*schemas.ShieldInformationBarrierSegment, error) {
+func (m *ShieldInformationBarrierSegmentsManager) Update(ctx context.Context, shieldInformationBarrierSegmentId string, body *schemas.UpdateShieldInformationBarrierSegmentRequest) (*schemas.ShieldInformationBarrierSegment, error) {
 	req := m.session.NewRequest("PUT", m.session.BaseUrl("api")+"/shield_information_barrier_segments"+"/"+url.PathEscape(shieldInformationBarrierSegmentId))
 	payload, err := json.Marshal(body)
 	if err != nil {
@@ -132,7 +132,7 @@ func (m *ShieldInformationBarrierSegmentsManager) List(ctx context.Context, shie
 	}
 }
 
-func (m *ShieldInformationBarrierSegmentsManager) Create(ctx context.Context, body *schemas.ShieldInformationBarrierSegmentCreateRequest) (*schemas.ShieldInformationBarrierSegment, error) {
+func (m *ShieldInformationBarrierSegmentsManager) Create(ctx context.Context, body *schemas.CreateShieldInformationBarrierSegmentRequest) (*schemas.ShieldInformationBarrierSegment, error) {
 	req := m.session.NewRequest("POST", m.session.BaseUrl("api")+"/shield_information_barrier_segments")
 	payload, err := json.Marshal(body)
 	if err != nil {

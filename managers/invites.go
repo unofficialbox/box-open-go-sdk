@@ -25,7 +25,7 @@ type InvitesCreateOptions struct {
 	Fields []string
 }
 
-func (m *InvitesManager) Create(ctx context.Context, body *schemas.InviteCreateRequest, opts *InvitesCreateOptions) (*schemas.Invite, error) {
+func (m *InvitesManager) Create(ctx context.Context, body *schemas.CreateInviteRequest, opts *InvitesCreateOptions) (*schemas.Invite, error) {
 	req := m.session.NewRequest("POST", m.session.BaseUrl("api")+"/invites")
 	if opts != nil {
 		if opts.Fields != nil {

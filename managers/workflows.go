@@ -87,7 +87,7 @@ func (m *WorkflowsManager) List(ctx context.Context, folderId string, opts *Work
 	}
 }
 
-func (m *WorkflowsManager) Start(ctx context.Context, workflowId string, body *schemas.WorkflowStartRequest) error {
+func (m *WorkflowsManager) Start(ctx context.Context, workflowId string, body *schemas.StartWorkflowRequest) error {
 	req := m.session.NewRequest("POST", m.session.BaseUrl("api")+"/workflows"+"/"+url.PathEscape(workflowId)+"/start")
 	payload, err := json.Marshal(body)
 	if err != nil {
