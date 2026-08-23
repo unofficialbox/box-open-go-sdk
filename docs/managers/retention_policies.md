@@ -10,7 +10,7 @@ Access via `client.NewClient().RetentionPolicies`.
 | Parameter | In | Type | Required |
 |---|---|---|---|
 | `policy_name` | query | `string` | no |
-| `policy_type` | query | `RetentionPolicyPolicyType` | no |
+| `policy_type` | query | `RetentionPolicyType2` | no |
 | `created_by_user_id` | query | `string` | no |
 | `fields` | query | `[]string` | no |
 | `limit` | query | `int64` | no |

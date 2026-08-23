@@ -30,9 +30,9 @@ type PostTos struct {
 }
 
 type CreateTermsOfServiceUserStatusRequest struct {
-	Tos        PostTos                           `json:"tos"`
-	User       CollaboratorVariableVariableValue `json:"user"`
-	IsAccepted bool                              `json:"is_accepted"`
+	Tos        PostTos                   `json:"tos"`
+	User       CollaboratorVariableValue `json:"user"`
+	IsAccepted bool                      `json:"is_accepted"`
 }
 
 type UpdateTermsOfServiceUserStatusRequest struct {

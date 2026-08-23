@@ -7,15 +7,15 @@ import (
 )
 
 type CollaboratorVariable struct {
-	Type          CollaboratorVariableType            `json:"type"`
-	VariableType  CollaboratorVariableVariableType    `json:"variable_type"`
-	VariableValue []CollaboratorVariableVariableValue `json:"variable_value"`
+	Type          CollaboratorVariableType    `json:"type"`
+	VariableType  CollaboratorVariableType2   `json:"variable_type"`
+	VariableValue []CollaboratorVariableValue `json:"variable_value"`
 }
 
 type CompletionRuleVariable struct {
-	Type          CollaboratorVariableType            `json:"type"`
-	VariableType  CompletionRuleVariableVariableType  `json:"variable_type"`
-	VariableValue CompletionRuleVariableVariableValue `json:"variable_value"`
+	Type          CollaboratorVariableType    `json:"type"`
+	VariableType  CompletionRuleVariableType  `json:"variable_type"`
+	VariableValue CompletionRuleVariableValue `json:"variable_value"`
 }
 
 type Outcome struct {
@@ -29,7 +29,7 @@ type Outcome struct {
 
 type RoleVariable struct {
 	Type          CollaboratorVariableType    `json:"type"`
-	VariableType  RoleVariableVariableType    `json:"variable_type"`
+	VariableType  RoleVariableType            `json:"variable_type"`
 	VariableValue FileFullAllowedInviteeRoles `json:"variable_value"`
 }
 
@@ -55,29 +55,29 @@ const (
 	CollaboratorVariableTypeVariable CollaboratorVariableType = "variable"
 )
 
-type CollaboratorVariableVariableType string
+type CollaboratorVariableType2 string
 
 const (
-	CollaboratorVariableVariableTypeUserList CollaboratorVariableVariableType = "user_list"
+	CollaboratorVariableType2UserList CollaboratorVariableType2 = "user_list"
 )
 
-type CompletionRuleVariableVariableType string
+type CompletionRuleVariableType string
 
 const (
-	CompletionRuleVariableVariableTypeTaskCompletionRule CompletionRuleVariableVariableType = "task_completion_rule"
+	CompletionRuleVariableTypeTaskCompletionRule CompletionRuleVariableType = "task_completion_rule"
 )
 
-type CompletionRuleVariableVariableValue string
+type CompletionRuleVariableValue string
 
 const (
-	CompletionRuleVariableVariableValueAllAssignees CompletionRuleVariableVariableValue = "all_assignees"
-	CompletionRuleVariableVariableValueAnyAssignees CompletionRuleVariableVariableValue = "any_assignees"
+	CompletionRuleVariableValueAllAssignees CompletionRuleVariableValue = "all_assignees"
+	CompletionRuleVariableValueAnyAssignees CompletionRuleVariableValue = "any_assignees"
 )
 
-type RoleVariableVariableType string
+type RoleVariableType string
 
 const (
-	RoleVariableVariableTypeCollaboratorRole RoleVariableVariableType = "collaborator_role"
+	RoleVariableTypeCollaboratorRole RoleVariableType = "collaborator_role"
 )
 
 type WorkflowType string
@@ -98,10 +98,10 @@ const (
 	TriggerTypeTrigger TriggerType = "trigger"
 )
 
-type TriggerTriggerType string
+type WorkflowFlowsTriggerType string
 
 const (
-	TriggerTriggerTypeWORKFLOWMANUALSTART TriggerTriggerType = "WORKFLOW_MANUAL_START"
+	WorkflowFlowsTriggerTypeWORKFLOWMANUALSTART WorkflowFlowsTriggerType = "WORKFLOW_MANUAL_START"
 )
 
 type ScopeType string
@@ -117,9 +117,9 @@ type TriggerScope struct {
 }
 
 type FlowsTrigger struct {
-	Type        *TriggerType        `json:"type,omitempty"`
-	TriggerType *TriggerTriggerType `json:"trigger_type,omitempty"`
-	Scope       []TriggerScope      `json:"scope,omitempty"`
+	Type        *TriggerType              `json:"type,omitempty"`
+	TriggerType *WorkflowFlowsTriggerType `json:"trigger_type,omitempty"`
+	Scope       []TriggerScope            `json:"scope,omitempty"`
 }
 
 type OutcomesType string

@@ -23,13 +23,13 @@ type UploadParts struct {
 }
 
 type UploadSession struct {
-	Id                *string                        `json:"id,omitempty"`
-	Type              *UploadSessionType             `json:"type,omitempty"`
-	SessionExpiresAt  *time.Time                     `json:"session_expires_at,omitempty"`
-	PartSize          *int64                         `json:"part_size,omitempty"`
-	TotalParts        *int64                         `json:"total_parts,omitempty"`
-	NumPartsProcessed *int64                         `json:"num_parts_processed,omitempty"`
-	SessionEndpoints  *UploadSessionSessionEndpoints `json:"session_endpoints,omitempty"`
+	Id                *string                 `json:"id,omitempty"`
+	Type              *UploadSessionType      `json:"type,omitempty"`
+	SessionExpiresAt  *time.Time              `json:"session_expires_at,omitempty"`
+	PartSize          *int64                  `json:"part_size,omitempty"`
+	TotalParts        *int64                  `json:"total_parts,omitempty"`
+	NumPartsProcessed *int64                  `json:"num_parts_processed,omitempty"`
+	SessionEndpoints  *UploadSessionEndpoints `json:"session_endpoints,omitempty"`
 }
 
 type UploadSessionType string
@@ -38,7 +38,7 @@ const (
 	UploadSessionTypeUploadSession UploadSessionType = "upload_session"
 )
 
-type UploadSessionSessionEndpoints struct {
+type UploadSessionEndpoints struct {
 	UploadPart *string `json:"upload_part,omitempty"`
 	Commit     *string `json:"commit,omitempty"`
 	Abort      *string `json:"abort,omitempty"`

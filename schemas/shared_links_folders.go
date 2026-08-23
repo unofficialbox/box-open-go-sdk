@@ -3,7 +3,7 @@ package schemas
 
 import "time"
 
-type PutFolderIdUpdateSharedLinkSharedLink struct {
+type PutFolderIdUpdateSharedLink struct {
 	Access      *SharedLinkAccess                                    `json:"access,omitempty"`
 	Password    *string                                              `json:"password,omitempty"`
 	VanityName  *string                                              `json:"vanity_name,omitempty"`
@@ -12,5 +12,5 @@ type PutFolderIdUpdateSharedLinkSharedLink struct {
 }
 
 type UpdateFolderUpdateSharedLinkRequest struct {
-	SharedLink *PutFolderIdUpdateSharedLinkSharedLink `json:"shared_link,omitempty"`
+	SharedLink *PutFolderIdUpdateSharedLink `json:"shared_link,omitempty"`
 }

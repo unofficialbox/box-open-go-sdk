@@ -4,9 +4,9 @@ package schemas
 import "github.com/unofficialbox/box-open-go-sdk/serialization"
 
 type DocGenTag struct {
-	TagContent string           `json:"tag_content"`
-	TagType    DocGenTagTagType `json:"tag_type"`
-	JsonPaths  []string         `json:"json_paths"`
+	TagContent string        `json:"tag_content"`
+	TagType    DocGenTagType `json:"tag_type"`
+	JsonPaths  []string      `json:"json_paths"`
 }
 
 type DocGenTags struct {
@@ -36,13 +36,13 @@ type DocGenTemplates struct {
 	Entries    []DocGenTemplate                `json:"entries,omitempty"`
 }
 
-type DocGenTagTagType string
+type DocGenTagType string
 
 const (
-	DocGenTagTagTypeText        DocGenTagTagType = "text"
-	DocGenTagTagTypeArithmetic  DocGenTagTagType = "arithmetic"
-	DocGenTagTagTypeConditional DocGenTagTagType = "conditional"
-	DocGenTagTagTypeForLoop     DocGenTagTagType = "for-loop"
-	DocGenTagTagTypeTableLoop   DocGenTagTagType = "table-loop"
-	DocGenTagTagTypeImage       DocGenTagTagType = "image"
+	DocGenTagTypeText        DocGenTagType = "text"
+	DocGenTagTypeArithmetic  DocGenTagType = "arithmetic"
+	DocGenTagTypeConditional DocGenTagType = "conditional"
+	DocGenTagTypeForLoop     DocGenTagType = "for-loop"
+	DocGenTagTypeTableLoop   DocGenTagType = "table-loop"
+	DocGenTagTypeImage       DocGenTagType = "image"
 )

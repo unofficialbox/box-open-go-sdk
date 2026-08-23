@@ -96,25 +96,25 @@ type SignRequests struct {
 }
 
 type SignRequestSigner struct {
-	Email                   serialization.Nullable[string]                           `json:"email"`
-	Role                    *SignRequestCreateSignerRole                             `json:"role,omitempty"`
-	IsInPerson              *bool                                                    `json:"is_in_person,omitempty"`
-	Order                   *int64                                                   `json:"order,omitempty"`
-	EmbedUrlExternalUserId  *serialization.Nullable[string]                          `json:"embed_url_external_user_id,omitempty"`
-	RedirectUrl             *serialization.Nullable[string]                          `json:"redirect_url,omitempty"`
-	DeclinedRedirectUrl     *serialization.Nullable[string]                          `json:"declined_redirect_url,omitempty"`
-	LoginRequired           *serialization.Nullable[bool]                            `json:"login_required,omitempty"`
-	VerificationPhoneNumber *serialization.Nullable[string]                          `json:"verification_phone_number,omitempty"`
-	Password                *serialization.Nullable[string]                          `json:"password,omitempty"`
-	SignerGroupId           *serialization.Nullable[string]                          `json:"signer_group_id,omitempty"`
-	SuppressNotifications   *serialization.Nullable[bool]                            `json:"suppress_notifications,omitempty"`
-	Language                *serialization.Nullable[string]                          `json:"language,omitempty"`
-	HasViewedDocument       *bool                                                    `json:"has_viewed_document,omitempty"`
-	SignerDecision          *serialization.Nullable[SignRequestSignerSignerDecision] `json:"signer_decision,omitempty"`
-	Inputs                  []SignRequestSignerInput                                 `json:"inputs,omitempty"`
-	EmbedUrl                *serialization.Nullable[string]                          `json:"embed_url,omitempty"`
-	IframeableEmbedUrl      *serialization.Nullable[string]                          `json:"iframeable_embed_url,omitempty"`
-	Attachments             *serialization.Nullable[[]SignRequestSignerAttachment]   `json:"attachments,omitempty"`
+	Email                   serialization.Nullable[string]                         `json:"email"`
+	Role                    *SignRequestCreateSignerRole                           `json:"role,omitempty"`
+	IsInPerson              *bool                                                  `json:"is_in_person,omitempty"`
+	Order                   *int64                                                 `json:"order,omitempty"`
+	EmbedUrlExternalUserId  *serialization.Nullable[string]                        `json:"embed_url_external_user_id,omitempty"`
+	RedirectUrl             *serialization.Nullable[string]                        `json:"redirect_url,omitempty"`
+	DeclinedRedirectUrl     *serialization.Nullable[string]                        `json:"declined_redirect_url,omitempty"`
+	LoginRequired           *serialization.Nullable[bool]                          `json:"login_required,omitempty"`
+	VerificationPhoneNumber *serialization.Nullable[string]                        `json:"verification_phone_number,omitempty"`
+	Password                *serialization.Nullable[string]                        `json:"password,omitempty"`
+	SignerGroupId           *serialization.Nullable[string]                        `json:"signer_group_id,omitempty"`
+	SuppressNotifications   *serialization.Nullable[bool]                          `json:"suppress_notifications,omitempty"`
+	Language                *serialization.Nullable[string]                        `json:"language,omitempty"`
+	HasViewedDocument       *bool                                                  `json:"has_viewed_document,omitempty"`
+	SignerDecision          *serialization.Nullable[SignRequestSignerDecision]     `json:"signer_decision,omitempty"`
+	Inputs                  []SignRequestSignerInput                               `json:"inputs,omitempty"`
+	EmbedUrl                *serialization.Nullable[string]                        `json:"embed_url,omitempty"`
+	IframeableEmbedUrl      *serialization.Nullable[string]                        `json:"iframeable_embed_url,omitempty"`
+	Attachments             *serialization.Nullable[[]SignRequestSignerAttachment] `json:"attachments,omitempty"`
 }
 
 type SignRequestSignerAttachment struct {
@@ -180,7 +180,7 @@ const (
 	SignerDecisionTypeDeclined SignerDecisionType = "declined"
 )
 
-type SignRequestSignerSignerDecision struct {
+type SignRequestSignerDecision struct {
 	Type           *SignerDecisionType             `json:"type,omitempty"`
 	FinalizedAt    *time.Time                      `json:"finalized_at,omitempty"`
 	AdditionalInfo *serialization.Nullable[string] `json:"additional_info,omitempty"`

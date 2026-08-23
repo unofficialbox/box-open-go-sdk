@@ -22,7 +22,7 @@ type ShieldInformationBarrierReport struct {
 }
 
 type ShieldInformationBarrierReportDetails struct {
-	Details *ShieldInformationBarrierReportDetailsDetails `json:"details,omitempty"`
+	Details *ShieldInformationBarrierReportDetails2 `json:"details,omitempty"`
 }
 
 type ShieldInformationBarrierReports struct {
@@ -46,6 +46,6 @@ const (
 	ShieldInformationBarrierReportStatusCancelled ShieldInformationBarrierReportStatus = "cancelled"
 )
 
-type ShieldInformationBarrierReportDetailsDetails struct {
+type ShieldInformationBarrierReportDetails2 struct {
 	FolderId *string `json:"folder_id,omitempty"`
 }

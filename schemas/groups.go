@@ -7,7 +7,7 @@ type GroupFull struct {
 	Id                     string                      `json:"id"`
 	Type                   GroupType                   `json:"type"`
 	Name                   *string                     `json:"name,omitempty"`
-	GroupType              *GroupGroupType             `json:"group_type,omitempty"`
+	GroupType              *GroupType2                 `json:"group_type,omitempty"`
 	CreatedAt              *time.Time                  `json:"created_at,omitempty"`
 	ModifiedAt             *time.Time                  `json:"modified_at,omitempty"`
 	Provenance             *string                     `json:"provenance,omitempty"`

@@ -21,7 +21,7 @@ type RetentionPolicy struct {
 	DispositionAction            *RetentionPolicyDispositionAction          `json:"disposition_action,omitempty"`
 	MaxExtensionLength           *RetentionPolicyMaxExtensionLengthResponse `json:"max_extension_length,omitempty"`
 	Description                  *string                                    `json:"description,omitempty"`
-	PolicyType                   *RetentionPolicyPolicyType                 `json:"policy_type,omitempty"`
+	PolicyType                   *RetentionPolicyType2                      `json:"policy_type,omitempty"`
 	RetentionType                *RetentionPolicyRetentionType              `json:"retention_type,omitempty"`
 	Status                       *RetentionPolicyStatus                     `json:"status,omitempty"`
 	CreatedBy                    *UserMini                                  `json:"created_by,omitempty"`
@@ -50,11 +50,11 @@ func (u *RetentionPolicyMaxExtensionLengthRequest) UnmarshalJSON(data []byte) er
 	return nil
 }
 
-type RetentionPolicyPolicyType string
+type RetentionPolicyType2 string
 
 const (
-	RetentionPolicyPolicyTypeFinite     RetentionPolicyPolicyType = "finite"
-	RetentionPolicyPolicyTypeIndefinite RetentionPolicyPolicyType = "indefinite"
+	RetentionPolicyType2Finite     RetentionPolicyType2 = "finite"
+	RetentionPolicyType2Indefinite RetentionPolicyType2 = "indefinite"
 )
 
 type RetentionPolicyRetentionType string
@@ -97,7 +97,7 @@ func (u *PostRetentionLength) UnmarshalJSON(data []byte) error {
 type CreateRetentionPolicyRequest struct {
 	PolicyName                   string                                    `json:"policy_name"`
 	Description                  *string                                   `json:"description,omitempty"`
-	PolicyType                   RetentionPolicyPolicyType                 `json:"policy_type"`
+	PolicyType                   RetentionPolicyType2                      `json:"policy_type"`
 	DispositionAction            RetentionPolicyDispositionAction          `json:"disposition_action"`
 	RetentionLength              *PostRetentionLength                      `json:"retention_length,omitempty"`
 	RetentionType                *RetentionPolicyRetentionType             `json:"retention_type,omitempty"`

@@ -260,10 +260,10 @@ func (u *CollaborationItem) UnmarshalJSON(data []byte) error {
 }
 
 type Collection struct {
-	Id             *string                   `json:"id,omitempty"`
-	Type           *CollectionType           `json:"type,omitempty"`
-	Name           *CollectionName           `json:"name,omitempty"`
-	CollectionType *CollectionCollectionType `json:"collection_type,omitempty"`
+	Id             *string          `json:"id,omitempty"`
+	Type           *CollectionType  `json:"type,omitempty"`
+	Name           *CollectionName  `json:"name,omitempty"`
+	CollectionType *CollectionType2 `json:"collection_type,omitempty"`
 }
 
 type Comment struct {
@@ -411,69 +411,69 @@ type FileVersionMini struct {
 }
 
 type Folder struct {
-	Id                string                                           `json:"id"`
-	Etag              *serialization.Nullable[string]                  `json:"etag,omitempty"`
-	Type              FolderType                                       `json:"type"`
-	SequenceId        *string                                          `json:"sequence_id,omitempty"`
-	Name              *string                                          `json:"name,omitempty"`
-	CreatedAt         *serialization.Nullable[time.Time]               `json:"created_at,omitempty"`
-	ModifiedAt        *serialization.Nullable[time.Time]               `json:"modified_at,omitempty"`
-	Description       *string                                          `json:"description,omitempty"`
-	Size              *int64                                           `json:"size,omitempty"`
-	PathCollection    *FilePathCollection                              `json:"path_collection,omitempty"`
-	CreatedBy         *UserMini                                        `json:"created_by,omitempty"`
-	ModifiedBy        *UserMini                                        `json:"modified_by,omitempty"`
-	TrashedAt         *serialization.Nullable[time.Time]               `json:"trashed_at,omitempty"`
-	PurgedAt          *serialization.Nullable[time.Time]               `json:"purged_at,omitempty"`
-	ContentCreatedAt  *serialization.Nullable[time.Time]               `json:"content_created_at,omitempty"`
-	ContentModifiedAt *serialization.Nullable[time.Time]               `json:"content_modified_at,omitempty"`
-	OwnedBy           *UserMini                                        `json:"owned_by,omitempty"`
-	SharedLink        *serialization.Nullable[FileSharedLink]          `json:"shared_link,omitempty"`
-	FolderUploadEmail *serialization.Nullable[FolderFolderUploadEmail] `json:"folder_upload_email,omitempty"`
-	Parent            *serialization.Nullable[FolderMini]              `json:"parent,omitempty"`
-	ItemStatus        *FileItemStatus                                  `json:"item_status,omitempty"`
-	ItemCollection    *Items                                           `json:"item_collection,omitempty"`
+	Id                string                                     `json:"id"`
+	Etag              *serialization.Nullable[string]            `json:"etag,omitempty"`
+	Type              FolderType                                 `json:"type"`
+	SequenceId        *string                                    `json:"sequence_id,omitempty"`
+	Name              *string                                    `json:"name,omitempty"`
+	CreatedAt         *serialization.Nullable[time.Time]         `json:"created_at,omitempty"`
+	ModifiedAt        *serialization.Nullable[time.Time]         `json:"modified_at,omitempty"`
+	Description       *string                                    `json:"description,omitempty"`
+	Size              *int64                                     `json:"size,omitempty"`
+	PathCollection    *FilePathCollection                        `json:"path_collection,omitempty"`
+	CreatedBy         *UserMini                                  `json:"created_by,omitempty"`
+	ModifiedBy        *UserMini                                  `json:"modified_by,omitempty"`
+	TrashedAt         *serialization.Nullable[time.Time]         `json:"trashed_at,omitempty"`
+	PurgedAt          *serialization.Nullable[time.Time]         `json:"purged_at,omitempty"`
+	ContentCreatedAt  *serialization.Nullable[time.Time]         `json:"content_created_at,omitempty"`
+	ContentModifiedAt *serialization.Nullable[time.Time]         `json:"content_modified_at,omitempty"`
+	OwnedBy           *UserMini                                  `json:"owned_by,omitempty"`
+	SharedLink        *serialization.Nullable[FileSharedLink]    `json:"shared_link,omitempty"`
+	FolderUploadEmail *serialization.Nullable[FolderUploadEmail] `json:"folder_upload_email,omitempty"`
+	Parent            *serialization.Nullable[FolderMini]        `json:"parent,omitempty"`
+	ItemStatus        *FileItemStatus                            `json:"item_status,omitempty"`
+	ItemCollection    *Items                                     `json:"item_collection,omitempty"`
 }
 
 type FolderFull struct {
-	Id                                    string                                           `json:"id"`
-	Etag                                  *serialization.Nullable[string]                  `json:"etag,omitempty"`
-	Type                                  FolderType                                       `json:"type"`
-	SequenceId                            *string                                          `json:"sequence_id,omitempty"`
-	Name                                  *string                                          `json:"name,omitempty"`
-	CreatedAt                             *serialization.Nullable[time.Time]               `json:"created_at,omitempty"`
-	ModifiedAt                            *serialization.Nullable[time.Time]               `json:"modified_at,omitempty"`
-	Description                           *string                                          `json:"description,omitempty"`
-	Size                                  *int64                                           `json:"size,omitempty"`
-	PathCollection                        *FilePathCollection                              `json:"path_collection,omitempty"`
-	CreatedBy                             *UserMini                                        `json:"created_by,omitempty"`
-	ModifiedBy                            *UserMini                                        `json:"modified_by,omitempty"`
-	TrashedAt                             *serialization.Nullable[time.Time]               `json:"trashed_at,omitempty"`
-	PurgedAt                              *serialization.Nullable[time.Time]               `json:"purged_at,omitempty"`
-	ContentCreatedAt                      *serialization.Nullable[time.Time]               `json:"content_created_at,omitempty"`
-	ContentModifiedAt                     *serialization.Nullable[time.Time]               `json:"content_modified_at,omitempty"`
-	OwnedBy                               *UserMini                                        `json:"owned_by,omitempty"`
-	SharedLink                            *serialization.Nullable[FileSharedLink]          `json:"shared_link,omitempty"`
-	FolderUploadEmail                     *serialization.Nullable[FolderFolderUploadEmail] `json:"folder_upload_email,omitempty"`
-	Parent                                *serialization.Nullable[FolderMini]              `json:"parent,omitempty"`
-	ItemStatus                            *FileItemStatus                                  `json:"item_status,omitempty"`
-	ItemCollection                        *Items                                           `json:"item_collection,omitempty"`
-	SyncState                             *FolderFullSyncState                             `json:"sync_state,omitempty"`
-	HasCollaborations                     *bool                                            `json:"has_collaborations,omitempty"`
-	Permissions                           *FolderFullPermissions                           `json:"permissions,omitempty"`
-	Tags                                  []string                                         `json:"tags,omitempty"`
-	CanNonOwnersInvite                    *bool                                            `json:"can_non_owners_invite,omitempty"`
-	IsExternallyOwned                     *bool                                            `json:"is_externally_owned,omitempty"`
-	Metadata                              map[string]map[string]MetadataFull               `json:"metadata,omitempty"`
-	IsCollaborationRestrictedToEnterprise *bool                                            `json:"is_collaboration_restricted_to_enterprise,omitempty"`
-	AllowedSharedLinkAccessLevels         []SharedLinkAccess                               `json:"allowed_shared_link_access_levels,omitempty"`
-	AllowedInviteeRoles                   []FileFullAllowedInviteeRoles                    `json:"allowed_invitee_roles,omitempty"`
-	WatermarkInfo                         *FileFullWatermarkInfo                           `json:"watermark_info,omitempty"`
-	IsAccessibleViaSharedLink             *bool                                            `json:"is_accessible_via_shared_link,omitempty"`
-	CanNonOwnersViewCollaborators         *bool                                            `json:"can_non_owners_view_collaborators,omitempty"`
-	Classification                        *serialization.Nullable[FileFullClassification]  `json:"classification,omitempty"`
-	IsAssociatedWithAppItem               *bool                                            `json:"is_associated_with_app_item,omitempty"`
-	Collections                           []Collection                                     `json:"collections,omitempty"`
+	Id                                    string                                          `json:"id"`
+	Etag                                  *serialization.Nullable[string]                 `json:"etag,omitempty"`
+	Type                                  FolderType                                      `json:"type"`
+	SequenceId                            *string                                         `json:"sequence_id,omitempty"`
+	Name                                  *string                                         `json:"name,omitempty"`
+	CreatedAt                             *serialization.Nullable[time.Time]              `json:"created_at,omitempty"`
+	ModifiedAt                            *serialization.Nullable[time.Time]              `json:"modified_at,omitempty"`
+	Description                           *string                                         `json:"description,omitempty"`
+	Size                                  *int64                                          `json:"size,omitempty"`
+	PathCollection                        *FilePathCollection                             `json:"path_collection,omitempty"`
+	CreatedBy                             *UserMini                                       `json:"created_by,omitempty"`
+	ModifiedBy                            *UserMini                                       `json:"modified_by,omitempty"`
+	TrashedAt                             *serialization.Nullable[time.Time]              `json:"trashed_at,omitempty"`
+	PurgedAt                              *serialization.Nullable[time.Time]              `json:"purged_at,omitempty"`
+	ContentCreatedAt                      *serialization.Nullable[time.Time]              `json:"content_created_at,omitempty"`
+	ContentModifiedAt                     *serialization.Nullable[time.Time]              `json:"content_modified_at,omitempty"`
+	OwnedBy                               *UserMini                                       `json:"owned_by,omitempty"`
+	SharedLink                            *serialization.Nullable[FileSharedLink]         `json:"shared_link,omitempty"`
+	FolderUploadEmail                     *serialization.Nullable[FolderUploadEmail]      `json:"folder_upload_email,omitempty"`
+	Parent                                *serialization.Nullable[FolderMini]             `json:"parent,omitempty"`
+	ItemStatus                            *FileItemStatus                                 `json:"item_status,omitempty"`
+	ItemCollection                        *Items                                          `json:"item_collection,omitempty"`
+	SyncState                             *FolderFullSyncState                            `json:"sync_state,omitempty"`
+	HasCollaborations                     *bool                                           `json:"has_collaborations,omitempty"`
+	Permissions                           *FolderFullPermissions                          `json:"permissions,omitempty"`
+	Tags                                  []string                                        `json:"tags,omitempty"`
+	CanNonOwnersInvite                    *bool                                           `json:"can_non_owners_invite,omitempty"`
+	IsExternallyOwned                     *bool                                           `json:"is_externally_owned,omitempty"`
+	Metadata                              map[string]map[string]MetadataFull              `json:"metadata,omitempty"`
+	IsCollaborationRestrictedToEnterprise *bool                                           `json:"is_collaboration_restricted_to_enterprise,omitempty"`
+	AllowedSharedLinkAccessLevels         []SharedLinkAccess                              `json:"allowed_shared_link_access_levels,omitempty"`
+	AllowedInviteeRoles                   []FileFullAllowedInviteeRoles                   `json:"allowed_invitee_roles,omitempty"`
+	WatermarkInfo                         *FileFullWatermarkInfo                          `json:"watermark_info,omitempty"`
+	IsAccessibleViaSharedLink             *bool                                           `json:"is_accessible_via_shared_link,omitempty"`
+	CanNonOwnersViewCollaborators         *bool                                           `json:"can_non_owners_view_collaborators,omitempty"`
+	Classification                        *serialization.Nullable[FileFullClassification] `json:"classification,omitempty"`
+	IsAssociatedWithAppItem               *bool                                           `json:"is_associated_with_app_item,omitempty"`
+	Collections                           []Collection                                    `json:"collections,omitempty"`
 }
 
 type FolderMini struct {
@@ -490,19 +490,19 @@ type FolderReference struct {
 }
 
 type Group struct {
-	Id         string          `json:"id"`
-	Type       GroupType       `json:"type"`
-	Name       *string         `json:"name,omitempty"`
-	GroupType  *GroupGroupType `json:"group_type,omitempty"`
-	CreatedAt  *time.Time      `json:"created_at,omitempty"`
-	ModifiedAt *time.Time      `json:"modified_at,omitempty"`
+	Id         string      `json:"id"`
+	Type       GroupType   `json:"type"`
+	Name       *string     `json:"name,omitempty"`
+	GroupType  *GroupType2 `json:"group_type,omitempty"`
+	CreatedAt  *time.Time  `json:"created_at,omitempty"`
+	ModifiedAt *time.Time  `json:"modified_at,omitempty"`
 }
 
 type GroupMini struct {
-	Id        string          `json:"id"`
-	Type      GroupType       `json:"type"`
-	Name      *string         `json:"name,omitempty"`
-	GroupType *GroupGroupType `json:"group_type,omitempty"`
+	Id        string      `json:"id"`
+	Type      GroupType   `json:"type"`
+	Name      *string     `json:"name,omitempty"`
+	GroupType *GroupType2 `json:"group_type,omitempty"`
 }
 
 type IntegrationMappingBase struct {
@@ -683,8 +683,8 @@ func (u *Resource) UnmarshalJSON(data []byte) error {
 }
 
 type ResourceScope struct {
-	Scope  *ResourceScopeScope `json:"scope,omitempty"`
-	Object *Resource           `json:"object,omitempty"`
+	Scope  *ResourceScope2 `json:"scope,omitempty"`
+	Object *Resource       `json:"object,omitempty"`
 }
 
 type RetentionPolicyBase struct {
@@ -769,41 +769,41 @@ type SignRequestBase struct {
 }
 
 type SignRequestSignerInputCustomValidation struct {
-	ValidationType     SignRequestSignerInputCustomValidationValidationType `json:"validation_type"`
-	CustomRegex        serialization.Nullable[string]                       `json:"custom_regex"`
-	CustomErrorMessage serialization.Nullable[string]                       `json:"custom_error_message"`
+	ValidationType     SignRequestSignerInputCustomValidationType `json:"validation_type"`
+	CustomRegex        serialization.Nullable[string]             `json:"custom_regex"`
+	CustomErrorMessage serialization.Nullable[string]             `json:"custom_error_message"`
 }
 
 type SignRequestSignerInputDateAsiaValidation struct {
-	ValidationType *SignRequestSignerInputDateAsiaValidationValidationType `json:"validation_type,omitempty"`
+	ValidationType *SignRequestSignerInputDateAsiaValidationType `json:"validation_type,omitempty"`
 }
 
 type SignRequestSignerInputDateEUValidation struct {
-	ValidationType *SignRequestSignerInputDateEUValidationValidationType `json:"validation_type,omitempty"`
+	ValidationType *SignRequestSignerInputDateEUValidationType `json:"validation_type,omitempty"`
 }
 
 type SignRequestSignerInputDateISOValidation struct {
-	ValidationType *SignRequestSignerInputDateISOValidationValidationType `json:"validation_type,omitempty"`
+	ValidationType *SignRequestSignerInputDateISOValidationType `json:"validation_type,omitempty"`
 }
 
 type SignRequestSignerInputDateUSValidation struct {
-	ValidationType *SignRequestSignerInputDateUSValidationValidationType `json:"validation_type,omitempty"`
+	ValidationType *SignRequestSignerInputDateUSValidationType `json:"validation_type,omitempty"`
 }
 
 type SignRequestSignerInputEmailValidation struct {
-	ValidationType SignRequestSignerInputEmailValidationValidationType `json:"validation_type"`
+	ValidationType SignRequestSignerInputEmailValidationType `json:"validation_type"`
 }
 
 type SignRequestSignerInputNumberWithCommaValidation struct {
-	ValidationType *SignRequestSignerInputNumberWithCommaValidationValidationType `json:"validation_type,omitempty"`
+	ValidationType *SignRequestSignerInputNumberWithCommaValidationType `json:"validation_type,omitempty"`
 }
 
 type SignRequestSignerInputNumberWithPeriodValidation struct {
-	ValidationType *SignRequestSignerInputNumberWithPeriodValidationValidationType `json:"validation_type,omitempty"`
+	ValidationType *SignRequestSignerInputNumberWithPeriodValidationType `json:"validation_type,omitempty"`
 }
 
 type SignRequestSignerInputSSNValidation struct {
-	ValidationType SignRequestSignerInputSSNValidationValidationType `json:"validation_type"`
+	ValidationType SignRequestSignerInputSSNValidationType `json:"validation_type"`
 }
 
 // SignRequestSignerInputValidation is a structural union; callers inspect the raw value.
@@ -824,11 +824,11 @@ func (u *SignRequestSignerInputValidation) UnmarshalJSON(data []byte) error {
 }
 
 type SignRequestSignerInputZIP4Validation struct {
-	ValidationType SignRequestSignerInputZIP4ValidationValidationType `json:"validation_type"`
+	ValidationType SignRequestSignerInputZIP4ValidationType `json:"validation_type"`
 }
 
 type SignRequestSignerInputZIPValidation struct {
-	ValidationType SignRequestSignerInputZIPValidationValidationType `json:"validation_type"`
+	ValidationType SignRequestSignerInputZIPValidationType `json:"validation_type"`
 }
 
 type TaskAssignment struct {
@@ -881,7 +881,7 @@ type UserMini struct {
 }
 
 type Watermark struct {
-	Watermark *WatermarkWatermark `json:"watermark,omitempty"`
+	Watermark *Watermark2 `json:"watermark,omitempty"`
 }
 
 type WebLink struct {
@@ -924,10 +924,10 @@ type WorkflowMini struct {
 	IsEnabled   *bool         `json:"is_enabled,omitempty"`
 }
 
-type AccessTokenTokenType string
+type AccessTokenType string
 
 const (
-	AccessTokenTokenTypeBearer AccessTokenTokenType = "bearer"
+	AccessTokenTypeBearer AccessTokenType = "bearer"
 )
 
 type AiAgentAskType string
@@ -1104,7 +1104,7 @@ const (
 	VariableValueTypeUser VariableValueType = "user"
 )
 
-type CollaboratorVariableVariableValue struct {
+type CollaboratorVariableValue struct {
 	Type VariableValueType `json:"type"`
 	Id   string            `json:"id"`
 }
@@ -1121,10 +1121,10 @@ const (
 	CollectionNameFavorites CollectionName = "Favorites"
 )
 
-type CollectionCollectionType string
+type CollectionType2 string
 
 const (
-	CollectionCollectionTypeFavorites CollectionCollectionType = "favorites"
+	CollectionType2Favorites CollectionType2 = "favorites"
 )
 
 type OrderDirection string
@@ -1252,11 +1252,11 @@ type FileFullLock struct {
 }
 
 type FileFullExpiringEmbedLink struct {
-	AccessToken  *string               `json:"access_token,omitempty"`
-	ExpiresIn    *int64                `json:"expires_in,omitempty"`
-	TokenType    *AccessTokenTokenType `json:"token_type,omitempty"`
-	RestrictedTo []ResourceScope       `json:"restricted_to,omitempty"`
-	Url          *string               `json:"url,omitempty"`
+	AccessToken  *string          `json:"access_token,omitempty"`
+	ExpiresIn    *int64           `json:"expires_in,omitempty"`
+	TokenType    *AccessTokenType `json:"token_type,omitempty"`
+	RestrictedTo []ResourceScope  `json:"restricted_to,omitempty"`
+	Url          *string          `json:"url,omitempty"`
 }
 
 type FileFullWatermarkInfo struct {
@@ -1349,7 +1349,7 @@ const (
 	FolderUploadEmailAccessCollaborators FolderUploadEmailAccess = "collaborators"
 )
 
-type FolderFolderUploadEmail struct {
+type FolderUploadEmail struct {
 	Access *FolderUploadEmailAccess `json:"access,omitempty"`
 	Email  *string                  `json:"email,omitempty"`
 }
@@ -1379,11 +1379,11 @@ const (
 	GroupTypeGroup GroupType = "group"
 )
 
-type GroupGroupType string
+type GroupType2 string
 
 const (
-	GroupGroupTypeManagedGroup  GroupGroupType = "managed_group"
-	GroupGroupTypeAllUsersGroup GroupGroupType = "all_users_group"
+	GroupType2ManagedGroup  GroupType2 = "managed_group"
+	GroupType2AllUsersGroup GroupType2 = "all_users_group"
 )
 
 type LegalHoldPolicyType string
@@ -1414,23 +1414,23 @@ type MetadataCascadePolicyParent struct {
 	Id   *string     `json:"id,omitempty"`
 }
 
-type ResourceScopeScope string
+type ResourceScope2 string
 
 const (
-	ResourceScopeScopeAnnotationEdit     ResourceScopeScope = "annotation_edit"
-	ResourceScopeScopeAnnotationViewAll  ResourceScopeScope = "annotation_view_all"
-	ResourceScopeScopeAnnotationViewSelf ResourceScopeScope = "annotation_view_self"
-	ResourceScopeScopeBaseExplorer       ResourceScopeScope = "base_explorer"
-	ResourceScopeScopeBasePicker         ResourceScopeScope = "base_picker"
-	ResourceScopeScopeBasePreview        ResourceScopeScope = "base_preview"
-	ResourceScopeScopeBaseUpload         ResourceScopeScope = "base_upload"
-	ResourceScopeScopeItemDelete         ResourceScopeScope = "item_delete"
-	ResourceScopeScopeItemDownload       ResourceScopeScope = "item_download"
-	ResourceScopeScopeItemPreview        ResourceScopeScope = "item_preview"
-	ResourceScopeScopeItemRename         ResourceScopeScope = "item_rename"
-	ResourceScopeScopeItemShare          ResourceScopeScope = "item_share"
-	ResourceScopeScopeItemUpload         ResourceScopeScope = "item_upload"
-	ResourceScopeScopeItemRead           ResourceScopeScope = "item_read"
+	ResourceScope2AnnotationEdit     ResourceScope2 = "annotation_edit"
+	ResourceScope2AnnotationViewAll  ResourceScope2 = "annotation_view_all"
+	ResourceScope2AnnotationViewSelf ResourceScope2 = "annotation_view_self"
+	ResourceScope2BaseExplorer       ResourceScope2 = "base_explorer"
+	ResourceScope2BasePicker         ResourceScope2 = "base_picker"
+	ResourceScope2BasePreview        ResourceScope2 = "base_preview"
+	ResourceScope2BaseUpload         ResourceScope2 = "base_upload"
+	ResourceScope2ItemDelete         ResourceScope2 = "item_delete"
+	ResourceScope2ItemDownload       ResourceScope2 = "item_download"
+	ResourceScope2ItemPreview        ResourceScope2 = "item_preview"
+	ResourceScope2ItemRename         ResourceScope2 = "item_rename"
+	ResourceScope2ItemShare          ResourceScope2 = "item_share"
+	ResourceScope2ItemUpload         ResourceScope2 = "item_upload"
+	ResourceScope2ItemRead           ResourceScope2 = "item_read"
 )
 
 type RetentionPolicyType string
@@ -1497,70 +1497,70 @@ const (
 	SignRequestSignerInputContentTypeDropdown   SignRequestSignerInputContentType = "dropdown"
 )
 
-type SignRequestSignerInputCustomValidationValidationType string
+type SignRequestSignerInputCustomValidationType string
 
 const (
-	SignRequestSignerInputCustomValidationValidationTypeCustom SignRequestSignerInputCustomValidationValidationType = "custom"
+	SignRequestSignerInputCustomValidationTypeCustom SignRequestSignerInputCustomValidationType = "custom"
 )
 
-type SignRequestSignerInputDateAsiaValidationValidationType string
+type SignRequestSignerInputDateAsiaValidationType string
 
 const (
-	SignRequestSignerInputDateAsiaValidationValidationTypeDateAsia SignRequestSignerInputDateAsiaValidationValidationType = "date_asia"
+	SignRequestSignerInputDateAsiaValidationTypeDateAsia SignRequestSignerInputDateAsiaValidationType = "date_asia"
 )
 
-type SignRequestSignerInputDateEUValidationValidationType string
+type SignRequestSignerInputDateEUValidationType string
 
 const (
-	SignRequestSignerInputDateEUValidationValidationTypeDateEu SignRequestSignerInputDateEUValidationValidationType = "date_eu"
+	SignRequestSignerInputDateEUValidationTypeDateEu SignRequestSignerInputDateEUValidationType = "date_eu"
 )
 
-type SignRequestSignerInputDateISOValidationValidationType string
+type SignRequestSignerInputDateISOValidationType string
 
 const (
-	SignRequestSignerInputDateISOValidationValidationTypeDateIso SignRequestSignerInputDateISOValidationValidationType = "date_iso"
+	SignRequestSignerInputDateISOValidationTypeDateIso SignRequestSignerInputDateISOValidationType = "date_iso"
 )
 
-type SignRequestSignerInputDateUSValidationValidationType string
+type SignRequestSignerInputDateUSValidationType string
 
 const (
-	SignRequestSignerInputDateUSValidationValidationTypeDateUs SignRequestSignerInputDateUSValidationValidationType = "date_us"
+	SignRequestSignerInputDateUSValidationTypeDateUs SignRequestSignerInputDateUSValidationType = "date_us"
 )
 
-type SignRequestSignerInputEmailValidationValidationType string
+type SignRequestSignerInputEmailValidationType string
 
 const (
-	SignRequestSignerInputEmailValidationValidationTypeEmail SignRequestSignerInputEmailValidationValidationType = "email"
+	SignRequestSignerInputEmailValidationTypeEmail SignRequestSignerInputEmailValidationType = "email"
 )
 
-type SignRequestSignerInputNumberWithCommaValidationValidationType string
+type SignRequestSignerInputNumberWithCommaValidationType string
 
 const (
-	SignRequestSignerInputNumberWithCommaValidationValidationTypeNumberWithComma SignRequestSignerInputNumberWithCommaValidationValidationType = "number_with_comma"
+	SignRequestSignerInputNumberWithCommaValidationTypeNumberWithComma SignRequestSignerInputNumberWithCommaValidationType = "number_with_comma"
 )
 
-type SignRequestSignerInputNumberWithPeriodValidationValidationType string
+type SignRequestSignerInputNumberWithPeriodValidationType string
 
 const (
-	SignRequestSignerInputNumberWithPeriodValidationValidationTypeNumberWithPeriod SignRequestSignerInputNumberWithPeriodValidationValidationType = "number_with_period"
+	SignRequestSignerInputNumberWithPeriodValidationTypeNumberWithPeriod SignRequestSignerInputNumberWithPeriodValidationType = "number_with_period"
 )
 
-type SignRequestSignerInputSSNValidationValidationType string
+type SignRequestSignerInputSSNValidationType string
 
 const (
-	SignRequestSignerInputSSNValidationValidationTypeSsn SignRequestSignerInputSSNValidationValidationType = "ssn"
+	SignRequestSignerInputSSNValidationTypeSsn SignRequestSignerInputSSNValidationType = "ssn"
 )
 
-type SignRequestSignerInputZIP4ValidationValidationType string
+type SignRequestSignerInputZIP4ValidationType string
 
 const (
-	SignRequestSignerInputZIP4ValidationValidationTypeZip4 SignRequestSignerInputZIP4ValidationValidationType = "zip_4"
+	SignRequestSignerInputZIP4ValidationTypeZip4 SignRequestSignerInputZIP4ValidationType = "zip_4"
 )
 
-type SignRequestSignerInputZIPValidationValidationType string
+type SignRequestSignerInputZIPValidationType string
 
 const (
-	SignRequestSignerInputZIPValidationValidationTypeZip SignRequestSignerInputZIPValidationValidationType = "zip"
+	SignRequestSignerInputZIPValidationTypeZip SignRequestSignerInputZIPValidationType = "zip"
 )
 
 type StoragePolicyType string
@@ -1629,7 +1629,7 @@ type UserNotificationEmail struct {
 	IsConfirmed *bool   `json:"is_confirmed,omitempty"`
 }
 
-type WatermarkWatermark struct {
+type Watermark2 struct {
 	CreatedAt  *time.Time `json:"created_at,omitempty"`
 	ModifiedAt *time.Time `json:"modified_at,omitempty"`
 }
@@ -1717,12 +1717,12 @@ const (
 	WatermarkImprintDefault WatermarkImprint = "default"
 )
 
-type PutFileIdWatermarkWatermark struct {
+type PutFileIdWatermark struct {
 	Imprint WatermarkImprint `json:"imprint"`
 }
 
 type UpdateFileWatermarkRequest struct {
-	Watermark PutFileIdWatermarkWatermark `json:"watermark"`
+	Watermark PutFileIdWatermark `json:"watermark"`
 }
 
 type GetDirection string
@@ -1738,7 +1738,7 @@ type UpdateFileAddSharedLinkRequestSharedLinkPermissions struct {
 	CanEdit     *bool `json:"can_edit,omitempty"`
 }
 
-type PutFileIdAddSharedLinkSharedLink struct {
+type PutFileIdAddSharedLink struct {
 	Access      *SharedLinkAccess                                    `json:"access,omitempty"`
 	Password    *serialization.Nullable[string]                      `json:"password,omitempty"`
 	VanityName  *string                                              `json:"vanity_name,omitempty"`
@@ -1747,7 +1747,7 @@ type PutFileIdAddSharedLinkSharedLink struct {
 }
 
 type UpdateFileAddSharedLinkRequest struct {
-	SharedLink *PutFileIdAddSharedLinkSharedLink `json:"shared_link,omitempty"`
+	SharedLink *PutFileIdAddSharedLink `json:"shared_link,omitempty"`
 }
 
 type UpdateFileRemoveSharedLinkRequest struct {

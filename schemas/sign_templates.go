@@ -82,7 +82,7 @@ const (
 )
 
 type AdditionalInfoRequired struct {
-	Signers [][]SignRequestSignerInputEmailValidationValidationType `json:"signers,omitempty"`
+	Signers [][]SignRequestSignerInputEmailValidationType `json:"signers,omitempty"`
 }
 
 type SignTemplateAdditionalInfo struct {

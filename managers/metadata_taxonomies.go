@@ -389,8 +389,8 @@ func (m *MetadataTaxonomiesManager) UpdateNode(ctx context.Context, namespace st
 	return out, nil
 }
 
-// MetadataTaxonomiesListMetadataTemplateFieldOptionsOptions carries the optional parameters.
-type MetadataTaxonomiesListMetadataTemplateFieldOptionsOptions struct {
+// MetadataTaxonomiesListMetadataTemplateFieldOptions carries the optional parameters.
+type MetadataTaxonomiesListMetadataTemplateFieldOptions struct {
 	Level                   []int64
 	Parent                  []string
 	Ancestor                []string
@@ -401,7 +401,7 @@ type MetadataTaxonomiesListMetadataTemplateFieldOptionsOptions struct {
 	Limit                   *int64
 }
 
-func (m *MetadataTaxonomiesManager) listMetadataTemplateFieldOptionsPage(ctx context.Context, namespace string, templateKey string, fieldKey string, opts *MetadataTaxonomiesListMetadataTemplateFieldOptionsOptions) (*schemas.MetadataTaxonomyNodes, error) {
+func (m *MetadataTaxonomiesManager) listMetadataTemplateFieldOptionsPage(ctx context.Context, namespace string, templateKey string, fieldKey string, opts *MetadataTaxonomiesListMetadataTemplateFieldOptions) (*schemas.MetadataTaxonomyNodes, error) {
 	req := m.session.NewRequest("GET", m.session.BaseUrl("api")+"/metadata_templates"+"/"+url.PathEscape(namespace)+"/"+url.PathEscape(templateKey)+"/fields"+"/"+url.PathEscape(fieldKey)+"/options")
 	if opts != nil {
 		if opts.Level != nil {
@@ -444,9 +444,9 @@ func (m *MetadataTaxonomiesManager) listMetadataTemplateFieldOptionsPage(ctx con
 	return out, nil
 }
 
-func (m *MetadataTaxonomiesManager) ListMetadataTemplateFieldOptions(ctx context.Context, namespace string, templateKey string, fieldKey string, opts *MetadataTaxonomiesListMetadataTemplateFieldOptionsOptions) iter.Seq2[*schemas.MetadataTaxonomyNode, error] {
+func (m *MetadataTaxonomiesManager) ListMetadataTemplateFieldOptions(ctx context.Context, namespace string, templateKey string, fieldKey string, opts *MetadataTaxonomiesListMetadataTemplateFieldOptions) iter.Seq2[*schemas.MetadataTaxonomyNode, error] {
 	return func(yield func(*schemas.MetadataTaxonomyNode, error) bool) {
-		var o MetadataTaxonomiesListMetadataTemplateFieldOptionsOptions
+		var o MetadataTaxonomiesListMetadataTemplateFieldOptions
 		if opts != nil {
 			o = *opts
 		}

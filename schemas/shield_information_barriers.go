@@ -40,16 +40,16 @@ const (
 	ShieldInformationBarrierStatusInvalid  ShieldInformationBarrierStatus = "invalid"
 )
 
-type PostChangeStatusStatus string
+type PostChangeStatus string
 
 const (
-	PostChangeStatusStatusPending  PostChangeStatusStatus = "pending"
-	PostChangeStatusStatusDisabled PostChangeStatusStatus = "disabled"
+	PostChangeStatusPending  PostChangeStatus = "pending"
+	PostChangeStatusDisabled PostChangeStatus = "disabled"
 )
 
 type CreateChangeStatusRequest struct {
-	Id     string                 `json:"id"`
-	Status PostChangeStatusStatus `json:"status"`
+	Id     string           `json:"id"`
+	Status PostChangeStatus `json:"status"`
 }
 
 type CreateShieldInformationBarrierRequest struct {

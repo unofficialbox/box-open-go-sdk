@@ -7,13 +7,13 @@ import (
 )
 
 type KeywordSkillCard struct {
-	CreatedAt      *time.Time                      `json:"created_at,omitempty"`
-	Type           KeywordSkillCardType            `json:"type"`
-	SkillCardType  KeywordSkillCardSkillCardType   `json:"skill_card_type"`
-	SkillCardTitle *KeywordSkillCardSkillCardTitle `json:"skill_card_title,omitempty"`
-	Skill          KeywordSkillCardSkill           `json:"skill"`
-	Invocation     KeywordSkillCardInvocation      `json:"invocation"`
-	Entries        []KeywordSkillCardEntries       `json:"entries"`
+	CreatedAt      *time.Time                 `json:"created_at,omitempty"`
+	Type           KeywordSkillCardType       `json:"type"`
+	SkillCardType  KeywordSkillCardType2      `json:"skill_card_type"`
+	SkillCardTitle *KeywordSkillCardTitle     `json:"skill_card_title,omitempty"`
+	Skill          KeywordSkillCardSkill      `json:"skill"`
+	Invocation     KeywordSkillCardInvocation `json:"invocation"`
+	Entries        []KeywordSkillCardEntries  `json:"entries"`
 }
 
 // SkillCard is a structural union; callers inspect the raw value.
@@ -46,35 +46,35 @@ type SkillCardsMetadata struct {
 }
 
 type StatusSkillCard struct {
-	CreatedAt      *time.Time                      `json:"created_at,omitempty"`
-	Type           KeywordSkillCardType            `json:"type"`
-	SkillCardType  StatusSkillCardSkillCardType    `json:"skill_card_type"`
-	SkillCardTitle *KeywordSkillCardSkillCardTitle `json:"skill_card_title,omitempty"`
-	Status         StatusSkillCardStatus           `json:"status"`
-	Skill          KeywordSkillCardSkill           `json:"skill"`
-	Invocation     KeywordSkillCardInvocation      `json:"invocation"`
+	CreatedAt      *time.Time                 `json:"created_at,omitempty"`
+	Type           KeywordSkillCardType       `json:"type"`
+	SkillCardType  StatusSkillCardType        `json:"skill_card_type"`
+	SkillCardTitle *KeywordSkillCardTitle     `json:"skill_card_title,omitempty"`
+	Status         StatusSkillCardStatus      `json:"status"`
+	Skill          KeywordSkillCardSkill      `json:"skill"`
+	Invocation     KeywordSkillCardInvocation `json:"invocation"`
 }
 
 type TimelineSkillCard struct {
-	CreatedAt      *time.Time                      `json:"created_at,omitempty"`
-	Type           KeywordSkillCardType            `json:"type"`
-	SkillCardType  TimelineSkillCardSkillCardType  `json:"skill_card_type"`
-	SkillCardTitle *KeywordSkillCardSkillCardTitle `json:"skill_card_title,omitempty"`
-	Skill          KeywordSkillCardSkill           `json:"skill"`
-	Invocation     KeywordSkillCardInvocation      `json:"invocation"`
-	Duration       *int64                          `json:"duration,omitempty"`
-	Entries        []TimelineSkillCardEntries      `json:"entries"`
+	CreatedAt      *time.Time                 `json:"created_at,omitempty"`
+	Type           KeywordSkillCardType       `json:"type"`
+	SkillCardType  TimelineSkillCardType      `json:"skill_card_type"`
+	SkillCardTitle *KeywordSkillCardTitle     `json:"skill_card_title,omitempty"`
+	Skill          KeywordSkillCardSkill      `json:"skill"`
+	Invocation     KeywordSkillCardInvocation `json:"invocation"`
+	Duration       *int64                     `json:"duration,omitempty"`
+	Entries        []TimelineSkillCardEntries `json:"entries"`
 }
 
 type TranscriptSkillCard struct {
-	CreatedAt      *time.Time                       `json:"created_at,omitempty"`
-	Type           KeywordSkillCardType             `json:"type"`
-	SkillCardType  TranscriptSkillCardSkillCardType `json:"skill_card_type"`
-	SkillCardTitle *KeywordSkillCardSkillCardTitle  `json:"skill_card_title,omitempty"`
-	Skill          KeywordSkillCardSkill            `json:"skill"`
-	Invocation     KeywordSkillCardInvocation       `json:"invocation"`
-	Duration       *int64                           `json:"duration,omitempty"`
-	Entries        []TranscriptSkillCardEntries     `json:"entries"`
+	CreatedAt      *time.Time                   `json:"created_at,omitempty"`
+	Type           KeywordSkillCardType         `json:"type"`
+	SkillCardType  TranscriptSkillCardType      `json:"skill_card_type"`
+	SkillCardTitle *KeywordSkillCardTitle       `json:"skill_card_title,omitempty"`
+	Skill          KeywordSkillCardSkill        `json:"skill"`
+	Invocation     KeywordSkillCardInvocation   `json:"invocation"`
+	Duration       *int64                       `json:"duration,omitempty"`
+	Entries        []TranscriptSkillCardEntries `json:"entries"`
 }
 
 type KeywordSkillCardType string
@@ -83,13 +83,13 @@ const (
 	KeywordSkillCardTypeSkillCard KeywordSkillCardType = "skill_card"
 )
 
-type KeywordSkillCardSkillCardType string
+type KeywordSkillCardType2 string
 
 const (
-	KeywordSkillCardSkillCardTypeKeyword KeywordSkillCardSkillCardType = "keyword"
+	KeywordSkillCardType2Keyword KeywordSkillCardType2 = "keyword"
 )
 
-type KeywordSkillCardSkillCardTitle struct {
+type KeywordSkillCardTitle struct {
 	Code    *string `json:"code,omitempty"`
 	Message string  `json:"message"`
 }
@@ -120,10 +120,10 @@ type KeywordSkillCardEntries struct {
 	Text *string `json:"text,omitempty"`
 }
 
-type StatusSkillCardSkillCardType string
+type StatusSkillCardType string
 
 const (
-	StatusSkillCardSkillCardTypeStatus StatusSkillCardSkillCardType = "status"
+	StatusSkillCardTypeStatus StatusSkillCardType = "status"
 )
 
 type StatusCode string
@@ -141,10 +141,10 @@ type StatusSkillCardStatus struct {
 	Message *string    `json:"message,omitempty"`
 }
 
-type TimelineSkillCardSkillCardType string
+type TimelineSkillCardType string
 
 const (
-	TimelineSkillCardSkillCardTypeTimeline TimelineSkillCardSkillCardType = "timeline"
+	TimelineSkillCardTypeTimeline TimelineSkillCardType = "timeline"
 )
 
 type EntriesAppears struct {
@@ -158,10 +158,10 @@ type TimelineSkillCardEntries struct {
 	ImageUrl *string          `json:"image_url,omitempty"`
 }
 
-type TranscriptSkillCardSkillCardType string
+type TranscriptSkillCardType string
 
 const (
-	TranscriptSkillCardSkillCardTypeTranscript TranscriptSkillCardSkillCardType = "transcript"
+	TranscriptSkillCardTypeTranscript TranscriptSkillCardType = "transcript"
 )
 
 type TranscriptSkillCardEntriesAppears struct {

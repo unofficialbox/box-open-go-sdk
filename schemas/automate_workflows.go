@@ -7,15 +7,15 @@ import (
 )
 
 type AutomateWorkflowAction struct {
-	Id          string                           `json:"id"`
-	Type        AutomateWorkflowActionType       `json:"type"`
-	ActionType  AutomateWorkflowActionActionType `json:"action_type"`
-	Description *string                          `json:"description,omitempty"`
-	CreatedAt   *time.Time                       `json:"created_at,omitempty"`
-	UpdatedAt   *time.Time                       `json:"updated_at,omitempty"`
-	CreatedBy   *UserMini                        `json:"created_by,omitempty"`
-	UpdatedBy   *UserMini                        `json:"updated_by,omitempty"`
-	Workflow    AutomateWorkflowReference        `json:"workflow"`
+	Id          string                      `json:"id"`
+	Type        AutomateWorkflowActionType  `json:"type"`
+	ActionType  AutomateWorkflowActionType2 `json:"action_type"`
+	Description *string                     `json:"description,omitempty"`
+	CreatedAt   *time.Time                  `json:"created_at,omitempty"`
+	UpdatedAt   *time.Time                  `json:"updated_at,omitempty"`
+	CreatedBy   *UserMini                   `json:"created_by,omitempty"`
+	UpdatedBy   *UserMini                   `json:"updated_by,omitempty"`
+	Workflow    AutomateWorkflowReference   `json:"workflow"`
 }
 
 type AutomateWorkflowReference struct {
@@ -41,10 +41,10 @@ const (
 	AutomateWorkflowActionTypeWorkflowAction AutomateWorkflowActionType = "workflow_action"
 )
 
-type AutomateWorkflowActionActionType string
+type AutomateWorkflowActionType2 string
 
 const (
-	AutomateWorkflowActionActionTypeRunWorkflow AutomateWorkflowActionActionType = "run_workflow"
+	AutomateWorkflowActionType2RunWorkflow AutomateWorkflowActionType2 = "run_workflow"
 )
 
 type AutomateWorkflowReferenceType string

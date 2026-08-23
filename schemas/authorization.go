@@ -4,7 +4,7 @@ package schemas
 type AccessToken struct {
 	AccessToken     *string                     `json:"access_token,omitempty"`
 	ExpiresIn       *int64                      `json:"expires_in,omitempty"`
-	TokenType       *AccessTokenTokenType       `json:"token_type,omitempty"`
+	TokenType       *AccessTokenType            `json:"token_type,omitempty"`
 	RestrictedTo    []ResourceScope             `json:"restricted_to,omitempty"`
 	RefreshToken    *string                     `json:"refresh_token,omitempty"`
 	IssuedTokenType *AccessTokenIssuedTokenType `json:"issued_token_type,omitempty"`
