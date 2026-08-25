@@ -31,11 +31,7 @@ func (m *AvatarsManager) GetUserAvatar(ctx context.Context, userId string) (io.R
 
 func (m *AvatarsManager) CreateUserAvatar(ctx context.Context, userId string, body *schemas.CreateUserAvatarRequest) (*schemas.UserAvatar, error) {
 	req := m.session.NewRequest("POST", m.session.BaseUrl("api")+"/users"+"/"+url.PathEscape(userId)+"/avatar")
-	attributes, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	req = gantryruntime.WithMultipartBody(req, attributes, "file", nil)
+	req = gantryruntime.WithMultipartBody(req, "", nil, "pic", body.Pic)
 	resp, err := m.session.Fetch(ctx, req)
 	if err != nil {
 		return nil, err

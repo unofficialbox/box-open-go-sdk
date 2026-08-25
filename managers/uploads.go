@@ -40,11 +40,11 @@ func (m *UploadsManager) UploadFileVersion(ctx context.Context, fileId string, b
 			req = gantryruntime.WithHeader(req, "content-md5", (*opts.ContentMd5))
 		}
 	}
-	attributes, err := json.Marshal(body)
+	jsonBytes, err := json.Marshal(body.Attributes)
 	if err != nil {
 		return nil, err
 	}
-	req = gantryruntime.WithMultipartBody(req, attributes, "file", nil)
+	req = gantryruntime.WithMultipartBody(req, "attributes", jsonBytes, "file", body.File)
 	resp, err := m.session.Fetch(ctx, req)
 	if err != nil {
 		return nil, err
@@ -76,11 +76,11 @@ func (m *UploadsManager) UploadFile(ctx context.Context, body *schemas.CreateFil
 			req = gantryruntime.WithHeader(req, "content-md5", (*opts.ContentMd5))
 		}
 	}
-	attributes, err := json.Marshal(body)
+	jsonBytes, err := json.Marshal(body.Attributes)
 	if err != nil {
 		return nil, err
 	}
-	req = gantryruntime.WithMultipartBody(req, attributes, "file", nil)
+	req = gantryruntime.WithMultipartBody(req, "attributes", jsonBytes, "file", body.File)
 	resp, err := m.session.Fetch(ctx, req)
 	if err != nil {
 		return nil, err
