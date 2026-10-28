@@ -26,6 +26,7 @@ docs/managers/comments.md
 docs/managers/device_pinners.md
 docs/managers/docgen.md
 docs/managers/docgen_template.md
+docs/managers/document_split.md
 docs/managers/downloads.md
 docs/managers/email_aliases.md
 docs/managers/enterprise_configurations.md
@@ -75,6 +76,7 @@ docs/managers/shield_information_barrier_segment_restrictions.md
 docs/managers/shield_information_barrier_segments.md
 docs/managers/shield_information_barriers.md
 docs/managers/shield_lists.md
+docs/managers/shuttle.md
 docs/managers/sign_requests.md
 docs/managers/sign_templates.md
 docs/managers/skills.md
@@ -115,6 +117,7 @@ managers/comments.go
 managers/device_pinners.go
 managers/docgen.go
 managers/docgen_template.go
+managers/document_split.go
 managers/downloads.go
 managers/email_aliases.go
 managers/enterprise_configurations.go
@@ -165,6 +168,7 @@ managers/shield_information_barrier_segment_restrictions.go
 managers/shield_information_barrier_segments.go
 managers/shield_information_barriers.go
 managers/shield_lists.go
+managers/shuttle.go
 managers/sign_requests.go
 managers/sign_templates.go
 managers/skills.go
@@ -202,6 +206,7 @@ schemas/comments.go
 schemas/device_pinners.go
 schemas/docgen.go
 schemas/docgen_template.go
+schemas/document_split.go
 schemas/email_aliases.go
 schemas/enterprise_configurations.go
 schemas/events.go
@@ -243,6 +248,7 @@ schemas/shield_information_barrier_segment_restrictions.go
 schemas/shield_information_barrier_segments.go
 schemas/shield_information_barriers.go
 schemas/shield_lists.go
+schemas/shuttle.go
 schemas/sign_requests.go
 schemas/sign_templates.go
 schemas/skills.go

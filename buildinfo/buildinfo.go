@@ -10,5 +10,5 @@ const (
 	EngineVersion = "0.1.0"
 
 	// SpecFingerprint identifies the exact input spec set.
-	SpecFingerprint = "3fb3510fe12f2f80"
+	SpecFingerprint = "3283827dcf199770"
 )

@@ -21,7 +21,7 @@ One resource manager per Box API tag, reached through the single
 | [Authorization](managers/authorization.md) | 4 |
 | [AutomateWorkflows](managers/automate_workflows.md) | 2 |
 | [Avatars](managers/avatars.md) | 3 |
-| [ChunkedUploads](managers/chunked_uploads.md) | 7 |
+| [ChunkedUploads](managers/chunked_uploads.md) | 8 |
 | [Classifications](managers/classifications.md) | 4 |
 | [CollaborationAllowlistEntries](managers/collaboration_allowlist_entries.md) | 4 |
 | [CollaborationAllowlistExemptTargets](managers/collaboration_allowlist_exempt_targets.md) | 4 |
@@ -30,6 +30,7 @@ One resource manager per Box API tag, reached through the single
 | [DevicePinners](managers/device_pinners.md) | 3 |
 | [Docgen](managers/docgen.md) | 4 |
 | [DocgenTemplate](managers/docgen_template.md) | 6 |
+| [DocumentSplit](managers/document_split.md) | 3 |
 | [Downloads](managers/downloads.md) | 1 |
 | [EmailAliases](managers/email_aliases.md) | 3 |
 | [EnterpriseConfigurations](managers/enterprise_configurations.md) | 1 |
@@ -79,6 +80,7 @@ One resource manager per Box API tag, reached through the single
 | [ShieldInformationBarrierSegments](managers/shield_information_barrier_segments.md) | 5 |
 | [ShieldInformationBarriers](managers/shield_information_barriers.md) | 4 |
 | [ShieldLists](managers/shield_lists.md) | 5 |
+| [Shuttle](managers/shuttle.md) | 39 |
 | [SignRequests](managers/sign_requests.md) | 5 |
 | [SignTemplates](managers/sign_templates.md) | 2 |
 | [Skills](managers/skills.md) | 5 |

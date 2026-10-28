@@ -581,3 +581,153 @@ func TestShieldListContentRequestRoundTrip(t *testing.T) {
 		t.Fatalf("unknown discriminator was not retained")
 	}
 }
+
+func TestDocumentSplitPageSelectionSegmentRoundTrip(t *testing.T) {
+	var known DocumentSplitPageSelectionSegment
+	if err := json.Unmarshal([]byte(`{"type":"single_page"}`), &known); err != nil {
+		t.Fatalf("unmarshal known: %v", err)
+	}
+	if known.SinglePage == nil {
+		t.Fatalf("discriminator single_page did not select the SinglePage variant")
+	}
+	out, err := json.Marshal(known)
+	if err != nil {
+		t.Fatalf("marshal: %v", err)
+	}
+	if !strings.Contains(string(out), "single_page") {
+		t.Fatalf("re-marshal dropped the discriminator: %s", out)
+	}
+
+	var unknown DocumentSplitPageSelectionSegment
+	if err := json.Unmarshal([]byte(`{"type":"__gantry_unknown__"}`), &unknown); err != nil {
+		t.Fatalf("unmarshal unknown: %v", err)
+	}
+	if unknown.Unknown == nil {
+		t.Fatalf("unknown discriminator was not retained")
+	}
+}
+
+func TestShuttleJobScheduleTriggerRoundTrip(t *testing.T) {
+	var known ShuttleJobScheduleTrigger
+	if err := json.Unmarshal([]byte(`{"type":"by_time"}`), &known); err != nil {
+		t.Fatalf("unmarshal known: %v", err)
+	}
+	if known.ByTime == nil {
+		t.Fatalf("discriminator by_time did not select the ByTime variant")
+	}
+	out, err := json.Marshal(known)
+	if err != nil {
+		t.Fatalf("marshal: %v", err)
+	}
+	if !strings.Contains(string(out), "by_time") {
+		t.Fatalf("re-marshal dropped the discriminator: %s", out)
+	}
+
+	var unknown ShuttleJobScheduleTrigger
+	if err := json.Unmarshal([]byte(`{"type":"__gantry_unknown__"}`), &unknown); err != nil {
+		t.Fatalf("unmarshal unknown: %v", err)
+	}
+	if unknown.Unknown == nil {
+		t.Fatalf("unknown discriminator was not retained")
+	}
+}
+
+func TestShuttlePathEntryScopeRoundTrip(t *testing.T) {
+	var known ShuttlePathEntryScope
+	if err := json.Unmarshal([]byte(`{"type":"account"}`), &known); err != nil {
+		t.Fatalf("unmarshal known: %v", err)
+	}
+	if known.Account == nil {
+		t.Fatalf("discriminator account did not select the Account variant")
+	}
+	out, err := json.Marshal(known)
+	if err != nil {
+		t.Fatalf("marshal: %v", err)
+	}
+	if !strings.Contains(string(out), "account") {
+		t.Fatalf("re-marshal dropped the discriminator: %s", out)
+	}
+
+	var unknown ShuttlePathEntryScope
+	if err := json.Unmarshal([]byte(`{"type":"__gantry_unknown__"}`), &unknown); err != nil {
+		t.Fatalf("unmarshal unknown: %v", err)
+	}
+	if unknown.Unknown == nil {
+		t.Fatalf("unknown discriminator was not retained")
+	}
+}
+
+func TestShuttlePathMappingLocationRoundTrip(t *testing.T) {
+	var known ShuttlePathMappingLocation
+	if err := json.Unmarshal([]byte(`{"type":"account"}`), &known); err != nil {
+		t.Fatalf("unmarshal known: %v", err)
+	}
+	if known.Account == nil {
+		t.Fatalf("discriminator account did not select the Account variant")
+	}
+	out, err := json.Marshal(known)
+	if err != nil {
+		t.Fatalf("marshal: %v", err)
+	}
+	if !strings.Contains(string(out), "account") {
+		t.Fatalf("re-marshal dropped the discriminator: %s", out)
+	}
+
+	var unknown ShuttlePathMappingLocation
+	if err := json.Unmarshal([]byte(`{"type":"__gantry_unknown__"}`), &unknown); err != nil {
+		t.Fatalf("unmarshal unknown: %v", err)
+	}
+	if unknown.Unknown == nil {
+		t.Fatalf("unknown discriminator was not retained")
+	}
+}
+
+func TestShuttlePathMappingLocationInputRoundTrip(t *testing.T) {
+	var known ShuttlePathMappingLocationInput
+	if err := json.Unmarshal([]byte(`{"type":"account"}`), &known); err != nil {
+		t.Fatalf("unmarshal known: %v", err)
+	}
+	if known.Account == nil {
+		t.Fatalf("discriminator account did not select the Account variant")
+	}
+	out, err := json.Marshal(known)
+	if err != nil {
+		t.Fatalf("marshal: %v", err)
+	}
+	if !strings.Contains(string(out), "account") {
+		t.Fatalf("re-marshal dropped the discriminator: %s", out)
+	}
+
+	var unknown ShuttlePathMappingLocationInput
+	if err := json.Unmarshal([]byte(`{"type":"__gantry_unknown__"}`), &unknown); err != nil {
+		t.Fatalf("unmarshal unknown: %v", err)
+	}
+	if unknown.Unknown == nil {
+		t.Fatalf("unknown discriminator was not retained")
+	}
+}
+
+func TestShuttlePathMappingTargetLocationInputRoundTrip(t *testing.T) {
+	var known ShuttlePathMappingTargetLocationInput
+	if err := json.Unmarshal([]byte(`{"type":"account"}`), &known); err != nil {
+		t.Fatalf("unmarshal known: %v", err)
+	}
+	if known.Account == nil {
+		t.Fatalf("discriminator account did not select the Account variant")
+	}
+	out, err := json.Marshal(known)
+	if err != nil {
+		t.Fatalf("marshal: %v", err)
+	}
+	if !strings.Contains(string(out), "account") {
+		t.Fatalf("re-marshal dropped the discriminator: %s", out)
+	}
+
+	var unknown ShuttlePathMappingTargetLocationInput
+	if err := json.Unmarshal([]byte(`{"type":"__gantry_unknown__"}`), &unknown); err != nil {
+		t.Fatalf("unmarshal unknown: %v", err)
+	}
+	if unknown.Unknown == nil {
+		t.Fatalf("unknown discriminator was not retained")
+	}
+}

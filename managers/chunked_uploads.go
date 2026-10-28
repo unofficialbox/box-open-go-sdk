@@ -174,6 +174,28 @@ func (m *ChunkedUploadsManager) ListFileUploadSessionParts(ctx context.Context, 
 	}
 }
 
+func (m *ChunkedUploadsManager) CreateFileUploadSessionPlan(ctx context.Context, uploadSessionId string, body *schemas.UploadSessionPlanRequest) (*schemas.UploadSessionPlanResponse, error) {
+	req := m.session.NewRequest("POST", m.session.BaseUrl("upload_session")+"/files"+"/upload_sessions"+"/"+url.PathEscape(uploadSessionId)+"/plan")
+	payload, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	req = gantryruntime.WithJsonBody(req, payload)
+	resp, err := m.session.Fetch(ctx, req)
+	if err != nil {
+		return nil, err
+	}
+	data, err := gantryruntime.ResponseBytes(resp)
+	if err != nil {
+		return nil, err
+	}
+	out := new(schemas.UploadSessionPlanResponse)
+	if err := json.Unmarshal(data, out); err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ChunkedUploadsCommitFileUploadSessionOptions carries the optional parameters.
 type ChunkedUploadsCommitFileUploadSessionOptions struct {
 	IfMatch     *string

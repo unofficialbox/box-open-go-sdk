@@ -24,6 +24,7 @@ type Client struct {
 	DevicePinners                               *managers.DevicePinnersManager
 	Docgen                                      *managers.DocgenManager
 	DocgenTemplate                              *managers.DocgenTemplateManager
+	DocumentSplit                               *managers.DocumentSplitManager
 	Downloads                                   *managers.DownloadsManager
 	EmailAliases                                *managers.EmailAliasesManager
 	EnterpriseConfigurations                    *managers.EnterpriseConfigurationsManager
@@ -73,6 +74,7 @@ type Client struct {
 	ShieldInformationBarrierSegments            *managers.ShieldInformationBarrierSegmentsManager
 	ShieldInformationBarriers                   *managers.ShieldInformationBarriersManager
 	ShieldLists                                 *managers.ShieldListsManager
+	Shuttle                                     *managers.ShuttleManager
 	SignRequests                                *managers.SignRequestsManager
 	SignTemplates                               *managers.SignTemplatesManager
 	Skills                                      *managers.SkillsManager
@@ -117,6 +119,7 @@ func NewClient(ts gantryruntime.TokenSource, opts ...gantryruntime.Option) *Clie
 	c.DevicePinners = managers.NewDevicePinnersManager(session)
 	c.Docgen = managers.NewDocgenManager(session)
 	c.DocgenTemplate = managers.NewDocgenTemplateManager(session)
+	c.DocumentSplit = managers.NewDocumentSplitManager(session)
 	c.Downloads = managers.NewDownloadsManager(session)
 	c.EmailAliases = managers.NewEmailAliasesManager(session)
 	c.EnterpriseConfigurations = managers.NewEnterpriseConfigurationsManager(session)
@@ -166,6 +169,7 @@ func NewClient(ts gantryruntime.TokenSource, opts ...gantryruntime.Option) *Clie
 	c.ShieldInformationBarrierSegments = managers.NewShieldInformationBarrierSegmentsManager(session)
 	c.ShieldInformationBarriers = managers.NewShieldInformationBarriersManager(session)
 	c.ShieldLists = managers.NewShieldListsManager(session)
+	c.Shuttle = managers.NewShuttleManager(session)
 	c.SignRequests = managers.NewSignRequestsManager(session)
 	c.SignTemplates = managers.NewSignTemplatesManager(session)
 	c.Skills = managers.NewSkillsManager(session)

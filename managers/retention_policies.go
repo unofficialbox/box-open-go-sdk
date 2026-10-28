@@ -25,7 +25,7 @@ func NewRetentionPoliciesManager(session *gantryruntime.Client) *RetentionPolici
 // RetentionPoliciesListOptions carries the optional parameters.
 type RetentionPoliciesListOptions struct {
 	PolicyName      *string
-	PolicyType      *schemas.RetentionPolicyType2
+	PolicyType      *schemas.RetentionPolicyPolicyType
 	CreatedByUserId *string
 	Fields          []string
 	Limit           *int64

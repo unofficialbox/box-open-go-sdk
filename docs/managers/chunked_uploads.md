@@ -130,6 +130,28 @@ for item, err := range client.ChunkedUploads.ListFileUploadSessionParts(context.
 
 Paginated — `ListFileUploadSessionParts(...)` returns `iter.Seq2[*T, error]`, threading the cursor for you. See the [pagination guide](../pagination.md).
 
+## CreateFileUploadSessionPlan
+
+`POST /files/upload_sessions/{upload_session_id}/plan`
+
+| Parameter | In | Type | Required |
+|---|---|---|---|
+| `upload_session_id` | path | `string` | yes |
+
+**Request body** (`application/json`): `UploadSessionPlanRequest`
+
+**Returns:** `UploadSessionPlanResponse`
+
+**Example**
+
+```go
+result, err := client.ChunkedUploads.CreateFileUploadSessionPlan(context.Background(), "UPLOAD_SESSION_ID", &schemas.UploadSessionPlanRequest{})
+if err != nil {
+	log.Fatal(err)
+}
+fmt.Println(result)
+```
+
 ## CommitFileUploadSession
 
 `POST /files/upload_sessions/{upload_session_id}/commit`
