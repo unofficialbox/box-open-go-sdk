@@ -29,16 +29,25 @@ guide):
 - **Writes** — pass the etag as `IfMatch` on a file or folder update or
   delete, or a new file version upload. Box answers `412 Precondition
   Failed` (code `precondition_failed`) when the item changed since you read
-  it: read it again, reapply your change, retry. `If-Match` can't block a move.
+  it, and `gantryruntime.IsPreconditionFailed(err)` reports it: read it
+  again, reapply your change, retry. `If-Match` can't block a move.
 
 ```go
 file, err := client.Files.GetIfModified(ctx, fileID, etag, nil)
 if err == nil && file == nil {
 	// unchanged since etag
 }
-_, err = client.Files.Update(ctx, fileID, body, &managers.FilesUpdateOptions{IfMatch: &etag})
-var apiErr *gantryruntime.APIError
-if errors.As(err, &apiErr) && apiErr.Status == http.StatusPreconditionFailed {
-	// changed since etag: re-read and retry
+
+// Re-read and retry: the update lands only on the version it was made from.
+for attempt := 1; ; attempt++ {
+	_, err = client.Files.Update(ctx, fileID, body, &managers.FilesUpdateOptions{IfMatch: &etag})
+	if !gantryruntime.IsPreconditionFailed(err) || attempt == 3 {
+		break
+	}
+	current, err := client.Files.Get(ctx, fileID, nil)
+	if err != nil {
+		return err
+	}
+	etag = current.Etag.Value // reapply your change to current here
 }
 ```
