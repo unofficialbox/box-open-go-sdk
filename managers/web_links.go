@@ -43,7 +43,8 @@ func (m *WebLinksManager) Create(ctx context.Context, body *schemas.CreateWebLin
 
 // WebLinksGetOptions carries the optional parameters.
 type WebLinksGetOptions struct {
-	Boxapi *string
+	Boxapi      *string
+	IfNoneMatch *string
 }
 
 func (m *WebLinksManager) Get(ctx context.Context, webLinkId string, opts *WebLinksGetOptions) (*schemas.WebLink, error) {
@@ -51,6 +52,9 @@ func (m *WebLinksManager) Get(ctx context.Context, webLinkId string, opts *WebLi
 	if opts != nil {
 		if opts.Boxapi != nil {
 			req = gantryruntime.WithHeader(req, "boxapi", (*opts.Boxapi))
+		}
+		if opts.IfNoneMatch != nil {
+			req = gantryruntime.WithHeader(req, "if-none-match", (*opts.IfNoneMatch))
 		}
 	}
 	resp, err := m.session.Fetch(ctx, req)
@@ -68,8 +72,33 @@ func (m *WebLinksManager) Get(ctx context.Context, webLinkId string, opts *WebLi
 	return out, nil
 }
 
-func (m *WebLinksManager) Update(ctx context.Context, webLinkId string, body *schemas.UpdateWebLinkRequest) (*schemas.WebLink, error) {
+// GetIfModified is Get with If-None-Match set to etag. It returns nil, nil
+// when the item is unchanged since etag (Box answers 304 Not Modified).
+func (m *WebLinksManager) GetIfModified(ctx context.Context, webLinkId string, etag string, opts *WebLinksGetOptions) (*schemas.WebLink, error) {
+	var o WebLinksGetOptions
+	if opts != nil {
+		o = *opts
+	}
+	o.IfNoneMatch = &etag
+	out, err := m.Get(ctx, webLinkId, &o)
+	if gantryruntime.IsNotModified(err) {
+		return nil, nil
+	}
+	return out, err
+}
+
+// WebLinksUpdateOptions carries the optional parameters.
+type WebLinksUpdateOptions struct {
+	IfMatch *string
+}
+
+func (m *WebLinksManager) Update(ctx context.Context, webLinkId string, body *schemas.UpdateWebLinkRequest, opts *WebLinksUpdateOptions) (*schemas.WebLink, error) {
 	req := m.session.NewRequest("PUT", m.session.BaseUrl("api")+"/web_links"+"/"+url.PathEscape(webLinkId))
+	if opts != nil {
+		if opts.IfMatch != nil {
+			req = gantryruntime.WithHeader(req, "if-match", (*opts.IfMatch))
+		}
+	}
 	payload, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
@@ -90,8 +119,18 @@ func (m *WebLinksManager) Update(ctx context.Context, webLinkId string, body *sc
 	return out, nil
 }
 
-func (m *WebLinksManager) Delete(ctx context.Context, webLinkId string) error {
+// WebLinksDeleteOptions carries the optional parameters.
+type WebLinksDeleteOptions struct {
+	IfMatch *string
+}
+
+func (m *WebLinksManager) Delete(ctx context.Context, webLinkId string, opts *WebLinksDeleteOptions) error {
 	req := m.session.NewRequest("DELETE", m.session.BaseUrl("api")+"/web_links"+"/"+url.PathEscape(webLinkId))
+	if opts != nil {
+		if opts.IfMatch != nil {
+			req = gantryruntime.WithHeader(req, "if-match", (*opts.IfMatch))
+		}
+	}
 	resp, err := m.session.Fetch(ctx, req)
 	if err != nil {
 		return err

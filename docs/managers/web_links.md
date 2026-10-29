@@ -29,6 +29,7 @@ fmt.Println(result)
 |---|---|---|---|
 | `web_link_id` | path | `string` | yes |
 | `boxapi` | header | `string` | no |
+| `if-none-match` | header | `string` | no |
 
 **Returns:** `WebLink`
 
@@ -49,6 +50,7 @@ fmt.Println(result)
 | Parameter | In | Type | Required |
 |---|---|---|---|
 | `web_link_id` | path | `string` | yes |
+| `if-match` | header | `string` | no |
 
 **Request body** (`application/json`): `UpdateWebLinkRequest`
 
@@ -57,7 +59,7 @@ fmt.Println(result)
 **Example**
 
 ```go
-result, err := client.WebLinks.Update(context.Background(), "WEB_LINK_ID", &schemas.UpdateWebLinkRequest{})
+result, err := client.WebLinks.Update(context.Background(), "WEB_LINK_ID", &schemas.UpdateWebLinkRequest{}, nil)
 if err != nil {
 	log.Fatal(err)
 }
@@ -71,13 +73,14 @@ fmt.Println(result)
 | Parameter | In | Type | Required |
 |---|---|---|---|
 | `web_link_id` | path | `string` | yes |
+| `if-match` | header | `string` | no |
 
 **Returns:** no content
 
 **Example**
 
 ```go
-if err := client.WebLinks.Delete(context.Background(), "WEB_LINK_ID"); err != nil {
+if err := client.WebLinks.Delete(context.Background(), "WEB_LINK_ID", nil); err != nil {
 	log.Fatal(err)
 }
 ```

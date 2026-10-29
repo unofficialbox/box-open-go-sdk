@@ -21,12 +21,12 @@ Files and folders carry an `etag`. Send it back to stay in sync with Box
 (Box's [Ensure consistency](https://developer.box.com/guides/api-calls/ensure-consistency/)
 guide):
 
-- **Reads** — a file or folder `get`, and each shared-item lookup, has an
+- **Reads** — a file, folder, or web link `get`, and each shared-item lookup, has an
   `…IfModified` variant that takes the stored etag, sends it as
   `If-None-Match`, and returns `nil, nil` when Box answers `304 Not Modified`:
   keep your cached copy. (The plain method surfaces that 304 as the error
   above if you set `if-none-match` on it yourself.)
-- **Writes** — pass the etag as `IfMatch` on a file or folder update or
+- **Writes** — pass the etag as `IfMatch` on a file, folder, or web link update or
   delete, or a new file version upload. Box answers `412 Precondition
   Failed` (code `precondition_failed`) when the item changed since you read
   it, and `gantryruntime.IsPreconditionFailed(err)` reports it: read it

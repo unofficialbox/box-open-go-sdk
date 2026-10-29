@@ -9,6 +9,7 @@ One resource manager per Box API tag, reached through the single
 - [Authentication](auth.md)
 - [Pagination](pagination.md)
 - [Errors](errors.md)
+- [Webhooks](webhooks.md)
 
 ## Managers
 

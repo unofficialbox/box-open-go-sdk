@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"github.com/unofficialbox/box-open-go-sdk/gantryruntime"
 	"github.com/unofficialbox/box-open-go-sdk/schemas"
+	"iter"
 	"strconv"
 	"time"
 )
@@ -82,4 +83,61 @@ func (m *EventsManager) Options(ctx context.Context) (*schemas.RealtimeServers, 
 		return nil, err
 	}
 	return out, nil
+}
+
+// Stream follows Box's long-poll event stream from opts.StreamPosition ("now"
+// when unset): it yields each event once, then waits on a real-time server
+// for the next change. It ends when ctx does or a call fails, with the error.
+func (m *EventsManager) Stream(ctx context.Context, opts *EventsListOptions) iter.Seq2[*schemas.Event, error] {
+	var o EventsListOptions
+	if opts != nil {
+		o = *opts
+	}
+	position := "now"
+	if o.StreamPosition != nil {
+		position = *o.StreamPosition
+	}
+	return gantryruntime.EventStream(ctx, m.session, position, gantryruntime.EventSource[*schemas.Event]{
+		Server: func(c context.Context) (gantryruntime.LongPollServer, error) {
+			listed, err := m.Options(c)
+			if err != nil {
+				return gantryruntime.LongPollServer{}, err
+			}
+			for _, s := range listed.Entries {
+				if s.Url == nil {
+					continue
+				}
+				server := gantryruntime.LongPollServer{URL: *s.Url}
+				if s.MaxRetries != nil {
+					server.MaxRetries, _ = strconv.Atoi(*s.MaxRetries)
+				}
+				if s.RetryTimeout != nil {
+					server.RetryTimeout = time.Duration(*s.RetryTimeout) * time.Second
+				}
+				return server, nil
+			}
+			return gantryruntime.LongPollServer{}, gantryruntime.ErrNoLongPollServer
+		},
+		Page: func(c context.Context, position string) ([]*schemas.Event, string, error) {
+			o.StreamPosition = &position
+			page, err := m.List(c, &o)
+			if err != nil {
+				return nil, "", err
+			}
+			events := make([]*schemas.Event, len(page.Entries))
+			for i := range page.Entries {
+				events[i] = &page.Entries[i]
+			}
+			if page.NextStreamPosition == nil {
+				return events, "", nil
+			}
+			return events, gantryruntime.StreamPosition(page.NextStreamPosition.Raw), nil
+		},
+		ID: func(event *schemas.Event) string {
+			if event.EventId == nil {
+				return ""
+			}
+			return *event.EventId
+		},
+	})
 }

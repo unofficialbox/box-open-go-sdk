@@ -17,3 +17,21 @@ for item, err := range client.Folders.ListItems(ctx, folderID, nil) {
 The iterator threads the cursor for you and stops when the last page is
 reached. It copies the options you pass, so your struct is never
 mutated.
+
+## Events
+
+`client.Events.Stream` follows Box's long-poll event stream: it yields the
+events after `opts.StreamPosition` (`"now"` when unset), each once — Box may
+deliver an event twice — then waits on a real-time server until Box reports a
+change. It lists a fresh server when Box asks it to reconnect, and retries a
+long poll that times out. It ends when `ctx` does, or when a call fails, with
+that error:
+
+```go
+for event, err := range client.Events.Stream(ctx, nil) {
+	if err != nil {
+		return err
+	}
+	// use event; break to stop
+}
+```
