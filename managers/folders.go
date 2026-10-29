@@ -73,6 +73,21 @@ func (m *FoldersManager) Get(ctx context.Context, folderId string, opts *Folders
 	return out, nil
 }
 
+// GetIfModified is Get with If-None-Match set to etag. It returns nil, nil
+// when the item is unchanged since etag (Box answers 304 Not Modified).
+func (m *FoldersManager) GetIfModified(ctx context.Context, folderId string, etag string, opts *FoldersGetOptions) (*schemas.FolderFull, error) {
+	var o FoldersGetOptions
+	if opts != nil {
+		o = *opts
+	}
+	o.IfNoneMatch = &etag
+	out, err := m.Get(ctx, folderId, &o)
+	if gantryruntime.IsNotModified(err) {
+		return nil, nil
+	}
+	return out, err
+}
+
 // FoldersUpdateOptions carries the optional parameters.
 type FoldersUpdateOptions struct {
 	Fields  []string

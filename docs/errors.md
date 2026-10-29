@@ -21,22 +21,23 @@ Files and folders carry an `etag`. Send it back to stay in sync with Box
 (Box's [Ensure consistency](https://developer.box.com/guides/api-calls/ensure-consistency/)
 guide):
 
-- **Reads** — pass the stored etag as `if-none-match` on a file or folder
-  `get` (or a shared-item lookup). Box answers `304 Not Modified` when
-  nothing changed, and the SDK raises it as the error above with status
-  `304`: keep your cached copy.
-- **Writes** — pass it as `if-match` on a file or folder update or delete,
-  or a new file version upload. Box answers `412 Precondition Failed`
-  (code `precondition_failed`) when the item changed since you read it:
-  read it again, reapply your change, retry. `If-Match` can't block a move.
+- **Reads** — a file or folder `get`, and each shared-item lookup, has an
+  `…IfModified` variant that takes the stored etag, sends it as
+  `If-None-Match`, and returns `nil, nil` when Box answers `304 Not Modified`:
+  keep your cached copy. (The plain method surfaces that 304 as the error
+  above if you set `if-none-match` on it yourself.)
+- **Writes** — pass the etag as `IfMatch` on a file or folder update or
+  delete, or a new file version upload. Box answers `412 Precondition
+  Failed` (code `precondition_failed`) when the item changed since you read
+  it: read it again, reapply your change, retry. `If-Match` can't block a move.
 
 ```go
-file, err := client.Files.Get(ctx, fileID, &managers.FilesGetOptions{IfNoneMatch: &etag})
-var apiErr *gantryruntime.APIError
-if errors.As(err, &apiErr) && apiErr.Status == http.StatusNotModified {
+file, err := client.Files.GetIfModified(ctx, fileID, etag, nil)
+if err == nil && file == nil {
 	// unchanged since etag
 }
 _, err = client.Files.Update(ctx, fileID, body, &managers.FilesUpdateOptions{IfMatch: &etag})
+var apiErr *gantryruntime.APIError
 if errors.As(err, &apiErr) && apiErr.Status == http.StatusPreconditionFailed {
 	// changed since etag: re-read and retry
 }

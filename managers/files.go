@@ -61,6 +61,21 @@ func (m *FilesManager) Get(ctx context.Context, fileId string, opts *FilesGetOpt
 	return out, nil
 }
 
+// GetIfModified is Get with If-None-Match set to etag. It returns nil, nil
+// when the item is unchanged since etag (Box answers 304 Not Modified).
+func (m *FilesManager) GetIfModified(ctx context.Context, fileId string, etag string, opts *FilesGetOptions) (*schemas.FileFull, error) {
+	var o FilesGetOptions
+	if opts != nil {
+		o = *opts
+	}
+	o.IfNoneMatch = &etag
+	out, err := m.Get(ctx, fileId, &o)
+	if gantryruntime.IsNotModified(err) {
+		return nil, nil
+	}
+	return out, err
+}
+
 // FilesUpdateOptions carries the optional parameters.
 type FilesUpdateOptions struct {
 	Fields  []string

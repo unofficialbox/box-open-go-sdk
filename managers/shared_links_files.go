@@ -52,6 +52,21 @@ func (m *SharedLinksFilesManager) GetSharedItems(ctx context.Context, boxapi str
 	return out, nil
 }
 
+// GetSharedItemsIfModified is GetSharedItems with If-None-Match set to etag. It returns nil, nil
+// when the item is unchanged since etag (Box answers 304 Not Modified).
+func (m *SharedLinksFilesManager) GetSharedItemsIfModified(ctx context.Context, boxapi string, etag string, opts *SharedLinksFilesGetSharedItemsOptions) (*schemas.FileFull, error) {
+	var o SharedLinksFilesGetSharedItemsOptions
+	if opts != nil {
+		o = *opts
+	}
+	o.IfNoneMatch = &etag
+	out, err := m.GetSharedItems(ctx, boxapi, &o)
+	if gantryruntime.IsNotModified(err) {
+		return nil, nil
+	}
+	return out, err
+}
+
 func (m *SharedLinksFilesManager) GetFileGetSharedLink(ctx context.Context, fileId string, fields string) (*schemas.FileFull, error) {
 	req := m.session.NewRequest("GET", m.session.BaseUrl("api")+"/files"+"/"+url.PathEscape(fileId))
 	req = gantryruntime.WithQuery(req, "fields", fields)

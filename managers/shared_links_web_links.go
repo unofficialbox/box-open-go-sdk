@@ -52,6 +52,21 @@ func (m *SharedLinksWebLinksManager) GetSharedItemsWebLinks(ctx context.Context,
 	return out, nil
 }
 
+// GetSharedItemsIfModifiedWebLinks is GetSharedItemsWebLinks with If-None-Match set to etag. It returns nil, nil
+// when the item is unchanged since etag (Box answers 304 Not Modified).
+func (m *SharedLinksWebLinksManager) GetSharedItemsIfModifiedWebLinks(ctx context.Context, boxapi string, etag string, opts *SharedLinksWebLinksGetSharedItemsWebLinksOptions) (*schemas.WebLink, error) {
+	var o SharedLinksWebLinksGetSharedItemsWebLinksOptions
+	if opts != nil {
+		o = *opts
+	}
+	o.IfNoneMatch = &etag
+	out, err := m.GetSharedItemsWebLinks(ctx, boxapi, &o)
+	if gantryruntime.IsNotModified(err) {
+		return nil, nil
+	}
+	return out, err
+}
+
 func (m *SharedLinksWebLinksManager) GetWebLinkGetSharedLink(ctx context.Context, webLinkId string, fields string) (*schemas.WebLink, error) {
 	req := m.session.NewRequest("GET", m.session.BaseUrl("api")+"/web_links"+"/"+url.PathEscape(webLinkId))
 	req = gantryruntime.WithQuery(req, "fields", fields)
