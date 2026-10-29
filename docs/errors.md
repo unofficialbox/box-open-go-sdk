@@ -4,5 +4,13 @@
 Every I/O method returns `(T, error)` (Go's idiomatic error model). A
 non-nil error is either a transport failure or a non-2xx response after
 the network layer's retries (exponential backoff + jitter, `401`
-refresh, `Retry-After`). Response bodies for error statuses carry the
-Box error schema and can be inspected on the returned error.
+refresh, `Retry-After`). A non-2xx response is a
+`*gantryruntime.APIError` carrying the HTTP `Status`, Box's error `Code`,
+`Message`, and `RequestID`, the response `Header`, and the raw `Body`:
+
+```go
+var apiErr *gantryruntime.APIError
+if errors.As(err, &apiErr) && apiErr.Status == http.StatusNotFound {
+	// apiErr.Code == "not_found"; quote apiErr.RequestID to Box support
+}
+```

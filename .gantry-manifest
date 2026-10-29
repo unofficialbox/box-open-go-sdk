@@ -99,6 +99,7 @@ docs/managers/webhooks.md
 docs/managers/workflows.md
 docs/managers/zip_downloads.md
 docs/pagination.md
+gantryruntime/errors.go
 gantryruntime/runtime.go
 go.mod
 managers/ai.go
