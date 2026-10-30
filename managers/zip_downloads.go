@@ -4,6 +4,7 @@ package managers
 import (
 	"context"
 	"encoding/json"
+	"errors"
 	"github.com/unofficialbox/box-open-go-sdk/gantryruntime"
 	"github.com/unofficialbox/box-open-go-sdk/schemas"
 	"io"
@@ -66,4 +67,23 @@ func (m *ZipDownloadsManager) GetStatus(ctx context.Context, zipDownloadId strin
 		return nil, err
 	}
 	return out, nil
+}
+
+// DownloadZip packs the items in body into one zip archive (Create)
+// and streams it from the download URL Box answers with, through this
+// session (auth, retries, As-User). GetContent fetches the same
+// archive by id.
+func (m *ZipDownloadsManager) DownloadZip(ctx context.Context, body *schemas.ZipDownloadRequest) (io.Reader, error) {
+	zip, err := m.Create(ctx, body)
+	if err != nil {
+		return nil, err
+	}
+	if zip.DownloadUrl == nil {
+		return nil, errors.New("box: the zip download has no download_url")
+	}
+	resp, err := m.session.Fetch(ctx, m.session.NewRequest("GET", *zip.DownloadUrl))
+	if err != nil {
+		return nil, err
+	}
+	return gantryruntime.ResponseStream(resp), nil
 }

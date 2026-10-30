@@ -35,3 +35,20 @@ for event, err := range client.Events.Stream(ctx, nil) {
 	// use event; break to stop
 }
 ```
+
+## Representations (PDF, text, thumbnails)
+
+`client.Files.GetRepresentationContent` downloads a rendering of a file that Box
+generates on demand — a PDF, its extracted text, page images. `repHints` names it
+as Box's `X-Rep-Hints` header does; `assetPath` picks one asset of a multi-asset
+representation (`"1.png"` for a page) and is `""` for a single-file one. It
+waits while Box generates the representation, up to `ctx`'s deadline or
+`gantryruntime.DefaultRepresentationWait`, and returns an error if Box fails to:
+
+```go
+text, err := client.Files.GetRepresentationContent(ctx, fileID, "[extracted_text]", "")
+if err != nil {
+	return err
+}
+body, err := io.ReadAll(text)
+```

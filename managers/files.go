@@ -194,3 +194,16 @@ func (m *FilesManager) GetThumbnail(ctx context.Context, fileId string, extensio
 	}
 	return gantryruntime.ResponseStream(resp), nil
 }
+
+// GetRepresentationContent downloads a representation of the item — a PDF,
+// its extracted text, page images. repHints names it as X-Rep-Hints does
+// ("[pdf]", "[extracted_text]", "[jpg?dimensions=320x320]"); assetPath
+// picks one asset of a multi-asset representation ("1.png") and is ""
+// for a single-file one. It waits while Box generates the representation,
+// up to ctx's deadline or gantryruntime.DefaultRepresentationWait.
+func (m *FilesManager) GetRepresentationContent(ctx context.Context, fileId string, repHints string, assetPath string) (io.Reader, error) {
+	req := m.session.NewRequest("GET", m.session.BaseUrl("api")+"/files"+"/"+url.PathEscape(fileId))
+	req = gantryruntime.WithQuery(req, "fields", "representations")
+	req = gantryruntime.WithHeader(req, "x-rep-hints", repHints)
+	return m.session.RepresentationContent(ctx, req, "representations", assetPath)
+}

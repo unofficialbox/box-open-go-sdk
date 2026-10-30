@@ -61,3 +61,21 @@ if err != nil {
 fmt.Println(result)
 ```
 
+
+## DownloadZip: downloading several items as a zip
+
+`DownloadZip` packs files and folders into one zip archive (`Create`) and
+streams it from the `download_url` Box answers with, through the client's
+session, so auth, retries, and As-User apply:
+
+**Example**
+
+```go
+archive, err := c.ZipDownloads.DownloadZip(ctx, body) // body: *schemas.ZipDownloadRequest
+if err != nil {
+	return err
+}
+_, err = io.Copy(out, archive)
+```
+
+`GetStatus` reports progress and skipped items while the download runs.
