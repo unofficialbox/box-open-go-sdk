@@ -7,6 +7,7 @@ import (
 	"github.com/unofficialbox/box-open-go-sdk/gantryruntime"
 	"github.com/unofficialbox/box-open-go-sdk/schemas"
 	"net/url"
+	"strings"
 )
 
 // AuthorizationManager groups the "authorization" operations.
@@ -156,4 +157,31 @@ func (m *AuthorizationManager) RevokeOauth2(ctx context.Context, body *schemas.P
 	}
 	_ = resp
 	return nil
+}
+
+// DownscopeToken exchanges the session's current access token for one
+// limited to scopes and, when set, to one item (resource: its API URL,
+// e.g. https://api.box.com/2.0/files/123) or a shared link. The result is a
+// plain access token with no refresh token: build a client from it with
+// auth.DeveloperToken.
+func (m *AuthorizationManager) DownscopeToken(ctx context.Context, scopes []string, resource string, sharedLink string) (*schemas.AccessToken, error) {
+	subject, err := m.session.AccessToken(ctx)
+	if err != nil {
+		return nil, err
+	}
+	subjectType := schemas.AccessTokenIssuedTokenType("urn:ietf:params:oauth:token-type:access_token")
+	scope := strings.Join(scopes, " ")
+	body := &schemas.PostOAuth2Token{
+		GrantType:        schemas.PostOAuth2TokenGrantType("urn:ietf:params:oauth:grant-type:token-exchange"),
+		SubjectToken:     &subject,
+		SubjectTokenType: &subjectType,
+		Scope:            &scope,
+	}
+	if resource != "" {
+		body.Resource = &resource
+	}
+	if sharedLink != "" {
+		body.BoxSharedLink = &sharedLink
+	}
+	return m.CreateOauth2Token(ctx, body)
 }

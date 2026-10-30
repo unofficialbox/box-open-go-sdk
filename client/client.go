@@ -96,13 +96,24 @@ type Client struct {
 	Webhooks                                    *managers.WebhooksManager
 	Workflows                                   *managers.WorkflowsManager
 	ZipDownloads                                *managers.ZipDownloadsManager
+	session                                     *gantryruntime.Client
 }
 
 // NewClient wires every manager to a runtime session built from the
 // token source and options.
 func NewClient(ts gantryruntime.TokenSource, opts ...gantryruntime.Option) *Client {
-	session := gantryruntime.New(ts, opts...)
-	c := &Client{}
+	return newClient(gantryruntime.New(ts, opts...))
+}
+
+// WithAsUserHeader returns a new Client whose every API call acts as the
+// user userID (Box's As-User header). It shares this client's auth and
+// configuration; this client is unchanged.
+func (c *Client) WithAsUserHeader(userID string) *Client {
+	return newClient(c.session.WithAsUserHeader(userID))
+}
+
+func newClient(session *gantryruntime.Client) *Client {
+	c := &Client{session: session}
 	c.Ai = managers.NewAiManager(session)
 	c.AiStudio = managers.NewAiStudioManager(session)
 	c.AppItemAssociations = managers.NewAppItemAssociationsManager(session)
