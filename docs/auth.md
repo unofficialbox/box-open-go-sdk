@@ -42,15 +42,38 @@ c := client.NewClient(src)
 
 ## OAuth 2.0 (authorization code)
 
-Redirect the user to `cfg.AuthorizeURL(redirectURI, state)`, exchange the
-returned code, then reuse the stored refresh token on later runs:
+Redirect the user to `cfg.AuthorizeURL(redirectURI, state)` and exchange the
+returned code. Box rotates the refresh token on every refresh and rejects the
+old one, so give the config a `Store` (any type with
+`SaveRefreshToken(ctx, token) error`) that writes it somewhere durable; it is
+called with the token the exchange issues and with every rotation after. Later
+runs resume from the newest saved token:
 
 ```go
-cfg := auth.OAuthConfig{ClientID: "CLIENT_ID", ClientSecret: "CLIENT_SECRET"}
+cfg := auth.OAuthConfig{ClientID: "CLIENT_ID", ClientSecret: "CLIENT_SECRET", Store: tokenStore}
 src, err := cfg.ExchangeCode(ctx, code, redirectURI)
-// later: src := auth.OAuth(cfg, storedRefreshToken)
+// later runs: src := auth.OAuth(cfg, newestSavedRefreshToken)
 c := client.NewClient(src)
 ```
+
+## Revoking a token
+
+For logout or uninstall, `auth.RevokeToken` revokes the token a CCG, JWT, or
+OAuth source holds — with the flow's own client credentials, at the revoke
+endpoint beside its token URL, through its proxy — and clears it from the
+cache:
+
+```go
+if err := auth.RevokeToken(ctx, src); err != nil {
+	return err
+}
+```
+
+A CCG or JWT source acquires a fresh token on its next use. OAuth revokes the
+whole grant: every later call fails with `auth.ErrRevoked`, so discard the
+stored refresh token and run the authorization-code flow again. A developer
+token has no client credentials to revoke with — pass them yourself to
+`c.Authorization.RevokeOauth2`.
 
 ## Acting as another user
 
