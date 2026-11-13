@@ -457,6 +457,56 @@ func TestSearchResultWithSharedLinkItemRoundTrip(t *testing.T) {
 	}
 }
 
+func TestSignRequestSignerVerificationMethodRoundTrip(t *testing.T) {
+	var known SignRequestSignerVerificationMethod
+	if err := json.Unmarshal([]byte(`{"type":"login"}`), &known); err != nil {
+		t.Fatalf("unmarshal known: %v", err)
+	}
+	if known.Login == nil {
+		t.Fatalf("discriminator login did not select the Login variant")
+	}
+	out, err := json.Marshal(known)
+	if err != nil {
+		t.Fatalf("marshal: %v", err)
+	}
+	if !strings.Contains(string(out), "login") {
+		t.Fatalf("re-marshal dropped the discriminator: %s", out)
+	}
+
+	var unknown SignRequestSignerVerificationMethod
+	if err := json.Unmarshal([]byte(`{"type":"__gantry_unknown__"}`), &unknown); err != nil {
+		t.Fatalf("unmarshal unknown: %v", err)
+	}
+	if unknown.Unknown == nil {
+		t.Fatalf("unknown discriminator was not retained")
+	}
+}
+
+func TestTemplateSignerVerificationMethodRoundTrip(t *testing.T) {
+	var known TemplateSignerVerificationMethod
+	if err := json.Unmarshal([]byte(`{"type":"login"}`), &known); err != nil {
+		t.Fatalf("unmarshal known: %v", err)
+	}
+	if known.Login == nil {
+		t.Fatalf("discriminator login did not select the Login variant")
+	}
+	out, err := json.Marshal(known)
+	if err != nil {
+		t.Fatalf("marshal: %v", err)
+	}
+	if !strings.Contains(string(out), "login") {
+		t.Fatalf("re-marshal dropped the discriminator: %s", out)
+	}
+
+	var unknown TemplateSignerVerificationMethod
+	if err := json.Unmarshal([]byte(`{"type":"__gantry_unknown__"}`), &unknown); err != nil {
+		t.Fatalf("unmarshal unknown: %v", err)
+	}
+	if unknown.Unknown == nil {
+		t.Fatalf("unknown discriminator was not retained")
+	}
+}
+
 func TestHubAccessGranteeRoundTrip(t *testing.T) {
 	var known HubAccessGrantee
 	if err := json.Unmarshal([]byte(`{"type":"user"}`), &known); err != nil {
